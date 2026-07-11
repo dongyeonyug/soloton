@@ -1,0 +1,33 @@
+[project]
+name = "oneul-ui-bada-backend"
+version = "0.1.0"
+description = "환각 없는 AI 연안 해양안전 브리핑 — backend"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "httpx>=0.27",
+    "pydantic>=2.7",
+    "pydantic-settings>=2.3",
+    "anthropic>=0.40",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.6",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["app"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 100

@@ -1,0 +1,89 @@
+"""브리핑 조립 — 슬롯필 + LLM 산문(가드 통과 시) + 폴백.
+
+LLM 호출은 주입 가능(llm_fn)하여 테스트를 결정론적으로 유지한다. 가드(AC6)를 통과하지
+못한 산문은 절대 서빙하지 않고 코드 생성 폴백 산문으로 대체한다.
+"""
+
+from __future__ import annotations
+
+from datetime import datetime
+from typing import Callable
+
+from ..config import get_settings
+from ..models import Briefing, RiskGrade
+from ..spots import Spot
+from . import guard
+from .prompt import SYSTEM_PROMPT, build_user_prompt
+from .template import (
+    build_recommendations,
+    build_slots,
+    fallback_prose,
+    render_template,
+)
+
+# llm_fn(system, user) -> str
+LLMFn = Callable[[str, str], str]
+
+
+def _default_llm() -> LLMFn | None:
+    settings = get_settings()
+    if not settings.has_llm:
+        return None
+
+    def call(system: str, user: str) -> str:
+        import anthropic
+
+        client = anthropic.Anthropic(api_key=settings.anthropic_api_key)
+        msg = client.messages.create(
+            model=settings.anthropic_model,
+            max_tokens=400,
+            system=system,
+            messages=[{"role": "user", "content": user}],
+        )
+        return "".join(
+            block.text for block in msg.content if getattr(block, "type", None) == "text"
+        )
+
+    return call
+
+
+def generate_briefing(
+    spot: Spot,
+    risk: RiskGrade,
+    snapshot_as_of: datetime | None,
+    *,
+    llm_fn: LLMFn | None = None,
+) -> Briefing:
+    slots = build_slots(spot, risk, snapshot_as_of)
+    template_text = render_template(spot, risk, slots)
+    recommendations = build_recommendations(risk, slots.is_confession)
+
+    prose = ""
+    llm_used = False
+    fn = llm_fn if llm_fn is not None else _default_llm()
+    if fn is not None:
+        try:
+            candidate = fn(SYSTEM_PROMPT, build_user_prompt(spot, risk))
+        except Exception:
+            candidate = ""
+        # 런타임 가드: 무허용 숫자 발견 → 산문 폐기(AC6)
+        if candidate and guard.is_number_free(candidate):
+            prose = candidate.strip()
+            llm_used = True
+
+    if not prose:
+        prose = fallback_prose(spot, risk, slots.is_confession)
+
+    return Briefing(
+        spot_id=spot.id,
+        time_slot=risk.time_slot,
+        activity=risk.activity,
+        grade=risk.grade,
+        template_text=template_text,
+        llm_prose=prose,
+        citations=slots.filled_numbers,
+        recommendations=recommendations,
+        is_confession=slots.is_confession,
+        llm_used=llm_used,
+        snapshot_as_of=snapshot_as_of,
+    )

@@ -1,0 +1,90 @@
+import { useEffect, useState } from "react";
+import { fetchBriefing, fetchOverview } from "./api/client";
+import { BriefingPanel } from "./components/Briefing";
+import { DisclaimerFooter } from "./components/DisclaimerFooter";
+import { SignalCard } from "./components/SignalCard";
+import { SpotList } from "./components/SpotList";
+import { SpotMap } from "./components/SpotMap";
+import type { Activity, Briefing, Overview } from "./types";
+import { ACTIVITIES } from "./types";
+
+export default function App() {
+  const [activity, setActivity] = useState<Activity>("레저");
+  const [overview, setOverview] = useState<Overview | null>(null);
+  const [selected, setSelected] = useState<string | null>(null);
+  const [briefing, setBriefing] = useState<Briefing | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  // 활동 변경 → 개요 재조회 (지도 색칠)
+  useEffect(() => {
+    setError(null);
+    fetchOverview(activity)
+      .then((ov) => {
+        setOverview(ov);
+        setSelected((cur) => cur ?? ov.spots[0]?.id ?? null);
+      })
+      .catch((e) => setError(`데이터를 불러오지 못했습니다: ${e.message}`));
+  }, [activity]);
+
+  // 선택 지점/활동 → 브리핑
+  useEffect(() => {
+    if (!selected) return;
+    setLoading(true);
+    fetchBriefing(selected, activity)
+      .then(setBriefing)
+      .catch((e) => setError(`브리핑 오류: ${e.message}`))
+      .finally(() => setLoading(false));
+  }, [selected, activity]);
+
+  return (
+    <div className="app">
+      <header className="topbar">
+        <h1>🌊 오늘의 바다</h1>
+        <p className="tagline">환각 없는 AI 연안 해양안전 브리핑 · 부산</p>
+        <div className="activity-tabs">
+          {ACTIVITIES.map((a) => (
+            <button
+              key={a}
+              className={a === activity ? "active" : ""}
+              onClick={() => setActivity(a)}
+            >
+              {a}
+            </button>
+          ))}
+        </div>
+      </header>
+
+      {error && <div className="banner error">{error}</div>}
+
+      <main className="layout">
+        <section className="left">
+          {overview && (
+            <>
+              <SpotMap spots={overview.spots} selected={selected} onSelect={setSelected} />
+              <SpotList spots={overview.spots} selected={selected} onSelect={setSelected} />
+            </>
+          )}
+        </section>
+
+        <section className="right">
+          {loading && <div className="muted">불러오는 중…</div>}
+          {briefing && !loading && (
+            <>
+              <h2>{overview?.spots.find((s) => s.id === selected)?.name}</h2>
+              <SignalCard briefing={briefing} />
+              <BriefingPanel briefing={briefing} />
+            </>
+          )}
+        </section>
+      </main>
+
+      {overview && (
+        <div className="asof-bar">
+          스냅샷 기준 {overview.snapshot_as_of.replace("T", " ").slice(0, 16)}
+        </div>
+      )}
+      <DisclaimerFooter />
+    </div>
+  );
+}

@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Env / secrets
+.env
+.env.local
+*.local
+
+# Node / frontend
+node_modules/
+frontend/dist/
+frontend/.vite/
+
+# OS
+.DS_Store
+
+# OMC internal planning & operational state (public repo: keep out)
+.omc/
+
+# 공모전 내부 전략 문서(비공개)
+inputdata/
+
+# Build
+dist/
+build/

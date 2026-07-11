@@ -1,0 +1,20 @@
+# Render 배포 (backend). Frontend 는 Vercel(frontend/vercel.json).
+services:
+  - type: web
+    name: oneul-ui-bada-api
+    runtime: python
+    rootDir: backend
+    plan: free
+    buildCommand: pip install -e .
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: USE_SNAPSHOT_ONLY
+        value: "1" # 커밋 스냅샷 서빙(무료티어 sleep/ephemeral FS 무관)
+      - key: FRONTEND_ORIGIN
+        sync: false # Vercel 도메인 입력
+      - key: ANTHROPIC_API_KEY
+        sync: false # 선택 — 없으면 템플릿 폴백
+      - key: KHOA_API_KEY
+        sync: false
+      - key: KMA_API_KEY
+        sync: false
