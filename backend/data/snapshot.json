@@ -1,38 +1,38 @@
 {
-  "snapshot_as_of": "2026-07-11T16:09:19.489943",
-  "source": "live-collect (hybrid)",
+  "snapshot_as_of": "2026-07-11T19:11:24.635611",
+  "source": "live-collect (openmeteo)",
   "spots": {
     "haeundae": {
       "observations": [
         {
           "spot_id": "haeundae",
           "metric": "wave_height",
-          "value": 0.6,
+          "value": 0.52,
           "unit": "m",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "haeundae",
           "metric": "wind_speed",
-          "value": 1.7,
+          "value": 1.8,
           "unit": "m/s",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 해양관측부이(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 기상모델",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "haeundae",
           "metric": "current_speed",
-          "value": 0.339,
+          "value": 0.417,
           "unit": "m/s",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "haeundae",
@@ -40,26 +40,26 @@
           "value": null,
           "unit": "cm",
           "observed_at": null,
-          "source": "KHOA 조위관측소(실측)",
+          "source": "공공 해양데이터",
           "is_missing": true,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "haeundae",
           "metric": "water_temp",
-          "value": 20.9,
+          "value": 26.2,
           "unit": "°C",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         }
       ],
       "advisory": {
         "kind": "none",
         "threshold_value": null,
         "effective_at": null,
-        "source": "기상청 특보",
+        "source": "특보 소스 미제공",
         "is_missing": false
       }
     },
@@ -68,32 +68,32 @@
         {
           "spot_id": "gwangalli",
           "metric": "wave_height",
-          "value": 0.6,
+          "value": 0.52,
           "unit": "m",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "gwangalli",
           "metric": "wind_speed",
-          "value": 1.7,
+          "value": 1.53,
           "unit": "m/s",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 해양관측부이(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 기상모델",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "gwangalli",
           "metric": "current_speed",
-          "value": 0.339,
+          "value": 0.417,
           "unit": "m/s",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "gwangalli",
@@ -101,26 +101,26 @@
           "value": null,
           "unit": "cm",
           "observed_at": null,
-          "source": "KHOA 조위관측소(실측)",
+          "source": "공공 해양데이터",
           "is_missing": true,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "gwangalli",
           "metric": "water_temp",
-          "value": 20.9,
+          "value": 26.2,
           "unit": "°C",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         }
       ],
       "advisory": {
         "kind": "none",
         "threshold_value": null,
         "effective_at": null,
-        "source": "기상청 특보",
+        "source": "특보 소스 미제공",
         "is_missing": false
       }
     },
@@ -129,32 +129,32 @@
         {
           "spot_id": "songjeong",
           "metric": "wave_height",
-          "value": 0.4,
+          "value": 0.6,
           "unit": "m",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "songjeong",
           "metric": "wind_speed",
-          "value": 1.0,
+          "value": 1.57,
           "unit": "m/s",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 해양관측부이(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 기상모델",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "songjeong",
           "metric": "current_speed",
-          "value": 0.563,
+          "value": 0.5,
           "unit": "m/s",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "songjeong",
@@ -162,26 +162,26 @@
           "value": null,
           "unit": "cm",
           "observed_at": null,
-          "source": "KHOA 조위관측소(실측)",
+          "source": "공공 해양데이터",
           "is_missing": true,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "songjeong",
           "metric": "water_temp",
-          "value": 22.53,
+          "value": 25.9,
           "unit": "°C",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         }
       ],
       "advisory": {
         "kind": "none",
         "threshold_value": null,
         "effective_at": null,
-        "source": "기상청 특보",
+        "source": "특보 소스 미제공",
         "is_missing": false
       }
     },
@@ -190,32 +190,32 @@
         {
           "spot_id": "songdo",
           "metric": "wave_height",
-          "value": 0.56,
+          "value": 0.6,
           "unit": "m",
-          "observed_at": "2026-07-12T01:00:00",
+          "observed_at": "2026-07-12T04:00:00",
           "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "songdo",
           "metric": "wind_speed",
-          "value": 1.12,
+          "value": 1.43,
           "unit": "m/s",
-          "observed_at": "2026-07-12T01:00:00",
+          "observed_at": "2026-07-12T04:00:00",
           "source": "Open-Meteo 기상모델",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "songdo",
           "metric": "current_speed",
-          "value": 0.094,
+          "value": 0.361,
           "unit": "m/s",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "songdo",
@@ -223,26 +223,26 @@
           "value": null,
           "unit": "cm",
           "observed_at": null,
-          "source": "KHOA 조위관측소(실측)",
+          "source": "공공 해양데이터",
           "is_missing": true,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "songdo",
           "metric": "water_temp",
-          "value": 22.23,
+          "value": 26.3,
           "unit": "°C",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         }
       ],
       "advisory": {
         "kind": "none",
         "threshold_value": null,
         "effective_at": null,
-        "source": "기상청 특보",
+        "source": "특보 소스 미제공",
         "is_missing": false
       }
     },
@@ -251,32 +251,32 @@
         {
           "spot_id": "dadaepo",
           "metric": "wave_height",
-          "value": 0.48,
+          "value": 0.52,
           "unit": "m",
-          "observed_at": "2026-07-12T01:00:00",
+          "observed_at": "2026-07-12T04:00:00",
           "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "dadaepo",
           "metric": "wind_speed",
-          "value": 2.13,
+          "value": 2.21,
           "unit": "m/s",
-          "observed_at": "2026-07-12T01:00:00",
+          "observed_at": "2026-07-12T04:00:00",
           "source": "Open-Meteo 기상모델",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "dadaepo",
           "metric": "current_speed",
-          "value": 0.094,
+          "value": 0.056,
           "unit": "m/s",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "dadaepo",
@@ -284,26 +284,26 @@
           "value": null,
           "unit": "cm",
           "observed_at": null,
-          "source": "KHOA 조위관측소(실측)",
+          "source": "공공 해양데이터",
           "is_missing": true,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "dadaepo",
           "metric": "water_temp",
-          "value": 22.23,
+          "value": 26.1,
           "unit": "°C",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         }
       ],
       "advisory": {
         "kind": "none",
         "threshold_value": null,
         "effective_at": null,
-        "source": "기상청 특보",
+        "source": "특보 소스 미제공",
         "is_missing": false
       }
     },
@@ -312,32 +312,32 @@
         {
           "spot_id": "ilgwang",
           "metric": "wave_height",
-          "value": 0.3,
+          "value": 0.5,
           "unit": "m",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "ilgwang",
           "metric": "wind_speed",
-          "value": 1.1,
+          "value": 2.02,
           "unit": "m/s",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 해양관측부이(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 기상모델",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "ilgwang",
           "metric": "current_speed",
-          "value": 0.844,
+          "value": 0.5,
           "unit": "m/s",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "ilgwang",
@@ -345,26 +345,26 @@
           "value": null,
           "unit": "cm",
           "observed_at": null,
-          "source": "KHOA 조위관측소(실측)",
+          "source": "공공 해양데이터",
           "is_missing": true,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "ilgwang",
           "metric": "water_temp",
-          "value": 21.87,
+          "value": 25.9,
           "unit": "°C",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         }
       ],
       "advisory": {
         "kind": "none",
         "threshold_value": null,
         "effective_at": null,
-        "source": "기상청 특보",
+        "source": "특보 소스 미제공",
         "is_missing": false
       }
     },
@@ -373,32 +373,32 @@
         {
           "spot_id": "imnang",
           "metric": "wave_height",
-          "value": 0.3,
+          "value": 0.44,
           "unit": "m",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "imnang",
           "metric": "wind_speed",
-          "value": 1.1,
+          "value": 1.97,
           "unit": "m/s",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 해양관측부이(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 기상모델",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "imnang",
           "metric": "current_speed",
-          "value": 0.844,
+          "value": 0.611,
           "unit": "m/s",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "imnang",
@@ -406,26 +406,26 @@
           "value": null,
           "unit": "cm",
           "observed_at": null,
-          "source": "KHOA 조위관측소(실측)",
+          "source": "공공 해양데이터",
           "is_missing": true,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "imnang",
           "metric": "water_temp",
-          "value": 21.87,
+          "value": 25.3,
           "unit": "°C",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         }
       ],
       "advisory": {
         "kind": "none",
         "threshold_value": null,
         "effective_at": null,
-        "source": "기상청 특보",
+        "source": "특보 소스 미제공",
         "is_missing": false
       }
     },
@@ -434,32 +434,32 @@
         {
           "spot_id": "busanhang",
           "metric": "wave_height",
-          "value": 0.38,
+          "value": 0.4,
           "unit": "m",
-          "observed_at": "2026-07-12T01:00:00",
+          "observed_at": "2026-07-12T04:00:00",
           "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "busanhang",
           "metric": "wind_speed",
-          "value": 1.25,
+          "value": 1.68,
           "unit": "m/s",
-          "observed_at": "2026-07-12T01:00:00",
+          "observed_at": "2026-07-12T04:00:00",
           "source": "Open-Meteo 기상모델",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "busanhang",
           "metric": "current_speed",
-          "value": 0.094,
+          "value": 0.361,
           "unit": "m/s",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "busanhang",
@@ -467,26 +467,26 @@
           "value": null,
           "unit": "cm",
           "observed_at": null,
-          "source": "KHOA 조위관측소(실측)",
+          "source": "공공 해양데이터",
           "is_missing": true,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "busanhang",
           "metric": "water_temp",
-          "value": 22.23,
+          "value": 26.3,
           "unit": "°C",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         }
       ],
       "advisory": {
         "kind": "none",
         "threshold_value": null,
         "effective_at": null,
-        "source": "기상청 특보",
+        "source": "특보 소스 미제공",
         "is_missing": false
       }
     },
@@ -495,32 +495,32 @@
         {
           "spot_id": "gamcheon",
           "metric": "wave_height",
-          "value": 0.56,
+          "value": 0.6,
           "unit": "m",
-          "observed_at": "2026-07-12T01:00:00",
+          "observed_at": "2026-07-12T04:00:00",
           "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "gamcheon",
           "metric": "wind_speed",
-          "value": 1.12,
+          "value": 1.43,
           "unit": "m/s",
-          "observed_at": "2026-07-12T01:00:00",
+          "observed_at": "2026-07-12T04:00:00",
           "source": "Open-Meteo 기상모델",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "gamcheon",
           "metric": "current_speed",
-          "value": 0.094,
+          "value": 0.361,
           "unit": "m/s",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "gamcheon",
@@ -528,26 +528,26 @@
           "value": null,
           "unit": "cm",
           "observed_at": null,
-          "source": "KHOA 조위관측소(실측)",
+          "source": "공공 해양데이터",
           "is_missing": true,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "gamcheon",
           "metric": "water_temp",
-          "value": 22.23,
+          "value": 26.3,
           "unit": "°C",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         }
       ],
       "advisory": {
         "kind": "none",
         "threshold_value": null,
         "effective_at": null,
-        "source": "기상청 특보",
+        "source": "특보 소스 미제공",
         "is_missing": false
       }
     },
@@ -556,32 +556,32 @@
         {
           "spot_id": "daebyeon",
           "metric": "wave_height",
-          "value": 0.4,
+          "value": 0.5,
           "unit": "m",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "daebyeon",
           "metric": "wind_speed",
-          "value": 1.0,
+          "value": 2.02,
           "unit": "m/s",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 해양관측부이(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 기상모델",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "daebyeon",
           "metric": "current_speed",
-          "value": 0.563,
+          "value": 0.5,
           "unit": "m/s",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "daebyeon",
@@ -589,26 +589,26 @@
           "value": null,
           "unit": "cm",
           "observed_at": null,
-          "source": "KHOA 조위관측소(실측)",
+          "source": "공공 해양데이터",
           "is_missing": true,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "daebyeon",
           "metric": "water_temp",
-          "value": 22.53,
+          "value": 25.9,
           "unit": "°C",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         }
       ],
       "advisory": {
         "kind": "none",
         "threshold_value": null,
         "effective_at": null,
-        "source": "기상청 특보",
+        "source": "특보 소스 미제공",
         "is_missing": false
       }
     },
@@ -617,32 +617,32 @@
         {
           "spot_id": "dadaepohang",
           "metric": "wave_height",
-          "value": 0.48,
+          "value": 0.52,
           "unit": "m",
-          "observed_at": "2026-07-12T01:00:00",
+          "observed_at": "2026-07-12T04:00:00",
           "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "dadaepohang",
           "metric": "wind_speed",
-          "value": 1.91,
+          "value": 1.92,
           "unit": "m/s",
-          "observed_at": "2026-07-12T01:00:00",
+          "observed_at": "2026-07-12T04:00:00",
           "source": "Open-Meteo 기상모델",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "dadaepohang",
           "metric": "current_speed",
-          "value": 0.094,
+          "value": 0.056,
           "unit": "m/s",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "dadaepohang",
@@ -650,26 +650,26 @@
           "value": null,
           "unit": "cm",
           "observed_at": null,
-          "source": "KHOA 조위관측소(실측)",
+          "source": "공공 해양데이터",
           "is_missing": true,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "dadaepohang",
           "metric": "water_temp",
-          "value": 22.23,
+          "value": 26.1,
           "unit": "°C",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         }
       ],
       "advisory": {
         "kind": "none",
         "threshold_value": null,
         "effective_at": null,
-        "source": "기상청 특보",
+        "source": "특보 소스 미제공",
         "is_missing": false
       }
     },
@@ -678,32 +678,32 @@
         {
           "spot_id": "taejongdae",
           "metric": "wave_height",
-          "value": 0.64,
+          "value": 0.7,
           "unit": "m",
-          "observed_at": "2026-07-12T01:00:00",
+          "observed_at": "2026-07-12T04:00:00",
           "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "taejongdae",
           "metric": "wind_speed",
-          "value": 1.58,
+          "value": 2.11,
           "unit": "m/s",
-          "observed_at": "2026-07-12T01:00:00",
+          "observed_at": "2026-07-12T04:00:00",
           "source": "Open-Meteo 기상모델",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "taejongdae",
           "metric": "current_speed",
-          "value": 0.094,
+          "value": 0.528,
           "unit": "m/s",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "taejongdae",
@@ -711,26 +711,26 @@
           "value": null,
           "unit": "cm",
           "observed_at": null,
-          "source": "KHOA 조위관측소(실측)",
+          "source": "공공 해양데이터",
           "is_missing": true,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "taejongdae",
           "metric": "water_temp",
-          "value": 22.23,
+          "value": 26.6,
           "unit": "°C",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         }
       ],
       "advisory": {
         "kind": "none",
         "threshold_value": null,
         "effective_at": null,
-        "source": "기상청 특보",
+        "source": "특보 소스 미제공",
         "is_missing": false
       }
     },
@@ -739,32 +739,32 @@
         {
           "spot_id": "oryukdo",
           "metric": "wave_height",
-          "value": 0.48,
+          "value": 0.52,
           "unit": "m",
-          "observed_at": "2026-07-12T01:00:00",
+          "observed_at": "2026-07-12T04:00:00",
           "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "oryukdo",
           "metric": "wind_speed",
-          "value": 1.32,
+          "value": 1.88,
           "unit": "m/s",
-          "observed_at": "2026-07-12T01:00:00",
+          "observed_at": "2026-07-12T04:00:00",
           "source": "Open-Meteo 기상모델",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "oryukdo",
           "metric": "current_speed",
-          "value": 0.094,
+          "value": 0.417,
           "unit": "m/s",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "oryukdo",
@@ -772,26 +772,26 @@
           "value": null,
           "unit": "cm",
           "observed_at": null,
-          "source": "KHOA 조위관측소(실측)",
+          "source": "공공 해양데이터",
           "is_missing": true,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "oryukdo",
           "metric": "water_temp",
-          "value": 22.23,
+          "value": 26.2,
           "unit": "°C",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         }
       ],
       "advisory": {
         "kind": "none",
         "threshold_value": null,
         "effective_at": null,
-        "source": "기상청 특보",
+        "source": "특보 소스 미제공",
         "is_missing": false
       }
     },
@@ -802,30 +802,30 @@
           "metric": "wave_height",
           "value": 0.6,
           "unit": "m",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "cheongsapo",
           "metric": "wind_speed",
-          "value": 1.7,
+          "value": 1.8,
           "unit": "m/s",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 해양관측부이(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 기상모델",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "cheongsapo",
           "metric": "current_speed",
-          "value": 0.339,
+          "value": 0.528,
           "unit": "m/s",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "cheongsapo",
@@ -833,26 +833,26 @@
           "value": null,
           "unit": "cm",
           "observed_at": null,
-          "source": "KHOA 조위관측소(실측)",
+          "source": "공공 해양데이터",
           "is_missing": true,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "cheongsapo",
           "metric": "water_temp",
-          "value": 20.9,
+          "value": 26.7,
           "unit": "°C",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         }
       ],
       "advisory": {
         "kind": "none",
         "threshold_value": null,
         "effective_at": null,
-        "source": "기상청 특보",
+        "source": "특보 소스 미제공",
         "is_missing": false
       }
     },
@@ -861,32 +861,32 @@
         {
           "spot_id": "igidae",
           "metric": "wave_height",
-          "value": 0.48,
+          "value": 0.52,
           "unit": "m",
-          "observed_at": "2026-07-12T01:00:00",
+          "observed_at": "2026-07-12T04:00:00",
           "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "igidae",
           "metric": "wind_speed",
-          "value": 1.32,
+          "value": 1.88,
           "unit": "m/s",
-          "observed_at": "2026-07-12T01:00:00",
+          "observed_at": "2026-07-12T04:00:00",
           "source": "Open-Meteo 기상모델",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "igidae",
           "metric": "current_speed",
-          "value": 0.094,
+          "value": 0.417,
           "unit": "m/s",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "igidae",
@@ -894,26 +894,26 @@
           "value": null,
           "unit": "cm",
           "observed_at": null,
-          "source": "KHOA 조위관측소(실측)",
+          "source": "공공 해양데이터",
           "is_missing": true,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         },
         {
           "spot_id": "igidae",
           "metric": "water_temp",
-          "value": 22.23,
+          "value": 26.2,
           "unit": "°C",
-          "observed_at": "2026-07-12T01:00:00",
-          "source": "KHOA 바다누리(실측)",
+          "observed_at": "2026-07-12T04:00:00",
+          "source": "Open-Meteo 해양모델",
           "is_missing": false,
-          "fetched_at": "2026-07-11T16:09:19.489943"
+          "fetched_at": "2026-07-11T19:11:24.635611"
         }
       ],
       "advisory": {
         "kind": "none",
         "threshold_value": null,
         "effective_at": null,
-        "source": "기상청 특보",
+        "source": "특보 소스 미제공",
         "is_missing": false
       }
     }
