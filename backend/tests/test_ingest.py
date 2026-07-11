@@ -2,6 +2,7 @@
 
 from datetime import datetime
 
+from app.clients.base import ProviderReading
 from app.ingest.cache import get_snapshot
 from app.ingest.normalize import ALL_METRICS, normalize_spot
 from app.models import Metric
@@ -35,12 +36,17 @@ def test_missing_flag_and_timestamp_consistency():
                 assert obs.observed_at is not None
 
 
-def test_confession_spot_present():
-    """자백 데모용 결측 임계지표 지점이 존재(cheongsapo 풍속 결측)."""
-    doc = get_snapshot()
-    snap = doc.spots["cheongsapo"]
-    wind = next(o for o in snap.observations if o.metric is Metric.WIND_SPEED)
+def test_normalize_missing_critical_metric_present():
+    """임계지표가 provider 결과에 없으면 결측으로 정규화된다."""
+    observations, _ = normalize_spot(
+        get_spot("cheongsapo"),
+        reading=ProviderReading(metrics={Metric.WAVE_HEIGHT: 0.4}),
+        fetched_at=datetime(2026, 7, 10),
+    )
+    wind = next(o for o in observations if o.metric is Metric.WIND_SPEED)
     assert wind.is_missing is True
+    assert wind.value is None
+    assert wind.observed_at is None
 
 
 def test_normalize_absent_becomes_missing():

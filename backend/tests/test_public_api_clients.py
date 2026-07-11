@@ -25,22 +25,25 @@ _KHOA_ITEM = {
 
 
 def test_khoa_uses_new_endpoint_and_official_params(monkeypatch):
-    captured = {}
+    captured = []
 
     async def fake_fetch(url, params=None, **kwargs):
-        captured.update(url=url, params=params)
+        captured.append({"url": url, "params": params})
+        if url == khoa.KHOA_TIDE_URL:
+            return {"header": {"resultCode": "00"}, "body": {"items": {"item": []}}}
         return {"header": {"resultCode": "00"}, "body": {"items": {"item": [_KHOA_ITEM]}}}
 
     monkeypatch.setattr(khoa, "fetch_json", fake_fetch)
     result = asyncio.run(khoa.fetch_spot(_live_spot(), "key"))
 
-    assert captured["url"] == khoa.KHOA_URL
-    assert captured["params"]["serviceKey"] == "key"
-    assert captured["params"]["obsCode"] == "TW_0062"
-    assert captured["params"]["type"] == "json"
-    assert captured["params"]["reqDate"]
-    assert captured["params"]["min"] == 60
-    assert {"pageNo", "numOfRows"} <= captured["params"].keys()
+    buoy_call = captured[0]
+    assert buoy_call["url"] == khoa.KHOA_URL
+    assert buoy_call["params"]["serviceKey"] == "key"
+    assert buoy_call["params"]["obsCode"] == "TW_0062"
+    assert buoy_call["params"]["type"] == "json"
+    assert buoy_call["params"]["reqDate"]
+    assert buoy_call["params"]["min"] == 60
+    assert {"pageNo", "numOfRows"} <= buoy_call["params"].keys()
     # wvhgt=파고(m), wspd=풍속(m/s), wtem=수온(°C) 그대로; crsp 38.1cm/s → 0.381 m/s
     assert result == {
         Metric.WAVE_HEIGHT: 0.4,
@@ -48,6 +51,36 @@ def test_khoa_uses_new_endpoint_and_official_params(monkeypatch):
         Metric.WATER_TEMP: 22.1,
         Metric.CURRENT_SPEED: 0.381,
     }
+
+
+def test_khoa_uses_tide_endpoint_and_merges_tide_level(monkeypatch):
+    spot = _live_spot().model_copy(update={"khoa_tide_obs_code": "DT_0005"})
+    captured = []
+
+    async def fake_fetch(url, params=None, **kwargs):
+        captured.append({"url": url, "params": params})
+        if url == khoa.KHOA_URL:
+            return {"body": {"items": {"item": [{"wvhgt": "0.4"}]}}}
+        return {"body": {"items": {"item": [{"obsrvnDt": "2026-07-11 00:00", "tideLevel": "123"}]}}}
+
+    monkeypatch.setattr(khoa, "fetch_json", fake_fetch)
+    result = asyncio.run(khoa.fetch_spot(spot, "buoy-key", "tide-key"))
+
+    assert captured[1]["url"] == khoa.KHOA_TIDE_URL
+    assert captured[1]["params"]["serviceKey"] == "tide-key"
+    assert captured[1]["params"]["obsCode"] == "DT_0005"
+    assert result[Metric.WAVE_HEIGHT] == 0.4
+    assert result[Metric.TIDE_LEVEL] == 123.0
+
+
+def test_khoa_tide_parser_accepts_aliases_and_bad_values():
+    raw = {"body": {"items": {"item": [
+        {"tideLevel": "-"},
+        {"tideLevel": "bad"},
+        {"tdLvl": "88.5"},
+    ]}}}
+    assert khoa._parse_tide(raw) == {Metric.TIDE_LEVEL: 88.5}
+    assert khoa._parse_tide({"body": {"items": {"item": [{"tideLevel": "-"}]}}}) is None
 
 
 def test_khoa_current_speed_converts_cm_per_s_to_m_per_s():
@@ -127,3 +160,7 @@ def test_public_clients_remain_failure_safe(monkeypatch):
 def test_every_spot_has_a_verified_busan_area_buoy_code():
     allowed = {"TW_0062", "TW_0087", "TW_0090", "TW_0092"}
     assert {spot.khoa_obs_code for spot in all_spots()} <= allowed
+
+
+def test_every_spot_has_initial_tide_station_code():
+    assert {spot.khoa_tide_obs_code for spot in all_spots()} == {"DT_0005"}

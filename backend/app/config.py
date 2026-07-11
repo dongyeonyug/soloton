@@ -22,6 +22,7 @@ class Settings(BaseSettings):
     )
 
     khoa_api_key: str = ""
+    khoa_tide_api_key: str = ""
     kma_api_key: str = ""
     anthropic_api_key: str = ""
     anthropic_model: str = "claude-opus-4-8"
@@ -41,6 +42,11 @@ class Settings(BaseSettings):
     @property
     def has_live_keys(self) -> bool:
         return bool(self.khoa_api_key and self.kma_api_key)
+
+    @property
+    def effective_khoa_tide_api_key(self) -> str:
+        """조위 API 키. 별도 키가 없으면 같은 공공데이터포털 KHOA 키를 재사용."""
+        return self.khoa_tide_api_key or self.khoa_api_key
 
     @property
     def resolved_provider(self) -> Literal["openmeteo", "khoa", "hybrid"]:

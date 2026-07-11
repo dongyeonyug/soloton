@@ -27,6 +27,7 @@ jobs:
       - name: Collect snapshot
         env:
           KHOA_API_KEY: ${{ secrets.KHOA_API_KEY }}
+          KHOA_TIDE_API_KEY: ${{ secrets.KHOA_TIDE_API_KEY }}
           KMA_API_KEY: ${{ secrets.KMA_API_KEY }}
           USE_SNAPSHOT_ONLY: "0"
         run: python -m app.ingest.collect

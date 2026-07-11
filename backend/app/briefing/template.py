@@ -114,7 +114,6 @@ def build_recommendations(risk: RiskGrade, is_confession: bool) -> list[str]:
 
 def fallback_prose(spot: Spot, risk: RiskGrade, is_confession: bool) -> str:
     """LLM 미사용/가드 폴백용 숫자없는 산문(코드 생성, 항상 number-free)."""
-    grade = risk.grade.label_ko
     activity = risk.activity.value
     base = {
         Grade.SAFE: f"{spot.name}의 현재 {activity} 여건은 대체로 안전한 편입니다. 기본 수칙을 지키며 즐기세요.",

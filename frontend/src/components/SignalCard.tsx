@@ -12,8 +12,7 @@ export function SignalCard({ briefing }: { briefing: Briefing }) {
             key={g}
             className="light"
             style={{
-              background: g === briefing.grade ? GRADE_COLOR[g] : "#2a2f38",
-              boxShadow: g === briefing.grade ? `0 0 14px ${GRADE_COLOR[g]}` : "none",
+              background: g === briefing.grade ? GRADE_COLOR[g] : "#cdd1d5",
             }}
           />
         ))}

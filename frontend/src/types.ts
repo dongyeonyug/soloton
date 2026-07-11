@@ -42,9 +42,9 @@ export interface Briefing {
 }
 
 export const GRADE_COLOR: Record<Grade, string> = {
-  SAFE: "#1e9e5a",
-  CAUTION: "#e8a33d",
-  DANGER: "#d64545",
+  SAFE: "#228738",
+  CAUTION: "#9e6a00",
+  DANGER: "#de3412",
 };
 
 export const GRADE_KO: Record<Grade, string> = {

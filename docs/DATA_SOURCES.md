@@ -8,6 +8,7 @@
 |------|------|-----------|------|------|
 | **Open-Meteo Marine/Forecast** | **모델 예측**(MFWAM/ECMWF/GFS-Wave) | 유의파고, 조류, 수온, 풍속 | **불필요(키리스)** | **Phase 1 — 연결됨** |
 | KHOA 해양관측부이 최신 관측데이터 (`15155516`) | **실측 관측** | 파고·풍속·유속·수온 (`wvhgt/wspd/crsp/wtem`) | `KHOA_API_KEY` | Phase 2 — ✅ 실키 검증(2026-07-11), 필드·단위·부이 커버리지 확정 |
+| KHOA 조위관측소 최신 관측데이터 (`15155508`) | **실측 관측** | 조위(`tide_level`) | `KHOA_TIDE_API_KEY` 또는 `KHOA_API_KEY` | Phase 2 — 연결 코드 반영, 실키 검증 필요 |
 | 기상청 기상특보 조회서비스 (`15000415`) | **공식 특보** | 풍랑·강풍 등 주의보/경보 | `KMA_API_KEY` | Phase 2 — ✅ 실키 검증(2026-07-11), `t6` 구조적 파서로 부산 앞바다 귀속 |
 
 ## 실측(KHOA) vs 모델(Open-Meteo)
@@ -42,11 +43,19 @@
 - 승인/한도: 개발·운영계정 모두 **자동승인**; 개발계정 10,000건; 무료.
 - **주의:** 이 서비스는 특보 조회용이며 실측 `wind_speed`를 제공하지 않는다. 기존의 `wind_speed` 파싱은 제거했다. Phase 2에서도 풍속은 KHOA 관측값이 실제로 제공되는 관측소에 한해 사용하거나, Open-Meteo 풍속을 별도 유지해야 한다.
 
-### 선정된 두 API의 한계와 선택적 세 번째 API
+### 3. KHOA 조위 실측
 
-- 위 두 API만으로는 `tide_level`을 채울 수 없다. KHOA `twRecent`에는 조위가 명시되어 있지 않고 KMA 서비스는 특보 전용이다.
-- 조위가 반드시 필요하면 세 번째 활용신청으로 **해양수산부 국립해양조사원_조위관측소 최신 관측데이터**([`15155508`](https://www.data.go.kr/data/15155508/openapi.do))를 추가한다.
-- 선택 API 서비스 URL은 `https://apis.data.go.kr/1192136/dtRecent`, 오퍼레이션은 `GET /GetDTRecentApiService`이다. 조위·수온·유향·유속 등을 제공하지만 파고는 명시되어 있지 않다.
+- 상품명: **해양수산부 국립해양조사원_조위관측소 최신 관측데이터**
+- 공공데이터 ID / 신청: [`15155508`](https://www.data.go.kr/data/15155508/openapi.do)
+- 제공기관: 해양수산부 국립해양조사원
+- 서비스 URL: `https://apis.data.go.kr/1192136/dtRecent`
+- 사용 오퍼레이션: `GET /GetDTRecentApiService`
+- 전체 요청 경로: `https://apis.data.go.kr/1192136/dtRecent/GetDTRecentApiService`
+- 인증 환경변수: `KHOA_TIDE_API_KEY`. 비어 있으면 `KHOA_API_KEY`를 재사용한다.
+- 주요 입력: 조위관측소 코드, 관측일자, 시간 간격, 공공데이터포털 인증키
+- 주요 출력: 조위·수온·유향·유속 등. 현재 코드는 조위(`tide_level`, cm)만 엔진 입력으로 사용한다.
+- 현재 초기 매핑: 부산권 전체 지점을 부산 대표 조위관측소 `DT_0005`에 연결했다. 서부권/동부권 지점은 실제 응답 검증 후 더 가까운 조위관측소로 세분화할 수 있다.
+- **주의:** 이 API는 조위를 보강하기 위한 추가 실측 소스이며, 파고·풍속 소스가 아니다.
 
 ### 구형 바다누리 엔드포인트 폐기
 
@@ -112,7 +121,7 @@
 | `wind_speed` | m/s | `wspd` (m/s) | 없음 | ✅ 검증 (관측소별 유무 상이) |
 | `current_speed` | m/s | `crsp` (**cm/s**) | **÷100** | ✅ 검증 |
 | `water_temp` | °C | `wtem` (°C) | 없음 | ✅ 검증 |
-| `tide_level` | cm | (없음) | — | ❌ 두 API 미제공. 선택 API `15155508` 필요 |
+| `tide_level` | cm | KHOA `dtRecent` 조위 필드(`tideLevel` 계열 alias) | 없음 | 코드 반영, 실키 검증 필요 |
 | `advisory` | enum | KMA `getPwnStatus` `t6` 세그먼트 | 부산 앞바다 구역 귀속 | ✅ 검증 (구조적 파서) |
 
 > 참고 원 필드(미사용): `wndrct`(풍향), `maxMmntWspd`(최대순간풍속), `crdir`(유향), `wvpd`(파주기), `artmp`(기온), `atmpr`(기압), `slnty`(염분).

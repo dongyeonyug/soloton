@@ -40,13 +40,17 @@ export default function App() {
   return (
     <div className="app">
       <header className="topbar">
-        <h1>🌊 오늘의 바다</h1>
-        <p className="tagline">환각 없는 AI 연안 해양안전 브리핑 · 부산</p>
-        <div className="activity-tabs">
+        <div>
+          <p className="eyebrow">부산 연안 해양안전 참고 서비스</p>
+          <h1>오늘의 바다</h1>
+          <p className="tagline">관측값 기반 활동별 위험도와 근거를 함께 확인합니다.</p>
+        </div>
+        <div className="activity-tabs" aria-label="활동 유형 선택">
           {ACTIVITIES.map((a) => (
             <button
               key={a}
               className={a === activity ? "active" : ""}
+              aria-pressed={a === activity}
               onClick={() => setActivity(a)}
             >
               {a}
@@ -55,23 +59,34 @@ export default function App() {
         </div>
       </header>
 
-      {error && <div className="banner error">{error}</div>}
+      {error && (
+        <div className="banner error" role="alert">
+          {error}
+        </div>
+      )}
 
       <main className="layout">
         <section className="left">
           {overview && (
             <>
+              <div className="section-heading">
+                <h2>해역 선택</h2>
+                <p>지도 또는 목록에서 확인할 지점을 선택하세요.</p>
+              </div>
               <SpotMap spots={overview.spots} selected={selected} onSelect={setSelected} />
               <SpotList spots={overview.spots} selected={selected} onSelect={setSelected} />
             </>
           )}
         </section>
 
-        <section className="right">
+        <section className="right" aria-live="polite">
           {loading && <div className="muted">불러오는 중…</div>}
           {briefing && !loading && (
             <>
-              <h2>{overview?.spots.find((s) => s.id === selected)?.name}</h2>
+              <div className="section-heading briefing-heading">
+                <h2>{overview?.spots.find((s) => s.id === selected)?.name}</h2>
+                <p>{activity} 활동 기준</p>
+              </div>
               <SignalCard briefing={briefing} />
               <BriefingPanel briefing={briefing} />
             </>

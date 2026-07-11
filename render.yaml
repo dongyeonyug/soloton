@@ -16,5 +16,7 @@ services:
         sync: false # 선택 — 없으면 템플릿 폴백
       - key: KHOA_API_KEY
         sync: false
+      - key: KHOA_TIDE_API_KEY
+        sync: false
       - key: KMA_API_KEY
         sync: false

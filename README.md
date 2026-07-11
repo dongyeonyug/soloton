@@ -28,7 +28,7 @@ uvicorn app.main:app --reload
 ```
 
 ## 데이터 출처
-Phase 2 소스는 KHOA **해양관측부이 최신 관측데이터**(`15155516`, 실측)와 기상청 **기상특보 조회서비스**(`15000415`, 공식 특보)이며, 실키 검증(2026-07-11) 완료입니다: 실측 필드(`wvhgt/wspd/crsp/wtem`)·단위(유속 cm/s→m/s)·부이 센서 커버리지·특보 귀속 확정. 두 키가 `.env`에 있으면 `DATA_PROVIDER=auto`가 **하이브리드**를 선택합니다 — KHOA 실측을 우선하고, 파고·풍속 센서가 없는 부이(예: 부산항 `TW_0087`)의 지점은 Open-Meteo 예보값으로 백필하며 지표별 출처(실측/예보)를 명시합니다. 선정된 두 API는 조위를 제공하지 않습니다(선택 API `15155508` 필요). 상세는 [docs/DATA_SOURCES.md](docs/DATA_SOURCES.md).
+Phase 2 소스는 KHOA **해양관측부이 최신 관측데이터**(`15155516`, 실측), KHOA **조위관측소 최신 관측데이터**(`15155508`, 조위), 기상청 **기상특보 조회서비스**(`15000415`, 공식 특보)입니다. `DATA_PROVIDER=auto`는 KHOA/KMA 키가 있으면 **하이브리드**를 선택합니다 — KHOA 실측을 우선하고, 파고·풍속 센서가 없는 부이(예: 부산항 `TW_0087`)의 지점은 Open-Meteo 예보값으로 백필하며 지표별 출처(실측/예보)를 명시합니다. 조위 키는 `KHOA_TIDE_API_KEY`에 넣고, 비워두면 `KHOA_API_KEY`를 재사용합니다. 상세는 [docs/DATA_SOURCES.md](docs/DATA_SOURCES.md).
 
 ## ⚠️ 면책
 본 서비스는 **참고용**이며 실제 항해·조업·입수 판단의 공식 근거가 아닙니다. [docs/DISCLAIMER.md](docs/DISCLAIMER.md).

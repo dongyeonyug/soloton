@@ -16,7 +16,7 @@ from .openmeteo import OpenMeteoProvider
 KHOA_KMA_LABELS: dict[Metric, str] = {
     Metric.WAVE_HEIGHT: "KHOA 바다누리(실측)",
     Metric.CURRENT_SPEED: "KHOA 바다누리(실측)",
-    Metric.TIDE_LEVEL: "KHOA 바다누리(실측)",
+    Metric.TIDE_LEVEL: "KHOA 조위관측소(실측)",
     Metric.WATER_TEMP: "KHOA 바다누리(실측)",
     Metric.WIND_SPEED: "KHOA 해양관측부이(실측)",
 }
@@ -28,12 +28,13 @@ class KhoaKmaProvider:
     name = "khoa"
     source_labels = KHOA_KMA_LABELS
 
-    def __init__(self, khoa_key: str, kma_key: str) -> None:
+    def __init__(self, khoa_key: str, kma_key: str, khoa_tide_key: str | None = None) -> None:
         self._khoa_key = khoa_key
+        self._khoa_tide_key = khoa_tide_key or khoa_key
         self._kma_key = kma_key
 
     async def fetch_spot(self, spot: Spot) -> ProviderReading | None:
-        khoa_raw = await khoa.fetch_spot(spot, self._khoa_key)
+        khoa_raw = await khoa.fetch_spot(spot, self._khoa_key, self._khoa_tide_key)
         kma_raw = await kma.fetch_spot(spot, self._kma_key)
         if khoa_raw is None and kma_raw is None:
             return None
@@ -65,8 +66,8 @@ class HybridProvider:
     name = "hybrid"
     source_labels = KHOA_KMA_LABELS
 
-    def __init__(self, khoa_key: str, kma_key: str) -> None:
-        self._official = KhoaKmaProvider(khoa_key, kma_key)
+    def __init__(self, khoa_key: str, kma_key: str, khoa_tide_key: str | None = None) -> None:
+        self._official = KhoaKmaProvider(khoa_key, kma_key, khoa_tide_key)
         self._model = OpenMeteoProvider()
 
     async def fetch_spot(self, spot: Spot) -> ProviderReading | None:
@@ -115,7 +116,15 @@ def get_provider(settings: Settings | None = None) -> MarineProvider:
     settings = settings or get_settings()
     provider = settings.resolved_provider
     if provider == "hybrid":
-        return HybridProvider(settings.khoa_api_key, settings.kma_api_key)
+        return HybridProvider(
+            settings.khoa_api_key,
+            settings.kma_api_key,
+            settings.effective_khoa_tide_api_key,
+        )
     if provider == "khoa":
-        return KhoaKmaProvider(settings.khoa_api_key, settings.kma_api_key)
+        return KhoaKmaProvider(
+            settings.khoa_api_key,
+            settings.kma_api_key,
+            settings.effective_khoa_tide_api_key,
+        )
     return OpenMeteoProvider()

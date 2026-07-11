@@ -17,14 +17,15 @@ export function SpotList({
         <li
           key={s.id}
           className={s.id === selected ? "active" : ""}
-          onClick={() => onSelect(s.id)}
         >
-          <span className="dot" style={{ background: GRADE_COLOR[s.grade] }} />
-          <span className="spot-name">{s.name}</span>
-          <span className="spot-grade" style={{ color: GRADE_COLOR[s.grade] }}>
-            {GRADE_KO[s.grade]}
-            {s.has_missing_critical && " ·정보없음"}
-          </span>
+          <button type="button" onClick={() => onSelect(s.id)} aria-pressed={s.id === selected}>
+            <span className="dot" style={{ background: GRADE_COLOR[s.grade] }} />
+            <span className="spot-name">{s.name}</span>
+            <span className="spot-grade" style={{ color: GRADE_COLOR[s.grade] }}>
+              {GRADE_KO[s.grade]}
+              {s.has_missing_critical && " · 정보없음"}
+            </span>
+          </button>
         </li>
       ))}
     </ul>

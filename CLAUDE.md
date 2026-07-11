@@ -9,7 +9,7 @@ Read [`.omc/handoffs/public-data-api-migration.md`](.omc/handoffs/public-data-ap
 - Never commit `.env`, API keys, or unredacted live API responses.
 - The retired `khoa.go.kr/api/oceangrid/tideObsPreTab` endpoint must not be restored.
 - KMA `15000415` is advisory-only and must never be treated as a wind-speed source.
-- These two APIs do not provide `tide_level`; optional KHOA `15155508` is required for tide.
+- Tide is now wired through optional KHOA `15155508` (`dtRecent/GetDTRecentApiService`). Use `KHOA_TIDE_API_KEY`, or leave it blank to reuse `KHOA_API_KEY`.
 
 ## Current implementation status
 

@@ -69,6 +69,7 @@ class Spot(BaseModel):
     lng: float
     type: SpotType
     khoa_obs_code: str | None = None
+    khoa_tide_obs_code: str | None = None
     kma_area: str | None = None
 
 
