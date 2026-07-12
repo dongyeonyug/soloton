@@ -159,12 +159,90 @@ button:focus-visible,
   margin-bottom: 16px;
 }
 
+.map-wrap {
+  position: relative;
+}
+
 .map {
   height: 380px;
   overflow: hidden;
   border: 1px solid var(--krds-border);
   border-radius: 8px;
   background: var(--krds-surface);
+}
+
+.map-empty,
+.spot-list-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--krds-body);
+  font-size: 15px;
+}
+
+.map-empty {
+  height: 380px;
+}
+
+.spot-list-empty {
+  min-height: 96px;
+  margin: 12px 0 0;
+  padding: 16px;
+  border: 1px dashed var(--krds-border);
+  border-radius: 6px;
+}
+
+/* Leaflet divIcon 기본 흰 배경/보더 제거 후 형태 마커만 표시 */
+.map-marker {
+  background: transparent;
+  border: none;
+}
+
+.map-marker-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 1px 2px rgba(30, 33, 36, 0.35));
+}
+
+.leaflet-marker-icon.map-marker:focus-visible {
+  outline: none;
+  box-shadow: var(--krds-focus);
+  border-radius: 6px;
+}
+
+.map-legend {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  z-index: 1000;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  max-width: calc(100% - 16px);
+  padding: 8px 10px;
+  border: 1px solid var(--krds-border);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--krds-text);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.map-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.map-legend-symbol {
+  display: inline-flex;
+}
+
+.map-legend-missing {
+  color: var(--krds-warning-text);
 }
 
 .spot-list {
@@ -240,9 +318,37 @@ button:focus-visible,
   align-items: center;
   gap: 16px;
   padding: 16px;
-  border: 2px solid;
+  border: 1px solid var(--krds-border);
   border-radius: 8px;
   background: var(--krds-canvas);
+}
+
+/* 등급을 겁주지 않는 톤으로: 틴트 서피스 + 1px 보더 + 강한 단어 (색만이 아닌 이중 인코딩은 신호등·단어가 담당) */
+.signal-card.grade-safe {
+  border-color: #97c6a2;
+  background: #f0f8f2;
+}
+
+.signal-card.grade-caution {
+  border-color: #e0c072;
+  background: #fbf6e9;
+}
+
+.signal-card.grade-danger {
+  border-color: #e2a99c;
+  background: #fbefec;
+}
+
+.signal-grade.grade-safe {
+  color: #1b6b2c;
+}
+
+.signal-grade.grade-caution {
+  color: #8a5a00;
+}
+
+.signal-grade.grade-danger {
+  color: #8a240f;
 }
 
 .signal-lights {
@@ -270,12 +376,13 @@ button:focus-visible,
 .confess-tag {
   min-height: 24px;
   padding: 0 8px;
+  border: 1px solid var(--krds-border);
   border-radius: 4px;
-  background: var(--krds-warning-bg);
-  color: var(--krds-text);
+  background: var(--krds-surface);
+  color: var(--krds-body);
   font-size: 15px;
   font-weight: 400;
-  line-height: 24px;
+  line-height: 22px;
 }
 
 .signal-activity {
@@ -333,8 +440,8 @@ button:focus-visible,
 
 .prose-badge.ai {
   border: 1px solid var(--krds-primary);
-  background: var(--krds-primary);
-  color: #ffffff;
+  background: var(--krds-canvas);
+  color: var(--krds-primary-deep);
 }
 
 .prose-badge.tpl {
@@ -418,7 +525,8 @@ button:focus-visible,
     flex: 1 1 120px;
   }
 
-  .map {
+  .map,
+  .map-empty {
     height: 320px;
   }
 
@@ -439,5 +547,17 @@ button:focus-visible,
   .signal-activity {
     width: 100%;
     margin-left: 34px;
+  }
+}
+
+/* 모션 민감 사용자 대안 — 애니메이션·전환을 사실상 제거 (설계 원칙) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

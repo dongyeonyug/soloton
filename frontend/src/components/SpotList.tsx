@@ -11,8 +11,16 @@ export function SpotList({
   selected: string | null;
   onSelect: (id: string) => void;
 }) {
+  if (spots.length === 0) {
+    return (
+      <p className="spot-list-empty" role="status">
+        표시할 지점이 없습니다.
+      </p>
+    );
+  }
+
   return (
-    <ul className="spot-list">
+    <ul className="spot-list" aria-label="지점 목록 (지도 대체 선택)">
       {spots.map((s) => (
         <li
           key={s.id}
