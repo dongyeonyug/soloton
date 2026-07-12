@@ -30,8 +30,12 @@ function usePrefersReducedMotion(): boolean {
   return reduced;
 }
 
-/** 등급 형태를 그리는 SVG 마크업 (색 + 형태 이중 인코딩). */
-function symbolSvg(grade: Grade, size: number): string {
+/** 결측 표시 링 — 등급 형태(색+shape)와 독립된 채널로 '정보없음'을 표현
+ *  (DANGER 사각형과의 형태 충돌 방지). 점선 링 = 일부 데이터 없음. */
+const MISSING_RING = `<circle cx="14" cy="14" r="12.5" fill="none" stroke="#1e2124" stroke-width="1.5" stroke-dasharray="3 2.5" />`;
+
+/** 등급 형태를 그리는 SVG 마크업 (색 + 형태 이중 인코딩, 결측 시 점선 링 추가). */
+function symbolSvg(grade: Grade, size: number, missing = false): string {
   const color = GRADE_COLOR[grade];
   const shape =
     GRADE_SYMBOL[grade] === "circle"
@@ -41,22 +45,40 @@ function symbolSvg(grade: Grade, size: number): string {
         : `<rect x="5" y="5" width="18" height="18" rx="3" />`;
   return `<svg viewBox="0 0 28 28" width="${size}" height="${size}" aria-hidden="true" focusable="false">
     <g fill="${color}" stroke="#ffffff" stroke-width="2" stroke-linejoin="round">${shape}</g>
+    ${missing ? MISSING_RING : ""}
   </svg>`;
 }
 
-/** 접근 가능한 divIcon 마커: 형태 + 흰 외곽 + aria-label. */
-function markerIcon(spot: SpotOverview, isSelected: boolean): ReturnType<typeof divIcon> {
-  const size = isSelected ? 34 : 26;
-  const label =
+/** 범례의 '정보없음' 심볼 — 중립 점 + 점선 링 (마커의 결측 링과 동일 어포던스). */
+function missingLegendSvg(size: number): string {
+  return `<svg viewBox="0 0 28 28" width="${size}" height="${size}" aria-hidden="true" focusable="false">
+    <circle cx="14" cy="14" r="6" fill="#6d7882" />
+    ${MISSING_RING}
+  </svg>`;
+}
+
+/** 포커스 가능한 요소(Leaflet 외부 아이콘 div)에 부여할 접근명. */
+function spotLabel(spot: SpotOverview, isSelected: boolean): string {
+  return (
     `${spot.name} — ${GRADE_KO[spot.grade]}` +
     (spot.has_missing_critical ? ", 정보없음" : "") +
-    (isSelected ? ", 선택됨" : "");
+    (isSelected ? ", 선택됨" : "")
+  );
+}
+
+/** divIcon 마커: 형태 + 흰 외곽(+결측 링). 접근명·포커스는 내부 span에 둔다.
+ *  divIcon HTML은 선택/등급 변경 시마다 재생성되므로 aria-label이 항상 최신이다
+ *  (react-leaflet은 Marker의 title prop을 마운트 후 갱신하지 않는다). */
+function markerIcon(spot: SpotOverview, isSelected: boolean): ReturnType<typeof divIcon> {
+  const size = isSelected ? 34 : 26;
+  const label = spotLabel(spot, isSelected).replace(/"/g, "&quot;");
   return divIcon({
     className: `map-marker${isSelected ? " is-selected" : ""}`,
-    html: `<span class="map-marker-inner" role="img" data-spot-id="${spot.id}" aria-label="${label.replace(
-      /"/g,
-      "&quot;",
-    )}">${symbolSvg(spot.grade, size)}</span>`,
+    html: `<span class="map-marker-inner" role="button" tabindex="0" aria-label="${label}" data-spot-id="${spot.id}">${symbolSvg(
+      spot.grade,
+      size,
+      spot.has_missing_critical,
+    )}</span>`,
     iconSize: [size, size],
     iconAnchor: [size / 2, size / 2],
   });
@@ -81,12 +103,13 @@ export function SpotMap({
     [spots, selected],
   );
 
-  // Leaflet 기본 키보드 핸들러가 divIcon 마커에 걸리지 않으므로, 포커스된
-  // 마커의 data-spot-id를 읽어 Enter/Space로 선택한다 (키보드 접근성).
+  // 포커스된 마커 span(data-spot-id)을 읽어 Enter/Space로 선택한다 (키보드 접근성).
   const onKeyDown = (e: ReactKeyboardEvent<HTMLDivElement>) => {
     if (e.key !== "Enter" && e.key !== " ") return;
-    const active = document.activeElement;
-    const id = active?.querySelector<HTMLElement>("[data-spot-id]")?.dataset.spotId;
+    const active = document.activeElement as HTMLElement | null;
+    const id =
+      active?.dataset?.spotId ??
+      active?.querySelector<HTMLElement>("[data-spot-id]")?.dataset.spotId;
     if (id) {
       e.preventDefault();
       onSelect(id);
@@ -117,11 +140,13 @@ export function SpotMap({
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {spots.map((s) => (
+          // 포커스·접근명은 마커 HTML 내부 span이 담당(재생성 시 최신 유지)하므로
+          // Leaflet 기본 keyboard(외부 요소 tabindex)는 꺼서 중복 탭스톱을 막는다.
           <Marker
             key={s.id}
             position={[s.lat, s.lng]}
             icon={icons.get(`${s.id}:${s.id === selected}`)}
-            keyboard
+            keyboard={false}
             eventHandlers={{ click: () => onSelect(s.id) }}
           >
             <Tooltip>
@@ -142,7 +167,13 @@ export function SpotMap({
             {GRADE_KO[g]}
           </span>
         ))}
-        <span className="map-legend-item map-legend-missing">□ 정보없음</span>
+        <span className="map-legend-item">
+          <span
+            className="map-legend-symbol"
+            dangerouslySetInnerHTML={{ __html: missingLegendSvg(16) }}
+          />
+          정보없음
+        </span>
       </div>
     </div>
   );
