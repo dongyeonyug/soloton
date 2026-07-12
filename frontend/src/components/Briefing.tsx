@@ -32,7 +32,7 @@ export function BriefingPanel({ briefing }: { briefing: Briefing }) {
       <p className="prose">
         {briefing.llm_prose}
         <span className={`prose-badge ${briefing.llm_used ? "ai" : "tpl"}`}>
-          {briefing.llm_used ? "AI 조언" : "기본 안내"}
+          {briefing.llm_used ? "AI 문장" : "기본 안내"}
         </span>
       </p>
 

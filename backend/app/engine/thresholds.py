@@ -41,7 +41,7 @@ THRESHOLDS: dict[Metric, Band] = {
     ),
     Metric.CURRENT_SPEED: Band(
         safe_below=1.0, danger_at=2.0, unit="m/s", label="조류",
-        source="소형선박/입수 안전 통용 기준(해커톤 매핑)",
+        source="소형선박/입수 안전 통용 기준(시범 매핑)",
     ),
 }
 
@@ -73,11 +73,11 @@ class ActivityAdjust:
 ACTIVITY_ADJUST: dict[Activity, ActivityAdjust] = {
     Activity.SWIMMING: ActivityAdjust(
         wave_safe_below_delta=-0.5,
-        source="입수 활동 파고 보수화(해커톤 매핑)",
+        source="입수 활동 파고 보수화(시범 매핑)",
     ),
     Activity.ROCK_FISHING: ActivityAdjust(
         rock_danger_emphasis=True,
-        source="갯바위 고립·추락 위험 강조(해커톤 매핑)",
+        source="갯바위 고립·추락 위험 강조(시범 매핑)",
     ),
     Activity.FISHING: ActivityAdjust(source="풍랑특보 기준과 정렬"),
     Activity.LEISURE: ActivityAdjust(source="풍랑특보 기준과 정렬"),
