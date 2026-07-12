@@ -16,6 +16,12 @@ export default function App() {
   const [briefing, setBriefing] = useState<Briefing | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [reloadKey, setReloadKey] = useState(0);
+
+  const retry = () => {
+    setError(null);
+    setReloadKey((k) => k + 1);
+  };
 
   // 활동 변경 → 개요 재조회 (지도 색칠)
   useEffect(() => {
@@ -25,8 +31,11 @@ export default function App() {
         setOverview(ov);
         setSelected((cur) => cur ?? ov.spots[0]?.id ?? null);
       })
-      .catch((e) => setError(`데이터를 불러오지 못했습니다: ${e.message}`));
-  }, [activity]);
+      .catch((e) => {
+        console.error(e);
+        setError("해양 데이터를 불러오지 못했어요. 잠시 후 다시 시도해 주세요.");
+      });
+  }, [activity, reloadKey]);
 
   // 선택 지점/활동 → 브리핑
   useEffect(() => {
@@ -34,9 +43,12 @@ export default function App() {
     setLoading(true);
     fetchBriefing(selected, activity)
       .then(setBriefing)
-      .catch((e) => setError(`브리핑 오류: ${e.message}`))
+      .catch((e) => {
+        console.error(e);
+        setError("브리핑을 불러오지 못했어요. 잠시 후 다시 시도해 주세요.");
+      })
       .finally(() => setLoading(false));
-  }, [selected, activity]);
+  }, [selected, activity, reloadKey]);
 
   return (
     <div className="app">
@@ -62,7 +74,10 @@ export default function App() {
 
       {error && (
         <div className="banner error" role="alert">
-          {error}
+          <span>{error}</span>
+          <button type="button" className="banner-retry" onClick={retry}>
+            다시 시도
+          </button>
         </div>
       )}
 

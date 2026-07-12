@@ -4,14 +4,17 @@ import type { FilledNumber } from "../types";
 export function CitationChip({ c }: { c: FilledNumber }) {
   if (c.is_missing || c.value === null) {
     return (
-      <span className="chip chip-missing" title="관측값 없음 — 추정하지 않고 자백">
+      <span
+        className="chip chip-missing"
+        aria-label={`${c.label} 정보없음. 관측값이 없어 추정하지 않습니다.`}
+      >
         {c.label} 정보없음
       </span>
     );
   }
   const val = Number.isInteger(c.value) ? c.value : c.value.toFixed(1);
   return (
-    <span className="chip" title={`출처: ${c.source}`}>
+    <span className="chip">
       <b>{c.label}</b> {val}
       {c.unit}
     </span>

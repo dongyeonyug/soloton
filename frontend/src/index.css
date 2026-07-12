@@ -114,6 +114,11 @@ button:focus-visible,
 }
 
 .banner.error {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 16px;
   margin: 16px 0 0;
   padding: 16px 24px;
   border: 1px solid var(--krds-danger);
@@ -121,6 +126,21 @@ button:focus-visible,
   background: #fdefec;
   color: #8a240f;
   font-weight: 700;
+}
+
+.banner-retry {
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid var(--krds-danger);
+  border-radius: 6px;
+  background: var(--krds-canvas);
+  color: #8a240f;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.banner-retry:hover {
+  background: #fbe4de;
 }
 
 .layout {
@@ -416,6 +436,49 @@ button:focus-visible,
   border-color: var(--krds-warning-bg);
   background: #fff3db;
   color: #614100;
+}
+
+.citation-basis {
+  margin: 0 0 12px;
+  font-size: 15px;
+}
+
+.citation-basis > summary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  color: var(--krds-primary-deep);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.citation-basis > summary:focus-visible {
+  outline: none;
+  box-shadow: var(--krds-focus);
+  border-radius: 4px;
+}
+
+.citation-basis dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 12px;
+  margin: 8px 0 0;
+  padding: 12px 16px;
+  border: 1px solid var(--krds-divider);
+  border-radius: 6px;
+  background: var(--krds-surface);
+}
+
+.citation-basis dt {
+  font-weight: 700;
+  color: var(--krds-text);
+  white-space: nowrap;
+}
+
+.citation-basis dd {
+  margin: 0;
+  color: var(--krds-body);
+  line-height: 1.5;
 }
 
 .prose {

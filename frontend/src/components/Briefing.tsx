@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import type { Briefing } from "../types";
 import { CitationChip } from "./CitationChip";
 import { formatKstDateTime } from "../utils/time";
@@ -11,6 +12,22 @@ export function BriefingPanel({ briefing }: { briefing: Briefing }) {
           <CitationChip key={c.label} c={c} />
         ))}
       </div>
+
+      {briefing.citations.some((c) => c.source) && (
+        <details className="citation-basis">
+          <summary>수치 판단 기준</summary>
+          <dl>
+            {briefing.citations.map((c) =>
+              c.source ? (
+                <Fragment key={c.label}>
+                  <dt>{c.label}</dt>
+                  <dd>{c.source}</dd>
+                </Fragment>
+              ) : null,
+            )}
+          </dl>
+        </details>
+      )}
 
       <p className="prose">
         {briefing.llm_prose}
