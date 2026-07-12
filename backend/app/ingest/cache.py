@@ -21,6 +21,12 @@ class SpotSnapshot(BaseModel):
     observations: list[MarineObservation] = Field(default_factory=list)
     advisory: Advisory
 
+    # 크론 프리-베이크(기본 활동=레저) 산문. 크론 시 가드를 통과한 LLM 산문만 채워지고,
+    # 없으면(키 부재/가드 실패) None → 서빙 시 라이브 경로로 폴백. 서빙 단계에서도
+    # 런타임 가드를 재통과시키므로 저장분도 '숫자 0개'가 최종 보장된다(이중 게이트).
+    llm_prose: str | None = None
+    llm_used: bool = False
+
     def as_map(self) -> dict[Metric, MarineObservation]:
         return {obs.metric: obs for obs in self.observations}
 

@@ -53,6 +53,8 @@ def generate_briefing(
     snapshot_as_of: datetime | None,
     *,
     llm_fn: LLMFn | None = None,
+    baked_prose: str | None = None,
+    baked_llm_used: bool = False,
 ) -> Briefing:
     slots = build_slots(spot, risk, snapshot_as_of)
     template_text = render_template(spot, risk, slots)
@@ -60,16 +62,23 @@ def generate_briefing(
 
     prose = ""
     llm_used = False
-    fn = llm_fn if llm_fn is not None else _default_llm()
-    if fn is not None:
-        try:
-            candidate = fn(SYSTEM_PROMPT, build_user_prompt(spot, risk))
-        except Exception:
-            candidate = ""
-        # 런타임 가드: 무허용 숫자 발견 → 산문 폐기(AC6)
-        if candidate and guard.is_number_free(candidate):
-            prose = candidate.strip()
-            llm_used = True
+    if baked_prose is not None:
+        # 크론 프리-베이크 산문. 저장분이라도 런타임 가드를 재통과해야만 서빙(이중 게이트).
+        # 통과 못 하면 prose 는 빈 채로 두어 아래 폴백으로 흐른다.
+        if guard.is_number_free(baked_prose):
+            prose = baked_prose.strip()
+            llm_used = baked_llm_used
+    else:
+        fn = llm_fn if llm_fn is not None else _default_llm()
+        if fn is not None:
+            try:
+                candidate = fn(SYSTEM_PROMPT, build_user_prompt(spot, risk))
+            except Exception:
+                candidate = ""
+            # 런타임 가드: 무허용 숫자 발견 → 산문 폐기(AC6)
+            if candidate and guard.is_number_free(candidate):
+                prose = candidate.strip()
+                llm_used = True
 
     if not prose:
         prose = fallback_prose(spot, risk, slots.is_confession)

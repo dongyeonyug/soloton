@@ -42,9 +42,27 @@ def brief_spot(
     time_slot: str = DEFAULT_TIME_SLOT,
     llm_fn: LLMFn | None = None,
 ) -> Briefing:
+    doc = doc or get_snapshot()
     risk, as_of = evaluate_spot(spot, activity, doc=doc, time_slot=time_slot)
-    spot_obj = spot
-    return generate_briefing(spot_obj, risk, as_of, llm_fn=llm_fn)
+
+    # 프리-베이크 산문은 프로덕션 기본 경로(레저·현재, 주입 LLM 없음)에서만 사용한다.
+    # 비기본 활동/시간대나 테스트 주입 LLM 은 기존 라이브 경로를 그대로 탄다.
+    baked_prose: str | None = None
+    baked_llm_used = False
+    if llm_fn is None and activity is Activity.LEISURE and time_slot == DEFAULT_TIME_SLOT:
+        snap = doc.spot(spot.id)
+        if snap is not None and snap.llm_prose is not None:
+            baked_prose = snap.llm_prose
+            baked_llm_used = snap.llm_used
+
+    return generate_briefing(
+        spot,
+        risk,
+        as_of,
+        llm_fn=llm_fn,
+        baked_prose=baked_prose,
+        baked_llm_used=baked_llm_used,
+    )
 
 
 def resolve_spot(key: str) -> Spot | None:

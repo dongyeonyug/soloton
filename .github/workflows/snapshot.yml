@@ -29,6 +29,8 @@ jobs:
           KHOA_API_KEY: ${{ secrets.KHOA_API_KEY }}
           KHOA_TIDE_API_KEY: ${{ secrets.KHOA_TIDE_API_KEY }}
           KMA_API_KEY: ${{ secrets.KMA_API_KEY }}
+          # 프리-베이크용. 없으면 산문은 서빙 시 라이브 생성으로 폴백(수집은 정상).
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           USE_SNAPSHOT_ONLY: "0"
         run: python -m app.ingest.collect
       - name: Commit-back if changed

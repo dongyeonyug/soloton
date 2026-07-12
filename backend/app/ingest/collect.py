@@ -46,6 +46,38 @@ def write_snapshot(doc: SnapshotDoc, path: Path = SNAPSHOT_PATH) -> None:
         f.write(doc.model_dump_json(indent=2))
 
 
+def bake_briefings(doc: SnapshotDoc, *, llm_fn=None) -> None:
+    """크론 시 기본 활동(레저·현재) 산문을 미리 생성해 스냅샷에 저장.
+
+    가드를 통과한 LLM 산문만 저장한다(llm_used=True). 키가 없으면(테스트 주입 llm_fn
+    도 없으면) 아무것도 하지 않는다 → 서빙 시 라이브 경로 폴백. 서빙 단계에서 저장 산문을
+    가드에 다시 통과시키므로 '숫자 0개'는 이중으로 보장된다.
+    """
+    # 지연 임포트로 import 사이클 회피(service 는 ingest.cache 만 의존).
+    from ..briefing.generate import generate_briefing
+    from ..models import Activity
+    from ..service import DEFAULT_TIME_SLOT, evaluate_spot
+
+    settings = get_settings()
+    if llm_fn is None and not settings.has_llm:
+        return
+
+    for spot in all_spots():
+        snap = doc.spot(spot.id)
+        if snap is None:
+            continue
+        try:
+            risk, as_of = evaluate_spot(
+                spot, Activity.LEISURE, doc=doc, time_slot=DEFAULT_TIME_SLOT
+            )
+            briefing = generate_briefing(spot, risk, as_of, llm_fn=llm_fn)
+        except Exception:
+            continue  # 한 지점 실패가 전체 수집을 막지 않는다
+        if briefing.llm_used:
+            snap.llm_prose = briefing.llm_prose
+            snap.llm_used = True
+
+
 def has_any_present(doc: SnapshotDoc) -> bool:
     """수집 결과에 실측값이 하나라도 있으면 True."""
     return any(
@@ -64,8 +96,14 @@ def main() -> None:
             f"(source={doc.source}) 인증키 설정 여부를 확인하세요."
         )
         return
+    # AI 켜져 있으면 기본 활동 산문을 미리 구워 스냅샷에 담는다(서빙 시 라이브 호출 제거).
+    bake_briefings(doc)
+    baked = sum(1 for s in doc.spots.values() if s.llm_used)
     write_snapshot(doc)
-    print(f"snapshot written: {SNAPSHOT_PATH} (as_of={doc.snapshot_as_of}, source={doc.source})")
+    print(
+        f"snapshot written: {SNAPSHOT_PATH} (as_of={doc.snapshot_as_of}, "
+        f"source={doc.source}, baked_briefings={baked}/{len(doc.spots)})"
+    )
 
 
 if __name__ == "__main__":
