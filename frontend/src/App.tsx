@@ -7,7 +7,6 @@ import { SpotList } from "./components/SpotList";
 import { SpotMap } from "./components/SpotMap";
 import type { Activity, Briefing, Overview } from "./types";
 import { ACTIVITIES } from "./types";
-import { formatKstDateTime } from "./utils/time";
 
 export default function App() {
   const [activity, setActivity] = useState<Activity>("레저");
@@ -58,7 +57,7 @@ export default function App() {
           <h1>오늘의 바다</h1>
           <p className="tagline">관측값 기반 활동별 위험도와 근거를 함께 확인합니다.</p>
         </div>
-        <div className="activity-tabs" aria-label="활동 유형 선택">
+        <div className="activity-tabs" role="group" aria-label="활동 유형 선택">
           {ACTIVITIES.map((a) => (
             <button
               key={a}
@@ -95,7 +94,7 @@ export default function App() {
           )}
         </section>
 
-        <section className="right" aria-live="polite">
+        <section className="right" aria-label="선택 지점 브리핑" aria-live="polite">
           {loading && <div className="muted">불러오는 중…</div>}
           {briefing && !loading && (
             <>
@@ -110,11 +109,6 @@ export default function App() {
         </section>
       </main>
 
-      {overview && (
-        <div className="asof-bar">
-          스냅샷 기준 {formatKstDateTime(overview.snapshot_as_of)}
-        </div>
-      )}
       <DisclaimerFooter />
     </div>
   );

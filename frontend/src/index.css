@@ -17,6 +17,17 @@
   --krds-success: #228738;
   --krds-info: #0b78cb;
   --krds-focus: 0 0 0 4px #256ef4;
+  /* 등급 팔레트 — 신호등 밝은 색(GRADE_COLOR, JS)과 짝을 이루는 차분한 표면·잉크 */
+  --krds-grade-safe-ink: #1b6b2c;
+  --krds-grade-safe-surface: #f0f8f2;
+  --krds-grade-safe-border: #97c6a2;
+  --krds-grade-caution-ink: #8a5a00;
+  --krds-grade-caution-surface: #fbf6e9;
+  --krds-grade-caution-border: #e0c072;
+  --krds-grade-danger-ink: #8a240f;
+  --krds-grade-danger-surface: #fbefec;
+  --krds-grade-danger-border: #e2a99c;
+  --krds-signal-off: #cdd1d5;
   font-family: "Pretendard GOV", "Pretendard", -apple-system, BlinkMacSystemFont,
     "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif;
   color: var(--krds-text);
@@ -123,18 +134,18 @@ button:focus-visible,
   padding: 16px 24px;
   border: 1px solid var(--krds-danger);
   border-radius: 8px;
-  background: #fdefec;
-  color: #8a240f;
+  background: var(--krds-grade-danger-surface);
+  color: var(--krds-grade-danger-ink);
   font-weight: 700;
 }
 
 .banner-retry {
-  min-height: 40px;
+  min-height: 44px;
   padding: 0 16px;
   border: 1px solid var(--krds-danger);
   border-radius: 6px;
   background: var(--krds-canvas);
-  color: #8a240f;
+  color: var(--krds-grade-danger-ink);
   font-weight: 700;
   cursor: pointer;
 }
@@ -345,30 +356,30 @@ button:focus-visible,
 
 /* 등급을 겁주지 않는 톤으로: 틴트 서피스 + 1px 보더 + 강한 단어 (색만이 아닌 이중 인코딩은 신호등·단어가 담당) */
 .signal-card.grade-safe {
-  border-color: #97c6a2;
-  background: #f0f8f2;
+  border-color: var(--krds-grade-safe-border);
+  background: var(--krds-grade-safe-surface);
 }
 
 .signal-card.grade-caution {
-  border-color: #e0c072;
-  background: #fbf6e9;
+  border-color: var(--krds-grade-caution-border);
+  background: var(--krds-grade-caution-surface);
 }
 
 .signal-card.grade-danger {
-  border-color: #e2a99c;
-  background: #fbefec;
+  border-color: var(--krds-grade-danger-border);
+  background: var(--krds-grade-danger-surface);
 }
 
 .signal-grade.grade-safe {
-  color: #1b6b2c;
+  color: var(--krds-grade-safe-ink);
 }
 
 .signal-grade.grade-caution {
-  color: #8a5a00;
+  color: var(--krds-grade-caution-ink);
 }
 
 .signal-grade.grade-danger {
-  color: #8a240f;
+  color: var(--krds-grade-danger-ink);
 }
 
 .signal-lights {
@@ -446,7 +457,7 @@ button:focus-visible,
 .citation-basis > summary {
   display: inline-flex;
   align-items: center;
-  min-height: 32px;
+  min-height: 44px;
   color: var(--krds-primary-deep);
   font-weight: 700;
   cursor: pointer;
@@ -521,17 +532,7 @@ button:focus-visible,
 
 .asof {
   margin-top: 12px;
-  color: var(--krds-muted);
-  font-size: 13px;
-}
-
-.asof-bar {
-  width: fit-content;
-  margin: 16px auto 4px;
-  padding: 6px 10px;
-  border-radius: 4px;
-  background: var(--krds-surface);
-  color: var(--krds-muted);
+  color: var(--krds-body);
   font-size: 13px;
 }
 
@@ -539,7 +540,7 @@ button:focus-visible,
   margin-top: 16px;
   padding: 16px 0 0;
   border-top: 1px solid var(--krds-divider);
-  color: var(--krds-muted);
+  color: var(--krds-body);
   font-size: 13px;
   line-height: 1.6;
 }

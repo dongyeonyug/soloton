@@ -12,7 +12,7 @@ export function formatKstDateTime(value: string | null | undefined): string {
 
   const date = parseApiDateTime(value);
   if (Number.isNaN(date.getTime())) {
-    return value.replace("T", " ").slice(0, 16);
+    return "정보없음";
   }
 
   const parts = new Intl.DateTimeFormat("ko-KR", {
