@@ -7,6 +7,7 @@ import { SpotList } from "./components/SpotList";
 import { SpotMap } from "./components/SpotMap";
 import type { Activity, Briefing, Overview } from "./types";
 import { ACTIVITIES } from "./types";
+import { formatKstDateTime } from "./utils/time";
 
 export default function App() {
   const [activity, setActivity] = useState<Activity>("레저");
@@ -96,7 +97,7 @@ export default function App() {
 
       {overview && (
         <div className="asof-bar">
-          스냅샷 기준 {overview.snapshot_as_of.replace("T", " ").slice(0, 16)}
+          스냅샷 기준 {formatKstDateTime(overview.snapshot_as_of)}
         </div>
       )}
       <DisclaimerFooter />

@@ -7,7 +7,8 @@
 
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import UTC, datetime
+from zoneinfo import ZoneInfo
 
 from ..models import (
     Activity,
@@ -20,6 +21,7 @@ from ..spots import Spot
 
 MISSING_TEXT = "정보없음"
 EMERGENCY = "해양경찰 신고 122"  # 숫자를 코드가 소유(LLM 아님)
+KST = ZoneInfo("Asia/Seoul")
 
 
 def build_slots(
@@ -60,6 +62,15 @@ def _fmt_number(f: FilledNumber) -> str:
     return f"{f.label} {val}{f.unit}(출처: {f.source})"
 
 
+def _fmt_kst(dt: datetime | None) -> str:
+    """사용자 표시용 기준 시각. 스냅샷 저장값은 UTC naive 이므로 KST로 변환한다."""
+    if dt is None:
+        return MISSING_TEXT
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=UTC)
+    return dt.astimezone(KST).strftime("%Y-%m-%d %H:%M")
+
+
 def render_template(spot: Spot, risk: RiskGrade, slots: BriefingSlots) -> str:
     """코드 소유 근거 문장. 항상 정확한 구조적 인용."""
     parts = [_fmt_number(f) for f in slots.filled_numbers]
@@ -71,11 +82,7 @@ def render_template(spot: Spot, risk: RiskGrade, slots: BriefingSlots) -> str:
     else:
         adv_line = "없음"
 
-    as_of = (
-        slots.snapshot_as_of.strftime("%Y-%m-%d %H:%M")
-        if slots.snapshot_as_of
-        else MISSING_TEXT
-    )
+    as_of = _fmt_kst(slots.snapshot_as_of)
     confession = " (일부 지표 정보없음 — 안전 판단 보수화)" if slots.is_confession else ""
 
     return (

@@ -67,6 +67,15 @@ def test_missing_metric_shows_infoless_not_number():
     assert f"풍속 {MISSING_TEXT}" in text
 
 
+def test_template_displays_snapshot_time_in_kst():
+    spot = get_spot("cheongsapo")
+    risk, as_of = evaluate_spot(spot, Activity.FISHING, doc=_doc(missing_wind=False))
+    slots = build_slots(spot, risk, as_of)
+    text = render_template(spot, risk, slots)
+
+    assert "기준 시각 2026-07-12 10:00" in text
+
+
 def test_present_spot_not_confession():
     spot = get_spot("cheongsapo")
     briefing = brief_spot(

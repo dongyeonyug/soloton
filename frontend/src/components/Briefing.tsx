@@ -1,5 +1,6 @@
 import type { Briefing } from "../types";
 import { CitationChip } from "./CitationChip";
+import { formatKstDateTime } from "../utils/time";
 
 /** 근거 병기 브리핑 (AC8) — 근거 수치 칩 + 숫자없는 AI 산문 + 권고. */
 export function BriefingPanel({ briefing }: { briefing: Briefing }) {
@@ -25,7 +26,7 @@ export function BriefingPanel({ briefing }: { briefing: Briefing }) {
       </ul>
 
       <div className="asof">
-        기준 시각 {briefing.snapshot_as_of?.replace("T", " ").slice(0, 16) ?? "정보없음"} ·
+        기준 시각 {formatKstDateTime(briefing.snapshot_as_of)} ·
         수치는 코드가 보장, AI는 표현만
       </div>
     </div>
