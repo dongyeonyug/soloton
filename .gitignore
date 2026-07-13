@@ -30,3 +30,7 @@ inputdata/
 # Build
 dist/
 build/
+.gstack/
+
+# TS build cache (실수로 추적되던 산출물)
+tsconfig.tsbuildinfo
