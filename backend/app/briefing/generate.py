@@ -55,6 +55,7 @@ def generate_briefing(
     llm_fn: LLMFn | None = None,
     baked_prose: str | None = None,
     baked_llm_used: bool = False,
+    safe_window=None,
 ) -> Briefing:
     slots = build_slots(spot, risk, snapshot_as_of)
     template_text = render_template(spot, risk, slots)
@@ -95,4 +96,5 @@ def generate_briefing(
         is_confession=slots.is_confession,
         llm_used=llm_used,
         snapshot_as_of=snapshot_as_of,
+        safe_window=safe_window,
     )

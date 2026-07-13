@@ -7,14 +7,34 @@ C1 해소: 커밋 스냅샷 경로에서는 신선도 만료를 snapshot_as_of �
 from __future__ import annotations
 
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 from .briefing.generate import LLMFn, generate_briefing
+from .engine.forecast import safest_window
 from .engine.risk import evaluate, mark_stale
 from .ingest.cache import SnapshotDoc, get_snapshot
-from .models import Activity, Briefing, RiskGrade
+from .models import Activity, Briefing, RiskGrade, SafeWindow
 from .spots import Spot, get_spot
 
 DEFAULT_TIME_SLOT = "현재"
+# 예보 시계열 시각은 KST(Open-Meteo Asia/Seoul). '미래' 판정은 KST now 기준.
+_KST = ZoneInfo("Asia/Seoul")
+
+
+def safe_window_for(
+    spot: Spot,
+    activity: Activity,
+    *,
+    doc: SnapshotDoc | None = None,
+    now: datetime | None = None,
+) -> SafeWindow | None:
+    """스냅샷 예보 시계열에서 '가장 안전한 시간대'를 계산. 데이터 없으면 None."""
+    doc = doc or get_snapshot()
+    snap = doc.spot(spot.id)
+    if snap is None or not snap.forecast:
+        return None
+    ref = now or datetime.now(_KST).replace(tzinfo=None)
+    return safest_window(snap.forecast, activity, now=ref)
 
 
 def evaluate_spot(
@@ -62,6 +82,7 @@ def brief_spot(
         llm_fn=llm_fn,
         baked_prose=baked_prose,
         baked_llm_used=baked_llm_used,
+        safe_window=safe_window_for(spot, activity, doc=doc),
     )
 
 

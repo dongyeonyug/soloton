@@ -27,6 +27,13 @@ export interface FilledNumber {
   is_missing: boolean;
 }
 
+export interface SafeWindow {
+  start: string;
+  end: string;
+  grade: Grade;
+  source: string;
+}
+
 export interface Briefing {
   spot_id: string;
   time_slot: string;
@@ -39,6 +46,7 @@ export interface Briefing {
   is_confession: boolean;
   llm_used: boolean;
   snapshot_as_of: string | null;
+  safe_window: SafeWindow | null;
 }
 
 export const GRADE_COLOR: Record<Grade, string> = {

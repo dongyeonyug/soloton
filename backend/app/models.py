@@ -149,3 +149,34 @@ class Briefing(BaseModel):
     is_confession: bool = False
     llm_used: bool = False           # False 면 가드/폴백으로 템플릿만 서빙
     snapshot_as_of: datetime | None = None
+    # E2: 엔진이 고른 '가장 안전한 시간대'(예보 기반). 데이터 없으면 None.
+    safe_window: "SafeWindow | None" = None
+
+
+class ForecastPoint(BaseModel):
+    """시간별 예보값(코드 소유 수치). '가장 안전한 시간' 계산의 입력.
+
+    예보는 본질적으로 Open-Meteo(수치예보) 소스이며 실측이 아니다. 값은 결측 가능하고,
+    결측이면 해당 시각은 등급 산정에서 제외한다(추정 금지).
+    """
+
+    time: datetime
+    wave_height: float | None = None
+    wind_speed: float | None = None
+
+
+class SafeWindow(BaseModel):
+    """엔진이 결정론적으로 고른 '가장 안전한 시간대'. 시각은 코드가 소유(인용 슬롯).
+
+    grade 는 그 시간대의 확정 등급 — SAFE 창이 없으면 가장 나은(덜 위험한) 창을 고르되
+    등급을 정직하게 표기한다. LLM 은 이 시각을 생성하지 않고 산문에서 숫자 없이 참조만.
+    """
+
+    start: datetime
+    end: datetime
+    grade: Grade
+    source: str = "Open-Meteo 예보(수치모델)"
+
+
+# Briefing 이 뒤에 정의된 SafeWindow 를 전방참조하므로 여기서 확정한다.
+Briefing.model_rebuild()

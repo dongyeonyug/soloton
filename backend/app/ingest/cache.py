@@ -12,7 +12,7 @@ from pathlib import Path
 from pydantic import BaseModel, Field
 
 from ..config import DATA_DIR
-from ..models import Advisory, MarineObservation, Metric
+from ..models import Advisory, ForecastPoint, MarineObservation, Metric
 
 SNAPSHOT_PATH = DATA_DIR / "snapshot.json"
 
@@ -26,6 +26,9 @@ class SpotSnapshot(BaseModel):
     # 런타임 가드를 재통과시키므로 저장분도 '숫자 0개'가 최종 보장된다(이중 게이트).
     llm_prose: str | None = None
     llm_used: bool = False
+
+    # E2: '가장 안전한 시간' 산정용 시간별 예보 시계열(Open-Meteo). 비어있으면 안전창 미표시.
+    forecast: list[ForecastPoint] = Field(default_factory=list)
 
     def as_map(self) -> dict[Metric, MarineObservation]:
         return {obs.metric: obs for obs in self.observations}

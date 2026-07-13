@@ -10,6 +10,7 @@ import asyncio
 from datetime import datetime, timezone
 from pathlib import Path
 
+from ..clients.openmeteo import OpenMeteoProvider
 from ..clients.resolver import get_provider
 from ..config import get_settings
 from ..spots import all_spots
@@ -21,6 +22,8 @@ async def collect_all(now: datetime | None = None) -> SnapshotDoc:
     settings = get_settings()
     fetched_at = now or datetime.now(timezone.utc).replace(tzinfo=None)
     provider = get_provider(settings)
+    # '가장 안전한 시간' 예보 시계열은 항상 예보모델(Open-Meteo) 소스 — 현재값 provider 와 무관.
+    forecaster = OpenMeteoProvider()
     spots = all_spots()
 
     async def one(spot):
@@ -30,7 +33,10 @@ async def collect_all(now: datetime | None = None) -> SnapshotDoc:
         observations, advisory = normalize_spot(
             spot, reading, fetched_at=fetched_at, source_labels=provider.source_labels
         )
-        return spot.id, SpotSnapshot(observations=observations, advisory=advisory)
+        forecast = await forecaster.fetch_forecast_series(spot)
+        return spot.id, SpotSnapshot(
+            observations=observations, advisory=advisory, forecast=forecast
+        )
 
     results = await asyncio.gather(*(one(s) for s in spots))
     return SnapshotDoc(

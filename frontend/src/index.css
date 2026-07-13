@@ -520,6 +520,69 @@ button:focus-visible,
   color: var(--krds-body);
 }
 
+/* E2: 가장 안전한 시간대 — 코드가 계산한 예보 기반 참고값 */
+.safe-window {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 12px;
+  margin-top: 12px;
+  padding: 12px 16px;
+  border: 1px solid var(--krds-border);
+  border-radius: 8px;
+  background: var(--krds-surface);
+}
+
+.safe-window.grade-safe {
+  border-color: var(--krds-grade-safe-border);
+  background: var(--krds-grade-safe-surface);
+}
+
+.safe-window.grade-caution {
+  border-color: var(--krds-grade-caution-border);
+  background: var(--krds-grade-caution-surface);
+}
+
+.safe-window.grade-danger {
+  border-color: var(--krds-grade-danger-border);
+  background: var(--krds-grade-danger-surface);
+}
+
+.safe-window-label {
+  font-size: 14px;
+  color: var(--krds-body);
+}
+
+.safe-window-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--krds-text);
+}
+
+.safe-window-grade {
+  margin-left: 6px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.safe-window.grade-safe .safe-window-grade {
+  color: var(--krds-grade-safe-ink);
+}
+
+.safe-window.grade-caution .safe-window-grade {
+  color: var(--krds-grade-caution-ink);
+}
+
+.safe-window.grade-danger .safe-window-grade {
+  color: var(--krds-grade-danger-ink);
+}
+
+.safe-window-note {
+  flex-basis: 100%;
+  font-size: 13px;
+  color: var(--krds-body);
+}
+
 .recs {
   margin: 16px 0 0;
   padding-left: 22px;
