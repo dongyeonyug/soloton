@@ -27,6 +27,19 @@ python -m app.ingest.collect
 uvicorn app.main:app --reload
 ```
 
+## Render 무료 서버 깨우기
+`.github/workflows/render-wakeup.yml`이 10분마다 Render 백엔드의 `/api/health`를 호출합니다.
+
+GitHub 저장소의 **Settings → Secrets and variables → Actions → New repository secret**에서
+`RENDER_WAKE_URL`을 추가하세요.
+
+예시:
+```text
+https://oneul-ui-bada-api.onrender.com/api/health
+```
+
+설정 후 GitHub Actions의 **Render wakeup** 워크플로우를 수동 실행하면 바로 확인할 수 있습니다.
+
 ## 데이터 출처
 Phase 2 소스는 KHOA **해양관측부이 최신 관측데이터**(`15155516`, 실측), KHOA **조위관측소 최신 관측데이터**(`15155508`, 조위), 기상청 **기상특보 조회서비스**(`15000415`, 공식 특보)입니다. `DATA_PROVIDER=auto`는 KHOA/KMA 키가 있으면 **하이브리드**를 선택합니다 — KHOA 실측을 우선하고, 파고·풍속 센서가 없는 부이(예: 부산항 `TW_0087`)의 지점은 Open-Meteo 예보값으로 백필하며 지표별 출처(실측/예보)를 명시합니다. 조위 키는 `KHOA_TIDE_API_KEY`에 넣고, 비워두면 `KHOA_API_KEY`를 재사용합니다. 상세는 [docs/DATA_SOURCES.md](docs/DATA_SOURCES.md).
 

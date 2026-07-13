@@ -1,0 +1,33 @@
+name: Render wakeup
+
+# Render 무료 웹 서비스가 idle 상태가 되지 않도록 주기적으로 health endpoint 를 호출.
+# GitHub repository secret RENDER_WAKE_URL 에
+# 예: https://oneul-ui-bada-api.onrender.com/api/health 를 저장한다.
+
+on:
+  schedule:
+    - cron: "*/10 * * * *" # 10분마다
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  wake:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wake Render service
+        env:
+          RENDER_WAKE_URL: ${{ secrets.RENDER_WAKE_URL }}
+        run: |
+          if [[ -z "${RENDER_WAKE_URL}" ]]; then
+            echo "::error::Set the RENDER_WAKE_URL repository secret first."
+            exit 1
+          fi
+
+          curl --fail --silent --show-error --location \
+            --max-time 30 \
+            --retry 3 \
+            --retry-delay 10 \
+            --retry-all-errors \
+            "${RENDER_WAKE_URL}"
