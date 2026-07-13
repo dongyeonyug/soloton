@@ -28,11 +28,10 @@ export function GuardDemoPage() {
   return (
     <main className="verify">
       <div className="section-heading">
-        <h2>AI가 지어낸 문장은 서빙되지 않습니다</h2>
+        <h2>정말 막히는지, 지금 확인해 보세요</h2>
         <p>
-          이 서비스의 모든 수치와 시각은 코드가 계산해 인용하고, AI는 숫자 없이 표현만
-          맡습니다. AI 문장에 숫자가 하나라도 섞이면 그 문장은 <b>폐기</b>되고 코드가 만든
-          안내로 대체됩니다.
+          AI가 지어냈을 법한 문장을 이 사이트가 실제로 쓰는 검사 코드에 그대로 통과시켜
+          봤습니다.
         </p>
       </div>
 

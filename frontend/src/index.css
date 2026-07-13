@@ -627,9 +627,98 @@ button:focus-visible,
   color: var(--krds-primary-deep);
 }
 
+/* E3: 무환각 원리 설명 — 설명(원리) 다음에 E1(증거)이 이어진다 */
+.principle {
+  margin-top: 24px;
+}
+
+.pipeline {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pipeline-step {
+  display: flex;
+  gap: 12px;
+  padding: 24px;
+  border: 1px solid var(--krds-border);
+  border-radius: 8px;
+  background: var(--krds-canvas);
+}
+
+.pipeline-num {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--krds-primary);
+  color: #ffffff;
+  font-weight: 700;
+  line-height: 28px;
+  text-align: center;
+}
+
+.pipeline-step h3 {
+  margin: 0 0 4px;
+  color: var(--krds-text);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.pipeline-step p {
+  margin: 0;
+  color: var(--krds-body);
+  line-height: 1.65;
+}
+
+.contrast {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.contrast-col {
+  padding: 24px;
+  border: 1px solid var(--krds-border);
+  border-radius: 8px;
+  background: var(--krds-surface);
+}
+
+.contrast-col h3 {
+  margin: 0 0 8px;
+  color: var(--krds-text);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.contrast-col ul {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--krds-body);
+  line-height: 1.7;
+}
+
+.principle-confession {
+  margin: 16px 0 0;
+  padding: 16px 24px;
+  border: 1px solid var(--krds-border);
+  border-radius: 8px;
+  background: var(--krds-surface-primary);
+  color: var(--krds-text);
+  line-height: 1.65;
+}
+
 /* E1: 거짓말 차단 시연 — 판정은 서버의 실제 가드가 수행, 화면은 결과만 인용 */
 .verify {
-  margin-top: 24px;
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--krds-divider);
 }
 
 .verify-honesty {
@@ -847,6 +936,10 @@ mark.violation {
   .layout {
     grid-template-columns: 1fr;
   }
+
+  .pipeline {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 640px) {
@@ -891,6 +984,18 @@ mark.violation {
   .signal-activity {
     width: 100%;
     margin-left: 34px;
+  }
+
+  .contrast {
+    grid-template-columns: 1fr;
+  }
+
+  .tryit-row {
+    flex-wrap: wrap;
+  }
+
+  .tryit-row button {
+    flex: 1 1 100%;
   }
 }
 

@@ -3,6 +3,7 @@ import { fetchBriefing, fetchOverview } from "./api/client";
 import { DisclaimerFooter } from "./components/DisclaimerFooter";
 import { GuardDemoPage } from "./components/GuardDemo";
 import { HomeView } from "./components/HomeView";
+import { PrincipleSection } from "./components/Principle";
 import type { Activity, Briefing, Overview } from "./types";
 import { ACTIVITIES } from "./types";
 
@@ -117,7 +118,11 @@ export default function App() {
 
       <div className="route" ref={routeRef} tabIndex={-1}>
         {route === "verify" ? (
-          <GuardDemoPage />
+          // E3(원리) 위에 E1(증거)이 이어진다 — 설명하고, 곧바로 보여준다.
+          <>
+            <PrincipleSection />
+            <GuardDemoPage />
+          </>
         ) : (
           <HomeView
             activity={activity}
