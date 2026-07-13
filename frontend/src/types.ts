@@ -49,6 +49,29 @@ export interface Briefing {
   safe_window: SafeWindow | null;
 }
 
+/** E1 — 가드 판정 결과. 위반 스팬은 코드포인트 오프셋(백엔드 guard 와 동일 규칙). */
+export interface GuardVerdict {
+  text: string;
+  violations: string[];
+  violation_spans: [number, number][];
+  blocked: boolean;
+  served_prose: string;
+  llm_used: boolean;
+}
+
+export interface GuardCase extends GuardVerdict {
+  id: string;
+  title: string;
+  note: string;
+}
+
+export interface GuardDemo {
+  spot_id: string;
+  spot_name: string;
+  grade: Grade;
+  cases: GuardCase[];
+}
+
 export const GRADE_COLOR: Record<Grade, string> = {
   SAFE: "#228738",
   CAUTION: "#9e6a00",

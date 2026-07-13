@@ -1,0 +1,74 @@
+import { BriefingPanel } from "./Briefing";
+import { SignalCard } from "./SignalCard";
+import { SpotList } from "./SpotList";
+import { SpotMap } from "./SpotMap";
+import type { Activity, Briefing, Overview } from "../types";
+
+interface Props {
+  activity: Activity;
+  overview: Overview | null;
+  selected: string | null;
+  onSelect: (id: string) => void;
+  briefing: Briefing | null;
+  loading: boolean;
+  error: string | null;
+  onRetry: () => void;
+}
+
+/**
+ * 지도 + 지점 목록 + 선택 지점 브리핑 (기본 화면).
+ *
+ * 상태는 App 이 소유한다 — 시연 페이지를 다녀와도 고른 지점이 유지되도록.
+ */
+export function HomeView({
+  activity,
+  overview,
+  selected,
+  onSelect,
+  briefing,
+  loading,
+  error,
+  onRetry,
+}: Props) {
+  return (
+    <>
+      {error && (
+        <div className="banner error" role="alert">
+          <span>{error}</span>
+          <button type="button" className="banner-retry" onClick={onRetry}>
+            다시 시도
+          </button>
+        </div>
+      )}
+
+      <main className="layout">
+        <section className="left">
+          {overview && (
+            <>
+              <div className="section-heading">
+                <h2>해역 선택</h2>
+                <p>지도 또는 목록에서 확인할 지점을 선택하세요.</p>
+              </div>
+              <SpotMap spots={overview.spots} selected={selected} onSelect={onSelect} />
+              <SpotList spots={overview.spots} selected={selected} onSelect={onSelect} />
+            </>
+          )}
+        </section>
+
+        <section className="right" aria-label="선택 지점 브리핑" aria-live="polite">
+          {loading && <div className="muted">불러오는 중…</div>}
+          {briefing && !loading && (
+            <>
+              <div className="section-heading briefing-heading">
+                <h2>{overview?.spots.find((s) => s.id === selected)?.name}</h2>
+                <p>{activity} 활동 기준</p>
+              </div>
+              <SignalCard briefing={briefing} />
+              <BriefingPanel briefing={briefing} />
+            </>
+          )}
+        </section>
+      </main>
+    </>
+  );
+}

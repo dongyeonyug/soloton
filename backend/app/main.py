@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from .config import get_settings
 from .ingest.cache import get_snapshot
-from .routers import briefing, observations, risk, spots
+from .routers import briefing, guard, observations, risk, spots
 
 app = FastAPI(
     title="오늘의 바다 API",
@@ -27,6 +27,7 @@ app.include_router(spots.router)
 app.include_router(observations.router)
 app.include_router(risk.router)
 app.include_router(briefing.router)
+app.include_router(guard.router)
 
 
 @app.get("/api/health")

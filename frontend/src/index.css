@@ -595,6 +595,227 @@ button:focus-visible,
   font-size: 13px;
 }
 
+/* 주요 화면 전환 (해역 현황 / AI 거짓말 차단) */
+.mainnav {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+  border-bottom: 1px solid var(--krds-divider);
+}
+
+.mainnav a {
+  min-height: 48px;
+  padding: 12px 16px;
+  border-bottom: 3px solid transparent;
+  color: var(--krds-body);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.mainnav a:hover {
+  background: var(--krds-surface);
+  color: var(--krds-text);
+}
+
+.mainnav a:focus-visible {
+  outline: none;
+  box-shadow: var(--krds-focus);
+}
+
+.mainnav a[aria-current="page"] {
+  border-bottom-color: var(--krds-primary);
+  color: var(--krds-primary-deep);
+}
+
+/* E1: 거짓말 차단 시연 — 판정은 서버의 실제 가드가 수행, 화면은 결과만 인용 */
+.verify {
+  margin-top: 24px;
+}
+
+.verify-honesty {
+  margin: 16px 0 0;
+  padding: 16px 24px;
+  border: 1px solid var(--krds-border);
+  border-radius: 8px;
+  background: var(--krds-surface);
+  color: var(--krds-body);
+  line-height: 1.65;
+}
+
+.verify-context {
+  margin: 16px 0 0;
+  font-size: 15px;
+}
+
+.verify-cases {
+  display: grid;
+  gap: 16px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* 해시 라우트 컨테이너 — 화면 전환 시 포커스를 옮기지만 테두리는 그리지 않는다 */
+.route:focus {
+  outline: none;
+}
+
+.verify-case {
+  padding: 24px;
+  border: 1px solid var(--krds-border);
+  border-radius: 8px;
+  background: var(--krds-canvas);
+}
+
+.verify-case-head h3 {
+  margin: 0;
+  color: var(--krds-text);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.verify-case-head p {
+  margin: 2px 0 16px;
+  color: var(--krds-muted);
+  font-size: 15px;
+}
+
+.verdict {
+  display: grid;
+  gap: 12px;
+}
+
+.verdict-step-label {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--krds-body);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.verdict-draft {
+  margin: 0;
+  padding: 16px;
+  border: 1px dashed var(--krds-border);
+  border-radius: 8px;
+  background: var(--krds-surface);
+  color: var(--krds-body);
+  line-height: 1.65;
+}
+
+/* 위반 토큰 — 색만으로 알리지 않도록 밑줄을 함께 쓴다 */
+mark.violation {
+  padding: 0 2px;
+  border-bottom: 2px solid var(--krds-danger);
+  background: var(--krds-grade-danger-surface);
+  color: var(--krds-grade-danger-ink);
+  font-weight: 700;
+}
+
+.verdict-result {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 12px 16px;
+  border: 1px solid var(--krds-border);
+  border-radius: 8px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.verdict-result.blocked {
+  border-color: var(--krds-grade-danger-border);
+  background: var(--krds-grade-danger-surface);
+  color: var(--krds-grade-danger-ink);
+}
+
+.verdict-result.passed {
+  border-color: var(--krds-grade-safe-border);
+  background: var(--krds-grade-safe-surface);
+  color: var(--krds-grade-safe-ink);
+}
+
+.verdict-icon {
+  font-size: 18px;
+}
+
+.verdict-tokens {
+  font-weight: 400;
+}
+
+.verdict-served {
+  margin: 0;
+  padding: 16px;
+  border-radius: 8px;
+  background: var(--krds-surface-primary);
+  color: var(--krds-text);
+  line-height: 1.65;
+}
+
+.tryit {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--krds-divider);
+}
+
+.tryit-form label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--krds-body);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.tryit-row {
+  display: flex;
+  gap: 8px;
+}
+
+.tryit-row input {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 48px;
+  padding: 0 16px;
+  border: 1px solid var(--krds-border-strong);
+  border-radius: 6px;
+  background: var(--krds-canvas);
+  color: var(--krds-text);
+  font: inherit;
+}
+
+.tryit-row input:focus-visible {
+  outline: none;
+  box-shadow: var(--krds-focus);
+}
+
+.tryit-row button {
+  min-height: 48px;
+  padding: 0 24px;
+  border: 1px solid var(--krds-primary);
+  border-radius: 6px;
+  background: var(--krds-primary);
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.tryit-row button:hover:not(:disabled) {
+  background: var(--krds-primary-hover);
+  border-color: var(--krds-primary-hover);
+}
+
+.tryit-row button:disabled {
+  border-color: var(--krds-border);
+  background: var(--krds-surface);
+  color: var(--krds-muted);
+  cursor: not-allowed;
+}
+
+.tryit .verdict {
+  margin-top: 16px;
+}
+
 .disclaimer {
   margin-top: 16px;
   padding: 16px 0 0;

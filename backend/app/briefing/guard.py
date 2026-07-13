@@ -12,8 +12,10 @@ from __future__ import annotations
 
 import re
 
-# 아라비아/전각 숫자. 발견 시 위반(허용목록 비어있음).
-_DIGIT_RE = re.compile(r"[0-9０-９]")
+# 아라비아/전각 숫자. 발견 시 위반(허용목록 비어있음). 소수점·자릿점(전각 포함)으로 이어진
+# 숫자는 한 토큰으로 묶는다 — 탐지 기준은 그대로(숫자 1개라도 있으면 위반)이고, 시연 화면에서
+# "1.5" 가 "1"·"5" 로 쪼개져 보이지 않게 하기 위한 것이다.
+_DIGIT_RE = re.compile(r"[0-9０-９]+(?:[.,．，][0-9０-９]+)*")
 
 # 방어적 추가: 한글 수사 + 측정단위 조합(예 "약 이 미터", "삼 미터")
 _SPELLED_MEASURE_RE = re.compile(
@@ -37,12 +39,36 @@ _SPELLED_TIME_RE = re.compile(
 )
 
 
+# 판정 규칙은 이 세 개가 전부다. 스팬/토큰 API 모두 여기서만 파생된다(단일 출처).
+_RULES = (_DIGIT_RE, _SPELLED_MEASURE_RE, _SPELLED_TIME_RE)
+
+
+def find_violation_spans(text: str) -> list[tuple[int, int]]:
+    """위반 토큰의 (시작, 끝) 문자 오프셋. 겹치거나 맞닿은 구간은 병합한다.
+
+    E1 시연 UI 가 원문 위에 위반 부분을 표시하는 데 쓴다. 판정 규칙은 아래
+    find_number_violations 와 동일한 _RULES 이므로 화면과 런타임 가드가 갈라질 수 없다.
+    """
+    spans: list[tuple[int, int]] = []
+    for rule in _RULES:
+        spans.extend((m.start(), m.end()) for m in rule.finditer(text))
+    spans.sort()
+
+    merged: list[tuple[int, int]] = []
+    for start, end in spans:
+        # 규칙끼리 같은 글자를 겹쳐 잡은 경우만 합친다. 맞닿기만 한 구간("오후 두 시" + "3")은
+        # 서로 다른 위반이므로 합치지 않는다 — 합치면 화면의 위반 건수가 실제보다 줄어든다.
+        if merged and start < merged[-1][1]:
+            prev_start, prev_end = merged[-1]
+            merged[-1] = (prev_start, max(prev_end, end))
+        else:
+            merged.append((start, end))
+    return merged
+
+
 def find_number_violations(text: str) -> list[str]:
     """산문에서 무허용 숫자 토큰 목록. 비어있으면 통과."""
-    violations = _DIGIT_RE.findall(text)
-    violations += ["".join(m) for m in _SPELLED_MEASURE_RE.findall(text)]
-    violations += _SPELLED_TIME_RE.findall(text)
-    return violations
+    return [text[start:end] for start, end in find_violation_spans(text)]
 
 
 def is_number_free(text: str) -> bool:

@@ -1,21 +1,43 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { fetchBriefing, fetchOverview } from "./api/client";
-import { BriefingPanel } from "./components/Briefing";
 import { DisclaimerFooter } from "./components/DisclaimerFooter";
-import { SignalCard } from "./components/SignalCard";
-import { SpotList } from "./components/SpotList";
-import { SpotMap } from "./components/SpotMap";
+import { GuardDemoPage } from "./components/GuardDemo";
+import { HomeView } from "./components/HomeView";
 import type { Activity, Briefing, Overview } from "./types";
 import { ACTIVITIES } from "./types";
 
+type Route = "home" | "verify";
+
+const readRoute = (): Route =>
+  window.location.hash.replace(/^#\/?/, "") === "verify" ? "verify" : "home";
+
+/** 의존성 없는 해시 라우팅. `#/verify` 만 별도 화면, 나머지는 기본 화면. */
+function useHashRoute(): Route {
+  const [route, setRoute] = useState<Route>(readRoute);
+
+  useEffect(() => {
+    const onHashChange = () => setRoute(readRoute());
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
+  }, []);
+
+  return route;
+}
+
 export default function App() {
+  const route = useHashRoute();
   const [activity, setActivity] = useState<Activity>("레저");
+
+  // 화면 상태는 App 이 소유한다 — 시연 페이지를 다녀와도 고른 지점이 초기화되지 않도록.
   const [overview, setOverview] = useState<Overview | null>(null);
   const [selected, setSelected] = useState<string | null>(null);
   const [briefing, setBriefing] = useState<Briefing | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [reloadKey, setReloadKey] = useState(0);
+
+  const routeRef = useRef<HTMLDivElement>(null);
+  const firstRender = useRef(true);
 
   const retry = () => {
     setError(null);
@@ -49,6 +71,16 @@ export default function App() {
       .finally(() => setLoading(false));
   }, [selected, activity, reloadKey]);
 
+  // 화면 전환 시 위에서부터 읽고, 스크린리더/키보드 포커스도 새 화면으로 옮긴다(WCAG 2.4.3).
+  useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
+    window.scrollTo(0, 0);
+    routeRef.current?.focus();
+  }, [route]);
+
   return (
     <div className="app">
       <header className="topbar">
@@ -57,57 +89,48 @@ export default function App() {
           <h1>오늘의 바다</h1>
           <p className="tagline">관측값 기반 활동별 위험도와 근거를 함께 확인합니다.</p>
         </div>
-        <div className="activity-tabs" role="group" aria-label="활동 유형 선택">
-          {ACTIVITIES.map((a) => (
-            <button
-              key={a}
-              className={a === activity ? "active" : ""}
-              aria-pressed={a === activity}
-              onClick={() => setActivity(a)}
-            >
-              {a}
-            </button>
-          ))}
-        </div>
+
+        {route === "home" && (
+          <div className="activity-tabs" role="group" aria-label="활동 유형 선택">
+            {ACTIVITIES.map((a) => (
+              <button
+                key={a}
+                className={a === activity ? "active" : ""}
+                aria-pressed={a === activity}
+                onClick={() => setActivity(a)}
+              >
+                {a}
+              </button>
+            ))}
+          </div>
+        )}
       </header>
 
-      {error && (
-        <div className="banner error" role="alert">
-          <span>{error}</span>
-          <button type="button" className="banner-retry" onClick={retry}>
-            다시 시도
-          </button>
-        </div>
-      )}
+      <nav className="mainnav" aria-label="주요 화면">
+        <a href="#/" aria-current={route === "home" ? "page" : undefined}>
+          해역 현황
+        </a>
+        <a href="#/verify" aria-current={route === "verify" ? "page" : undefined}>
+          AI 거짓말 차단
+        </a>
+      </nav>
 
-      <main className="layout">
-        <section className="left">
-          {overview && (
-            <>
-              <div className="section-heading">
-                <h2>해역 선택</h2>
-                <p>지도 또는 목록에서 확인할 지점을 선택하세요.</p>
-              </div>
-              <SpotMap spots={overview.spots} selected={selected} onSelect={setSelected} />
-              <SpotList spots={overview.spots} selected={selected} onSelect={setSelected} />
-            </>
-          )}
-        </section>
-
-        <section className="right" aria-label="선택 지점 브리핑" aria-live="polite">
-          {loading && <div className="muted">불러오는 중…</div>}
-          {briefing && !loading && (
-            <>
-              <div className="section-heading briefing-heading">
-                <h2>{overview?.spots.find((s) => s.id === selected)?.name}</h2>
-                <p>{activity} 활동 기준</p>
-              </div>
-              <SignalCard briefing={briefing} />
-              <BriefingPanel briefing={briefing} />
-            </>
-          )}
-        </section>
-      </main>
+      <div className="route" ref={routeRef} tabIndex={-1}>
+        {route === "verify" ? (
+          <GuardDemoPage />
+        ) : (
+          <HomeView
+            activity={activity}
+            overview={overview}
+            selected={selected}
+            onSelect={setSelected}
+            briefing={briefing}
+            loading={loading}
+            error={error}
+            onRetry={retry}
+          />
+        )}
+      </div>
 
       <DisclaimerFooter />
     </div>
