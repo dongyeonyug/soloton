@@ -97,6 +97,14 @@ def main() -> None:
     doc = asyncio.run(collect_all())
     # 마지막 성공 스냅샷 보호: 전부 결측(키 없음/전량 실패)이면 seed/기존 스냅샷 유지
     if not has_any_present(doc):
+        if get_settings().resolved_provider != "openmeteo":
+            # 인증키가 설정된 라이브 수집에서 전량 결측 = 진짜 실패(파서 붕괴/API 장애).
+            # 조용히 종료0 하면 크론이 죽은 채 초록불로 방치되므로 비정상 종료해
+            # GH Actions 를 빨간불로 만든다. 기존 스냅샷은 덮어쓰지 않아 서빙은 무사.
+            raise SystemExit(
+                "collect: 인증키가 설정됐는데 실측값 0건 — 수집 실패로 판단해 "
+                f"비정상 종료(기존 스냅샷은 유지). (source={doc.source})"
+            )
         print(
             "collect: 실측값 0건 — 기존 스냅샷 유지(덮어쓰기 안 함). "
             f"(source={doc.source}) 인증키 설정 여부를 확인하세요."

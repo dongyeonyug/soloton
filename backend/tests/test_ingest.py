@@ -1,9 +1,13 @@
 """AC1: 수집·정규화 스키마·결측 플래그·per-metric 타임스탬프 검증."""
 
 from datetime import datetime
+from types import SimpleNamespace
+
+import pytest
 
 from app.clients.base import ProviderReading
-from app.ingest.cache import get_snapshot
+from app.ingest import collect
+from app.ingest.cache import SnapshotDoc, SpotSnapshot, get_snapshot
 from app.ingest.normalize import ALL_METRICS, normalize_spot
 from app.models import Metric
 from app.spots import all_spots, get_spot
@@ -58,3 +62,44 @@ def test_normalize_absent_becomes_missing():
     assert len(observations) == len(ALL_METRICS)
     assert all(o.is_missing for o in observations)
     assert advisory.is_missing is True
+
+
+def _all_missing_doc(source: str) -> SnapshotDoc:
+    spot = get_spot("haeundae")
+    observations, advisory = normalize_spot(
+        spot, reading=None, fetched_at=datetime(2026, 7, 10)
+    )
+    return SnapshotDoc(
+        snapshot_as_of=datetime(2026, 7, 10),
+        source=source,
+        spots={spot.id: SpotSnapshot(observations=observations, advisory=advisory)},
+    )
+
+
+def _patch_collect(monkeypatch, *, provider: str, doc: SnapshotDoc) -> None:
+    async def fake_collect_all(now=None):
+        return doc
+
+    monkeypatch.setattr(collect, "collect_all", fake_collect_all)
+    monkeypatch.setattr(
+        collect, "get_settings", lambda: SimpleNamespace(resolved_provider=provider)
+    )
+
+
+def test_all_missing_with_live_keys_exits_nonzero(monkeypatch):
+    """T5: 인증키 설정된 수집에서 전량 결측 = 진짜 실패 → 비정상 종료(크론 빨간불)."""
+    _patch_collect(monkeypatch, provider="hybrid", doc=_all_missing_doc("live-collect (hybrid)"))
+    with pytest.raises(SystemExit):
+        collect.main()
+
+
+def test_all_missing_keyless_keeps_snapshot_and_exit_zero(monkeypatch, capsys):
+    """키 없는(openmeteo) 전량 결측은 기존 동작 유지: 스냅샷 보존 + 정상 종료."""
+    _patch_collect(
+        monkeypatch, provider="openmeteo", doc=_all_missing_doc("live-collect (openmeteo)")
+    )
+    written: list[SnapshotDoc] = []
+    monkeypatch.setattr(collect, "write_snapshot", lambda doc, path=None: written.append(doc))
+    collect.main()  # SystemExit 없이 통과해야 한다
+    assert written == []  # 기존 스냅샷 덮어쓰기 없음
+    assert "기존 스냅샷 유지" in capsys.readouterr().out
