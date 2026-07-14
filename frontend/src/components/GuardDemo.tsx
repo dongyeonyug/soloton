@@ -147,6 +147,13 @@ function MarkedProse({ text, spans }: { text: string; spans: [number, number][] 
   return <>{parts}</>;
 }
 
+/** 원클릭 예시 — 첫 경험을 성공 경로로 유도(자유 입력은 그대로 열어 둠). */
+const EXAMPLES: { text: string; hint: string }[] = [
+  { text: "지금 파도는 2미터가 넘으니 위험합니다", hint: "수치 날조" },
+  { text: "오후 세 시쯤이 가장 안전합니다", hint: "시각 날조" },
+  { text: "바람이 잦아들어 오후로 갈수록 나아집니다", hint: "숫자 없는 문장" },
+];
+
 /** 심사위원이 직접 문장을 써서 가드를 시험해 보는 입력창. */
 function TryItYourself() {
   const [text, setText] = useState("");
@@ -154,9 +161,8 @@ function TryItYourself() {
   const [checking, setChecking] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const submit = (e: FormEvent) => {
-    e.preventDefault();
-    const trimmed = text.trim();
+  const check = (raw: string) => {
+    const trimmed = raw.trim();
     if (!trimmed) return;
     setChecking(true);
     setError(null);
@@ -169,6 +175,16 @@ function TryItYourself() {
         setError("검사에 실패했어요. 잠시 후 다시 시도해 주세요.");
       })
       .finally(() => setChecking(false));
+  };
+
+  const submit = (e: FormEvent) => {
+    e.preventDefault();
+    check(text);
+  };
+
+  const tryExample = (t: string) => {
+    setText(t);
+    check(t);
   };
 
   return (
@@ -192,6 +208,19 @@ function TryItYourself() {
           <button type="submit" disabled={!text.trim() || checking}>
             {checking ? "검사 중…" : "검사"}
           </button>
+        </div>
+        <div className="tryit-examples" role="group" aria-label="예시 문장으로 검사">
+          {EXAMPLES.map((ex) => (
+            <button
+              key={ex.text}
+              type="button"
+              className="tryit-example"
+              disabled={checking}
+              onClick={() => tryExample(ex.text)}
+            >
+              “{ex.text}” <span className="tryit-example-hint">{ex.hint}</span>
+            </button>
+          ))}
         </div>
       </form>
 

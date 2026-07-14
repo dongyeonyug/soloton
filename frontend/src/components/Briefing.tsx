@@ -67,7 +67,7 @@ export function BriefingPanel({ briefing }: { briefing: Briefing }) {
 
       <div className="asof">
         기준 시각 {formatKstDateTime(briefing.snapshot_as_of)} ·
-        수치는 코드가 보장, AI는 표현만
+        수치는 코드가 보장, AI는 표현만 · <a href="#/verify">직접 확인하기</a>
       </div>
     </div>
   );
