@@ -27,6 +27,7 @@ from .thresholds import (
     ADVISORY_OVERRIDE,
     MAX_AGE_SECONDS,
     MISSING_CRITICAL_FLOOR,
+    REFERENCE_METRICS,
     THRESHOLDS,
     effective_wave_band,
 )
@@ -105,7 +106,7 @@ def evaluate(
                     metric=metric,
                     value=None,
                     unit=band.unit,
-                    source=band.source,
+                    criterion=band.source,
                     observed_at=obs.observed_at if obs else None,
                     is_missing=True,
                     # 결측 임계지표는 CAUTION floor 를 대표, 비임계는 기여 없음(SAFE)
@@ -123,12 +124,33 @@ def evaluate(
                     metric=metric,
                     value=obs.value,
                     unit=band.unit,
-                    source=band.source,
+                    observed_source=obs.source,
+                    criterion=band.source,
                     observed_at=obs.observed_at,
                     is_missing=False,
                     contributed_grade=g,
                 )
             )
+
+    # 참고 지표(조위·수온) — 등급에 기여하지 않으나 근거로 인용·결측 자백(is_reference).
+    # 결측이어도 has_missing_critical 을 올리지 않는다(등급 비임계).
+    for metric, (unit, label) in REFERENCE_METRICS.items():
+        obs = observations.get(metric)
+        missing = obs is None or obs.is_missing or obs.value is None
+        basis_values.append(
+            BasisValue(
+                label=label,
+                metric=metric,
+                value=None if missing else obs.value,
+                unit=unit,
+                # 결측이면 출처 주장 없음(관측된 적 없는 값에 실측 라벨 금지)
+                observed_source="" if missing else obs.source,
+                observed_at=None if missing else obs.observed_at,
+                is_missing=missing,
+                is_reference=True,
+                contributed_grade=Grade.SAFE,
+            )
+        )
 
     grade = _worst(present_grades)
 

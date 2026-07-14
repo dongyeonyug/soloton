@@ -95,15 +95,21 @@ class Advisory(BaseModel):
 
 
 class BasisValue(BaseModel):
-    """등급 파생의 근거. 라벨-수치 오결합(AC4)을 막는 attribution 단위."""
+    """등급 파생의 근거. 라벨-수치 오결합(AC4)을 막는 attribution 단위.
+
+    observed_source(값이 어디서 왔나: KHOA 실측 / Open-Meteo 예보)와
+    criterion(등급을 가른 판단 기준: 임계 밴드)은 서로 다른 사실이므로 분리 보관한다.
+    """
 
     label: str          # 예: "유의파고"
     metric: Metric
     value: float | None  # 결측이면 None
     unit: str
-    source: str
+    observed_source: str = ""   # 관측 출처 — MarineObservation.source 를 그대로 전달
+    criterion: str = ""         # 판단 기준 — 임계 밴드 텍스트(구 source, 의미 교정 개명)
     observed_at: datetime | None = None
     is_missing: bool = False
+    is_reference: bool = False  # True 면 등급 비반영 참고 지표(조위·수온)
     contributed_grade: Grade
 
 
@@ -122,9 +128,12 @@ class FilledNumber(BaseModel):
     label: str
     value: float | None
     unit: str
-    source: str
+    observed_source: str = ""   # 관측 출처(실측/예보 원문 라벨)
+    observed_kind: str = ""     # "실측" | "예보" | "" — UI 배지용, 코드가 분류
+    criterion: str = ""         # 판단 기준(임계 밴드) — 등급 비반영 참고 지표는 빈 문자열
     observed_at: datetime | None = None
     is_missing: bool = False
+    is_reference: bool = False
 
 
 class BriefingSlots(BaseModel):

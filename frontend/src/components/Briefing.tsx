@@ -14,18 +14,25 @@ export function BriefingPanel({ briefing }: { briefing: Briefing }) {
         ))}
       </div>
 
-      {briefing.citations.some((c) => c.source) && (
+      {briefing.citations.some((c) => c.observed_source || c.criterion || c.is_reference) && (
         <details className="citation-basis">
-          <summary>수치 판단 기준</summary>
+          <summary>수치 출처·판단 기준</summary>
           <dl>
-            {briefing.citations.map((c) =>
-              c.source ? (
-                <Fragment key={c.label}>
-                  <dt>{c.label}</dt>
-                  <dd>{c.source}</dd>
-                </Fragment>
-              ) : null,
-            )}
+            {briefing.citations.map((c) => (
+              <Fragment key={c.label}>
+                <dt>{c.label}</dt>
+                <dd>
+                  {c.is_missing
+                    ? "정보없음 — 추정하지 않습니다"
+                    : `${c.observed_kind ? `[${c.observed_kind}] ` : ""}${c.observed_source}`}
+                  {c.is_reference
+                    ? " · 참고 지표(등급에 반영되지 않음)"
+                    : c.criterion
+                      ? ` · 판단 기준: ${c.criterion}`
+                      : null}
+                </dd>
+              </Fragment>
+            ))}
           </dl>
         </details>
       )}

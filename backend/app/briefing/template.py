@@ -24,6 +24,15 @@ EMERGENCY = "해양경찰 신고 122"  # 숫자를 코드가 소유(LLM 아님)
 KST = ZoneInfo("Asia/Seoul")
 
 
+def observed_kind(observed_source: str) -> str:
+    """관측 출처 라벨 → UI 배지 분류. 라벨은 코드 소유 상수(resolver/openmeteo)뿐이다."""
+    if "실측" in observed_source:
+        return "실측"
+    if observed_source.startswith("Open-Meteo"):
+        return "예보"
+    return ""
+
+
 def build_slots(
     spot: Spot,
     risk: RiskGrade,
@@ -37,12 +46,18 @@ def build_slots(
                 label=bv.label,
                 value=bv.value,
                 unit=bv.unit,
-                source=bv.source,
+                observed_source=bv.observed_source,
+                observed_kind=observed_kind(bv.observed_source),
+                criterion=bv.criterion,
                 observed_at=bv.observed_at,
                 is_missing=bv.is_missing,
+                is_reference=bv.is_reference,
             )
         )
-    is_confession = risk.has_missing_critical or any(f.is_missing for f in filled)
+    # 참고 지표(등급 비반영) 결측은 자백 트리거가 아니다 — 보수화 문구는 임계 지표 몫.
+    is_confession = risk.has_missing_critical or any(
+        f.is_missing for f in filled if not f.is_reference
+    )
     return BriefingSlots(
         spot_id=spot.id,
         time_slot=risk.time_slot,
@@ -59,7 +74,10 @@ def _fmt_number(f: FilledNumber) -> str:
         return f"{f.label} {MISSING_TEXT}"
     # 정수형이면 소수점 제거
     val = f"{f.value:g}"
-    return f"{f.label} {val}{f.unit}(출처: {f.source})"
+    src = f.observed_source or MISSING_TEXT
+    if f.is_reference:
+        return f"{f.label} {val}{f.unit}(출처: {src}, 등급 비반영 참고값)"
+    return f"{f.label} {val}{f.unit}(출처: {src} / 판단 기준: {f.criterion})"
 
 
 def _fmt_kst(dt: datetime | None) -> str:

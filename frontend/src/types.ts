@@ -22,9 +22,16 @@ export interface FilledNumber {
   label: string;
   value: number | null;
   unit: string;
-  source: string;
+  /** 관측 출처 원문 라벨 (예: "KHOA 해양관측부이(실측)"). 결측이면 빈 문자열. */
+  observed_source: string;
+  /** "실측" | "예보" | "" — 백엔드 코드가 분류(프론트는 표시만). */
+  observed_kind: string;
+  /** 판단 기준(임계 밴드). 등급 비반영 참고 지표는 빈 문자열. */
+  criterion: string;
   observed_at: string | null;
   is_missing: boolean;
+  /** true 면 등급에 반영되지 않는 참고 지표(조위·수온). */
+  is_reference: boolean;
 }
 
 export interface SafeWindow {

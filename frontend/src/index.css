@@ -445,6 +445,29 @@ button:focus-visible,
   color: #614100;
 }
 
+/* 실측/예보 출처 배지 — 텍스트가 구분의 본체(색만으로 구분 금지, WCAG) */
+.chip-kind {
+  margin-left: 6px;
+  padding: 1px 6px;
+  border: 1px solid var(--krds-divider);
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  vertical-align: 1px;
+}
+
+.chip-kind-observed {
+  color: #1f5a2d;
+  background: #eef7f0;
+  border-color: #cbe5d1;
+}
+
+.chip-kind-forecast {
+  color: #4b5565;
+  background: #f2f4f8;
+  border-color: #d8dde6;
+}
+
 .citation-basis {
   margin: 0 0 12px;
   font-size: 15px;
