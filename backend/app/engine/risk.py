@@ -13,14 +13,16 @@ from datetime import datetime
 
 from ..models import (
     CRITICAL_METRICS,
-    Activity,
     Advisory,
     AdvisoryKind,
     BasisValue,
+    DataStatus,
+    DecisionStep,
     Grade,
     MarineObservation,
     Metric,
     RiskGrade,
+    RuleEvidence,
 )
 from .thresholds import (
     ADVISORY_MAX_AGE_SECONDS,
@@ -29,14 +31,12 @@ from .thresholds import (
     MISSING_CRITICAL_FLOOR,
     REFERENCE_METRICS,
     THRESHOLDS,
-    effective_wave_band,
 )
 
-# 등급에 기여하는 지표(참고 지표 제외)
+# 등급에 기여하는 수치 지표. 조류는 지역·활동별 검증 임계값 전까지 참고값이다.
 CONTRIBUTING_METRICS: tuple[Metric, ...] = (
     Metric.WAVE_HEIGHT,
     Metric.WIND_SPEED,
-    Metric.CURRENT_SPEED,
 )
 
 
@@ -46,6 +46,17 @@ def _worst(grades: list[Grade]) -> Grade:
 
 def _escalate(current: Grade, floor: Grade) -> Grade:
     return current if current.rank >= floor.rank else floor
+
+
+def _data_status(obs: MarineObservation | None, *, missing: bool) -> DataStatus:
+    """관측값의 실제 상태를 API 계약으로 고정한다."""
+    if missing:
+        return DataStatus.STALE if obs is not None and obs.is_stale else DataStatus.MISSING
+    if obs is not None and "실측" in obs.source:
+        return DataStatus.OBSERVED
+    if obs is not None and obs.source.startswith("Open-Meteo"):
+        return DataStatus.FORECAST
+    return DataStatus.AVAILABLE
 
 
 def mark_stale(
@@ -62,7 +73,9 @@ def mark_stale(
             and obs.observed_at is not None
             and (as_of - obs.observed_at).total_seconds() > max_age
         ):
-            out[metric] = obs.model_copy(update={"is_missing": True, "value": None})
+            out[metric] = obs.model_copy(
+                update={"is_missing": True, "is_stale": True, "value": None}
+            )
         else:
             out[metric] = obs
 
@@ -72,27 +85,23 @@ def mark_stale(
         and adv.effective_at is not None
         and (as_of - adv.effective_at).total_seconds() > ADVISORY_MAX_AGE_SECONDS
     ):
-        adv = adv.model_copy(update={"is_missing": True})
+        adv = adv.model_copy(update={"is_missing": True, "is_stale": True})
     return out, adv
 
 
 def evaluate(
     observations: dict[Metric, MarineObservation],
     advisory: Advisory,
-    activity: Activity,
     time_slot: str,
 ) -> RiskGrade:
-    """관측·특보·활동 → 확정 등급. 순수·결정론."""
+    """관측·특보 → 해안 활동 참고 등급. 순수·결정론."""
     basis_values: list[BasisValue] = []
     present_grades: list[Grade] = []
+    decision_steps: list[DecisionStep] = []
     has_missing_critical = False
 
     for metric in CONTRIBUTING_METRICS:
-        band = (
-            effective_wave_band(activity)
-            if metric is Metric.WAVE_HEIGHT
-            else THRESHOLDS[metric]
-        )
+        band = THRESHOLDS[metric]
         obs = observations.get(metric)
         is_critical = metric in CRITICAL_METRICS
         missing = obs is None or obs.is_missing or obs.value is None
@@ -106,13 +115,30 @@ def evaluate(
                     metric=metric,
                     value=None,
                     unit=band.unit,
+                    checked_source=obs.source if obs else "",
                     criterion=band.source,
+                    rule_evidence=band.evidence,
                     observed_at=obs.observed_at if obs else None,
                     is_missing=True,
+                    missing_reason=obs.missing_reason if obs else None,
+                    data_status=_data_status(obs, missing=True),
+                    is_critical=is_critical,
                     # 결측 임계지표는 CAUTION floor 를 대표, 비임계는 기여 없음(SAFE)
                     contributed_grade=(
                         MISSING_CRITICAL_FLOOR if is_critical else Grade.SAFE
                     ),
+                )
+            )
+            decision_steps.append(
+                DecisionStep(
+                    label=band.label,
+                    detail=(
+                        "값이 없어 안전 등급을 낼 수 없어 최소 주의로 보수 처리"
+                        if is_critical
+                        else "값이 없어 이 지표는 계산에 반영하지 않음"
+                    ),
+                    result_grade=MISSING_CRITICAL_FLOOR if is_critical else None,
+                    rule_evidence=band.evidence,
                 )
             )
         else:
@@ -125,16 +151,28 @@ def evaluate(
                     value=obs.value,
                     unit=band.unit,
                     observed_source=obs.source,
+                    checked_source=obs.source,
                     criterion=band.source,
+                    rule_evidence=band.evidence,
                     observed_at=obs.observed_at,
                     is_missing=False,
+                    data_status=_data_status(obs, missing=False),
+                    is_critical=is_critical,
                     contributed_grade=g,
                 )
             )
+            decision_steps.append(
+                DecisionStep(
+                    label=band.label,
+                    detail="값과 임계 밴드를 비교한 결과",
+                    result_grade=g,
+                    rule_evidence=band.evidence,
+                )
+            )
 
-    # 참고 지표(조위·수온) — 등급에 기여하지 않으나 근거로 인용·결측 자백(is_reference).
+    # 참고 지표(조류·조위·수온) — 등급에 기여하지 않으나 근거로 인용한다.
     # 결측이어도 has_missing_critical 을 올리지 않는다(등급 비임계).
-    for metric, (unit, label) in REFERENCE_METRICS.items():
+    for metric, (unit, label, reference_note) in REFERENCE_METRICS.items():
         obs = observations.get(metric)
         missing = obs is None or obs.is_missing or obs.value is None
         basis_values.append(
@@ -145,12 +183,27 @@ def evaluate(
                 unit=unit,
                 # 결측이면 출처 주장 없음(관측된 적 없는 값에 실측 라벨 금지)
                 observed_source="" if missing else obs.source,
+                checked_source=obs.source if obs else "",
                 observed_at=None if missing else obs.observed_at,
                 is_missing=missing,
+                missing_reason=obs.missing_reason if missing and obs else None,
+                data_status=_data_status(obs, missing=missing),
                 is_reference=True,
+                reference_note=reference_note,
+                reference_station_name=obs.reference_station_name if obs else None,
+                reference_station_code=obs.reference_station_code if obs else None,
+                reference_distance_km=obs.reference_distance_km if obs else None,
                 contributed_grade=Grade.SAFE,
             )
         )
+        if metric is Metric.CURRENT_SPEED:
+            decision_steps.append(
+                DecisionStep(
+                    label=label,
+                    detail=reference_note,
+                    result_grade=None,
+                )
+            )
 
     grade = _worst(present_grades)
 
@@ -158,21 +211,49 @@ def evaluate(
     basis_advisories: list[Advisory] = []
     if advisory.is_missing:
         has_missing_critical = True
+        decision_steps.append(
+            DecisionStep(
+                label="기상특보",
+                detail="특보 정보를 확인하지 못해 안전 등급을 낼 수 없어 최소 주의로 보수 처리",
+                result_grade=MISSING_CRITICAL_FLOOR,
+            )
+        )
     elif advisory.kind is not AdvisoryKind.NONE:
         override = ADVISORY_OVERRIDE.get(advisory.kind)
         if override is not None:
             grade = _escalate(grade, override[0])
+            decision_steps.append(
+                DecisionStep(
+                    label="기상특보",
+                    detail=f"{advisory.kind.value}가 최종 등급의 하한을 올림",
+                    result_grade=override[0],
+                    rule_evidence=RuleEvidence.OFFICIAL_BASELINE,
+                )
+            )
         basis_advisories.append(advisory)
+    else:
+        decision_steps.append(
+            DecisionStep(label="기상특보", detail="활성 특보 없음", result_grade=None)
+        )
 
     # 결측 임계지표 → 안전 불가, CAUTION floor
     if has_missing_critical:
         grade = _escalate(grade, MISSING_CRITICAL_FLOOR)
 
+    decision_steps.append(
+        DecisionStep(
+            label="최종 위험도",
+            detail="지표 중 가장 높은 등급, 특보 상향, 결측 보수 규칙을 모두 반영",
+            result_grade=grade,
+        )
+    )
+
     return RiskGrade(
         grade=grade,
         time_slot=time_slot,
-        activity=activity,
         basis_values=basis_values,
         basis_advisories=basis_advisories,
+        advisory=advisory,
+        decision_steps=decision_steps,
         has_missing_critical=has_missing_critical,
     )

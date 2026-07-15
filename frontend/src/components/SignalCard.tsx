@@ -21,7 +21,6 @@ export function SignalCard({ briefing }: { briefing: Briefing }) {
         {GRADE_KO[briefing.grade]}
         {briefing.is_confession && <span className="confess-tag">일부 정보없음</span>}
       </div>
-      <div className="signal-activity">{briefing.activity} 기준</div>
     </div>
   );
 }

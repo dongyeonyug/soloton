@@ -6,6 +6,7 @@ KMA getPwnStatus: response.body.items.item[].t6 = 'o <특보명> : <지역>' 세
 """
 
 import asyncio
+from datetime import date
 
 from app.clients import khoa, kma
 from app.models import AdvisoryKind, Metric
@@ -36,7 +37,7 @@ def test_khoa_uses_new_endpoint_and_official_params(monkeypatch):
     monkeypatch.setattr(khoa, "fetch_json", fake_fetch)
     result = asyncio.run(khoa.fetch_spot(_live_spot(), "key"))
 
-    buoy_call = captured[0]
+    buoy_call = next(call for call in captured if call["url"] == khoa.KHOA_URL)
     assert buoy_call["url"] == khoa.KHOA_URL
     assert buoy_call["params"]["serviceKey"] == "key"
     assert buoy_call["params"]["obsCode"] == "TW_0062"
@@ -66,9 +67,9 @@ def test_khoa_uses_tide_endpoint_and_merges_tide_level(monkeypatch):
     monkeypatch.setattr(khoa, "fetch_json", fake_fetch)
     result = asyncio.run(khoa.fetch_spot(spot, "buoy-key", "tide-key"))
 
-    assert captured[1]["url"] == khoa.KHOA_TIDE_URL
-    assert captured[1]["params"]["serviceKey"] == "tide-key"
-    assert captured[1]["params"]["obsCode"] == "DT_0005"
+    tide_call = next(call for call in captured if call["url"] == khoa.KHOA_TIDE_URL)
+    assert tide_call["params"]["serviceKey"] == "tide-key"
+    assert tide_call["params"]["obsCode"] == "DT_0005"
     assert result[Metric.WAVE_HEIGHT] == 0.4
     assert result[Metric.TIDE_LEVEL] == 123.0
 
@@ -81,6 +82,15 @@ def test_khoa_tide_parser_accepts_aliases_and_bad_values():
     ]}}}
     assert khoa._parse_tide(raw) == {Metric.TIDE_LEVEL: 88.5}
     assert khoa._parse_tide({"body": {"items": {"item": [{"tideLevel": "-"}]}}}) is None
+
+
+def test_khoa_tide_parser_reads_live_bsc_tide_height_field():
+    raw = {"body": {"items": {"item": [
+        {"obsrvnDt": "2026-07-16 00:00", "bscTdlvHgt": 112.0}
+    ]}}}
+    parsed = khoa._with_observed_at(khoa._parse_tide(raw), raw)
+    assert parsed == {Metric.TIDE_LEVEL: 112.0}
+    assert parsed.metric_observed_at[Metric.TIDE_LEVEL].isoformat() == "2026-07-15T15:00:00"
 
 
 def test_khoa_current_speed_converts_cm_per_s_to_m_per_s():
@@ -118,6 +128,40 @@ def test_kma_uses_current_status_and_never_returns_wind(monkeypatch):
     assert "wind_speed" not in result
 
 
+def test_kma_warning_list_uses_period_and_station_filters(monkeypatch):
+    captured = {}
+
+    async def fake_fetch(url, params=None, **kwargs):
+        captured.update(url=url, params=params)
+        return {"response": {"header": {"resultCode": "00"}, "body": {"items": {"item": [{
+            "stnId": "159", "tmFc": 202607150030, "tmSeq": 26,
+            "title": "[특보] 제07-26호 : 2026.07.15.00:30 / 풍랑주의보 발표 (*)",
+        }]}}}}
+
+    monkeypatch.setattr(kma, "fetch_json", fake_fetch)
+    records = asyncio.run(
+        kma.fetch_warning_list(
+            "key",
+            from_date=date(2026, 7, 10),
+            to_date=date(2026, 7, 16),
+            station_id="159",
+        )
+    )
+
+    assert captured["url"] == kma.KMA_WARNING_LIST_URL
+    assert captured["params"]["stnId"] == "159"
+    assert captured["params"]["fromTmFc"] == "20260710"
+    assert captured["params"]["toTmFc"] == "20260716"
+    assert records == [
+        kma.WarningListRecord(
+            stn_id="159",
+            tm_fc="202607150030",
+            tm_seq=26,
+            title="[특보] 제07-26호 : 2026.07.15.00:30 / 풍랑주의보 발표 (*)",
+        )
+    ]
+
+
 def test_kma_ignores_farsea_warning_and_busan_land_false_positive():
     """실제 버그 회귀: 풍랑경보가 제주/먼바다이고 '부산'은 폭염(육상)일 때 → 특보 없음."""
     raw = {"response": {"body": {"items": {"item": [{
@@ -138,6 +182,28 @@ def test_kma_attributes_busan_coastal_advisory():
         "t6": "o 풍랑주의보 : 남해동부앞바다, 제주도앞바다"
     }]}}}}
     assert kma._parse(raw, area="부산") == {"advisory": AdvisoryKind.WIND_WAVE_WARNING}
+
+
+def test_kma_scope_preserves_source_text_and_exact_busan_zone(monkeypatch):
+    captured = {}
+
+    async def fake_fetch(url, params=None, **kwargs):
+        captured.update(url=url, params=params)
+        return {"response": {"body": {"items": {"item": [{
+            "t6": (
+                "o 풍랑주의보 : 남해동부앞바다, 제주도앞바다\n"
+                "o 폭염경보 : 부산(부산서부), 대구"
+            )
+        }]}}}}
+
+    monkeypatch.setattr(kma, "fetch_json", fake_fetch)
+    scope = asyncio.run(kma.fetch_busan_coastal_scope("key"))
+
+    assert captured["url"] == kma.KMA_URL
+    assert scope is not None
+    assert scope.advisory is AdvisoryKind.WIND_WAVE_WARNING
+    assert scope.matched_segments[0].matched_zones == ("남해동부앞바다",)
+    assert "폭염경보" in scope.source_t6
 
 
 def test_kma_keeps_strongest_active_level():
@@ -162,5 +228,23 @@ def test_every_spot_has_a_verified_busan_area_buoy_code():
     assert {spot.khoa_obs_code for spot in all_spots()} <= allowed
 
 
-def test_every_spot_has_initial_tide_station_code():
-    assert {spot.khoa_tide_obs_code for spot in all_spots()} == {"DT_0005"}
+def test_every_spot_uses_a_verified_nearest_tide_station():
+    from app.spots import TIDE_STATIONS, nearest_tide_reference_for, tide_reference_for
+
+    assert {spot.khoa_tide_obs_code for spot in all_spots()} <= set(TIDE_STATIONS)
+    for spot in all_spots():
+        configured, configured_distance = tide_reference_for(spot)
+        nearest, nearest_distance = nearest_tide_reference_for(spot)
+        assert configured.code == nearest.code
+        assert configured_distance == nearest_distance
+
+    assert get_spot("imnang").khoa_tide_obs_code == "DT_0020"
+
+
+def test_tide_reference_reports_station_and_distance():
+    from app.spots import tide_reference_for
+
+    station, distance = tide_reference_for(get_spot("haeundae"))
+    assert station.name == "부산 조위관측소"
+    assert station.code == "DT_0005"
+    assert distance > 0

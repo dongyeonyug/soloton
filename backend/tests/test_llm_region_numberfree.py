@@ -6,7 +6,7 @@
 import pytest
 
 from app.briefing import guard
-from app.models import Activity
+from app.models import ProseStatus
 from app.service import brief_spot
 from app.spots import all_spots
 
@@ -69,23 +69,20 @@ def _llm_clean(system, user):
 
 def test_number_laden_prose_rejected_and_fallback():
     spot = all_spots()[0]
-    briefing = brief_spot(spot, Activity.FISHING, llm_fn=_llm_with_numbers)
-    assert briefing.llm_used is False          # 가드가 폐기
+    briefing = brief_spot(spot, llm_fn=_llm_with_numbers)
+    assert briefing.prose_status == ProseStatus.BLOCKED_BY_GUARD
     assert guard.is_number_free(briefing.llm_prose)  # 폴백은 number-free
 
 
 def test_clean_prose_accepted():
     spot = all_spots()[0]
-    briefing = brief_spot(spot, Activity.FISHING, llm_fn=_llm_clean)
-    assert briefing.llm_used is True
+    briefing = brief_spot(spot, llm_fn=_llm_clean)
+    assert briefing.prose_status == ProseStatus.VERIFIED
     assert guard.is_number_free(briefing.llm_prose)
 
 
 @pytest.mark.parametrize("spot", all_spots(), ids=[s.id for s in all_spots()])
 def test_all_spots_served_prose_numberfree(spot):
-    """어떤 지점·활동이든 서빙되는 산문은 숫자 0개(런타임+폴백 이중)."""
-    for activity in Activity:
-        briefing = brief_spot(spot, activity, llm_fn=_llm_with_numbers)
-        assert guard.is_number_free(briefing.llm_prose), (
-            f"{spot.id}/{activity.value}: 산문에 숫자 유출"
-        )
+    """어떤 지점이든 서빙되는 산문은 숫자 0개(런타임+폴백 이중)."""
+    briefing = brief_spot(spot, llm_fn=_llm_with_numbers)
+    assert guard.is_number_free(briefing.llm_prose), f"{spot.id}: 산문에 숫자 유출"

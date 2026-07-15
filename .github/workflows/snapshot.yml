@@ -36,11 +36,11 @@ jobs:
       - name: Commit-back if changed
         run: |
           cd ..
-          if [[ -n "$(git status --porcelain backend/data/snapshot.json)" ]]; then
+          if [[ -n "$(git status --porcelain backend/data/snapshot.json backend/data/advisory_history.json)" ]]; then
             git config user.name "snapshot-bot"
             git config user.email "snapshot-bot@users.noreply.github.com"
-            git add backend/data/snapshot.json
-            git commit -m "chore(snapshot): refresh marine data $(date -u +%FT%TZ)"
+            git add backend/data/snapshot.json backend/data/advisory_history.json
+            git commit -m "chore(data): refresh marine snapshot and advisory history $(date -u +%FT%TZ)"
             git push
           else
             echo "no snapshot change"

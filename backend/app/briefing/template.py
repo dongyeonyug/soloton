@@ -11,7 +11,6 @@ from datetime import UTC, datetime
 from zoneinfo import ZoneInfo
 
 from ..models import (
-    Activity,
     BriefingSlots,
     FilledNumber,
     Grade,
@@ -47,11 +46,20 @@ def build_slots(
                 value=bv.value,
                 unit=bv.unit,
                 observed_source=bv.observed_source,
+                checked_source=bv.checked_source,
                 observed_kind=observed_kind(bv.observed_source),
                 criterion=bv.criterion,
+                rule_evidence=bv.rule_evidence,
                 observed_at=bv.observed_at,
                 is_missing=bv.is_missing,
+                missing_reason=bv.missing_reason,
+                data_status=bv.data_status,
+                is_critical=bv.is_critical,
                 is_reference=bv.is_reference,
+                reference_note=bv.reference_note,
+                reference_station_name=bv.reference_station_name,
+                reference_station_code=bv.reference_station_code,
+                reference_distance_km=bv.reference_distance_km,
             )
         )
     # 참고 지표(등급 비반영) 결측은 자백 트리거가 아니다 — 보수화 문구는 임계 지표 몫.
@@ -61,7 +69,6 @@ def build_slots(
     return BriefingSlots(
         spot_id=spot.id,
         time_slot=risk.time_slot,
-        activity=risk.activity,
         grade=risk.grade,
         filled_numbers=filled,
         is_confession=is_confession,
@@ -76,7 +83,12 @@ def _fmt_number(f: FilledNumber) -> str:
     val = f"{f.value:g}"
     src = f.observed_source or MISSING_TEXT
     if f.is_reference:
-        return f"{f.label} {val}{f.unit}(출처: {src}, 등급 비반영 참고값)"
+        reference = ""
+        if f.reference_station_name:
+            reference = f", 참고 관측소: {f.reference_station_name}"
+            if f.reference_distance_km is not None:
+                reference += f"(약 {f.reference_distance_km:g}km)"
+        return f"{f.label} {val}{f.unit}(출처: {src}{reference}, 등급 비반영 참고값)"
     return f"{f.label} {val}{f.unit}(출처: {src} / 판단 기준: {f.criterion})"
 
 
@@ -104,32 +116,22 @@ def render_template(spot: Spot, risk: RiskGrade, slots: BriefingSlots) -> str:
     confession = " (일부 지표 정보없음 — 안전 판단 보수화)" if slots.is_confession else ""
 
     return (
-        f"[{spot.name}] {risk.time_slot}시 {risk.activity.value} 기준 "
+        f"[{spot.name}] {risk.time_slot}시 해안 활동 참고 기준 "
         f"위험도: {risk.grade.label_ko}{confession}. "
         f"{metrics_line}. 발효 특보: {adv_line}. 기준 시각 {as_of}."
     )
 
 
-# 코드 소유 활동별 권고 (등급×활동). 결정론, LLM 아님.
+# 코드 소유 등급별 권고. 결정론, LLM 아님.
 _BASE_REC: dict[Grade, str] = {
-    Grade.SAFE: "현재 지표는 안전 범위입니다. 기본 안전수칙을 지키세요.",
+    Grade.SAFE: "현재 지표는 참고 범위 안입니다. 현장 안내와 기본 안전수칙을 확인하세요.",
     Grade.CAUTION: "주의가 필요합니다. 기상 변화를 수시로 확인하세요.",
-    Grade.DANGER: "위험합니다. 해당 활동을 자제하고 안전한 장소로 이동하세요.",
-}
-_ACTIVITY_REC: dict[tuple[Grade, Activity], str] = {
-    (Grade.DANGER, Activity.ROCK_FISHING): "갯바위 고립·추락 위험이 큽니다. 진입하지 마세요.",
-    (Grade.DANGER, Activity.SWIMMING): "입수 금지. 이안류·높은 파도에 주의하세요.",
-    (Grade.CAUTION, Activity.SWIMMING): "어린이·노약자 입수를 자제하고 안전요원 지시를 따르세요.",
-    (Grade.DANGER, Activity.FISHING): "소형선박 출항을 삼가세요.",
-    (Grade.CAUTION, Activity.ROCK_FISHING): "구명조끼를 착용하고 파도 상황을 주시하세요.",
+    Grade.DANGER: "위험 신호가 확인됩니다. 해안 활동을 미루고 현장 안전 안내를 따르세요.",
 }
 
 
 def build_recommendations(risk: RiskGrade, is_confession: bool) -> list[str]:
     recs = [_BASE_REC[risk.grade]]
-    specific = _ACTIVITY_REC.get((risk.grade, risk.activity))
-    if specific:
-        recs.append(specific)
     if is_confession:
         recs.append("일부 관측값이 없어 실제 위험이 더 높을 수 있습니다.")
     if risk.grade is not Grade.SAFE:
@@ -139,11 +141,10 @@ def build_recommendations(risk: RiskGrade, is_confession: bool) -> list[str]:
 
 def fallback_prose(spot: Spot, risk: RiskGrade, is_confession: bool) -> str:
     """LLM 미사용/가드 폴백용 숫자없는 산문(코드 생성, 항상 number-free)."""
-    activity = risk.activity.value
     base = {
-        Grade.SAFE: f"{spot.name}의 현재 {activity} 여건은 대체로 안전한 편입니다. 기본 수칙을 지키며 즐기세요.",
-        Grade.CAUTION: f"{spot.name}에서 {activity}을(를) 계획한다면 주의가 필요합니다. 기상 변화를 살피고 무리하지 마세요.",
-        Grade.DANGER: f"{spot.name}의 현재 {activity} 여건은 위험합니다. 활동을 미루고 안전을 우선하세요.",
+        Grade.SAFE: f"{spot.name}의 현재 해안 여건은 참고 범위 안입니다. 현장 안내와 기본 수칙을 확인하세요.",
+        Grade.CAUTION: f"{spot.name}의 해안 여건은 주의가 필요합니다. 기상 변화를 살피고 무리하지 마세요.",
+        Grade.DANGER: f"{spot.name}의 현재 해안 여건은 위험 신호가 있습니다. 활동을 미루고 안전을 우선하세요.",
     }[risk.grade]
     if is_confession:
         base += " 일부 관측 정보가 없어 더 보수적으로 판단했습니다."

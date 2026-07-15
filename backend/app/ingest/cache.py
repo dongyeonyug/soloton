@@ -12,35 +12,56 @@ from pathlib import Path
 from pydantic import BaseModel, Field
 
 from ..config import DATA_DIR
-from ..models import Advisory, ForecastPoint, MarineObservation, Metric
+from ..models import (
+    Advisory,
+    ForecastCollectionStatus,
+    ForecastPoint,
+    MissingReason,
+    MarineObservation,
+    Metric,
+    ProseStatus,
+)
 
 SNAPSHOT_PATH = DATA_DIR / "snapshot.json"
+SNAPSHOT_SCHEMA_VERSION = 2
 
 
 class SpotSnapshot(BaseModel):
     observations: list[MarineObservation] = Field(default_factory=list)
     advisory: Advisory
 
-    # 크론 프리-베이크(기본 활동=레저) 산문. 크론 시 가드를 통과한 LLM 산문만 채워지고,
-    # 없으면(키 부재/가드 실패) None → 서빙 시 라이브 경로로 폴백. 서빙 단계에서도
-    # 런타임 가드를 재통과시키므로 저장분도 '숫자 0개'가 최종 보장된다(이중 게이트).
+    # 크론 프리-베이크 산문. VERIFIED 일 때만 llm_prose 를 저장한다. 공개 서빙도 저장분을
+    # 다시 가드에 통과시키며, 상태는 생성 실패와 가드 차단을 숨기지 않는다.
     llm_prose: str | None = None
-    llm_used: bool = False
+    prose_status: ProseStatus = ProseStatus.GENERATION_UNAVAILABLE
 
-    # E2: '가장 안전한 시간' 산정용 시간별 예보 시계열(Open-Meteo). 비어있으면 안전창 미표시.
+    # 수집 배치 진단용. 공개 브리핑은 이 값을 기다리지 않고 저장된 스냅샷만 읽는다.
+    observation_fetch_duration_ms: int | None = None
+    forecast_fetch_duration_ms: int | None = None
+
+    # T6: 시간별 예보의 수집 결과도 보존한다. 구 스냅샷은 LEGACY_UNKNOWN 으로 읽는다.
     forecast: list[ForecastPoint] = Field(default_factory=list)
+    forecast_status: ForecastCollectionStatus = ForecastCollectionStatus.LEGACY_UNKNOWN
+    forecast_missing_reason: MissingReason | None = None
+    forecast_collected_at: datetime | None = None
 
     def as_map(self) -> dict[Metric, MarineObservation]:
         return {obs.metric: obs for obs in self.observations}
 
 
 class SnapshotDoc(BaseModel):
+    # 누락된 값은 구 스냅샷(v1)으로 읽는다. 구 버전의 산문은 공개 경로에서 재사용하지 않는다.
+    schema_version: int = 1
     snapshot_as_of: datetime
     source: str = "seed"
     spots: dict[str, SpotSnapshot] = Field(default_factory=dict)
 
     def spot(self, spot_id: str) -> SpotSnapshot | None:
         return self.spots.get(spot_id)
+
+    @property
+    def has_current_prose_contract(self) -> bool:
+        return self.schema_version == SNAPSHOT_SCHEMA_VERSION
 
 
 def load_snapshot(path: Path = SNAPSHOT_PATH) -> SnapshotDoc:

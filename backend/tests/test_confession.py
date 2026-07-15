@@ -4,7 +4,7 @@ from datetime import datetime
 
 from app.briefing.template import MISSING_TEXT, build_slots, render_template
 from app.ingest.cache import SnapshotDoc, SpotSnapshot
-from app.models import Activity, Advisory, AdvisoryKind, MarineObservation, Metric
+from app.models import Advisory, AdvisoryKind, MarineObservation, Metric
 from app.service import brief_spot, evaluate_spot
 from app.spots import get_spot
 
@@ -49,15 +49,13 @@ def _doc(*, missing_wind: bool) -> SnapshotDoc:
 
 def test_missing_spot_confesses():
     spot = get_spot("cheongsapo")
-    briefing = brief_spot(
-        spot, Activity.FISHING, doc=_doc(missing_wind=True), llm_fn=_fake_llm_clean
-    )
+    briefing = brief_spot(spot, doc=_doc(missing_wind=True), llm_fn=_fake_llm_clean)
     assert briefing.is_confession is True
 
 
 def test_missing_metric_shows_infoless_not_number():
     spot = get_spot("cheongsapo")
-    risk, as_of = evaluate_spot(spot, Activity.FISHING, doc=_doc(missing_wind=True))
+    risk, as_of = evaluate_spot(spot, doc=_doc(missing_wind=True))
     slots = build_slots(spot, risk, as_of)
     text = render_template(spot, risk, slots)
     # 결측 풍속은 '정보없음' 으로 자백, 조작된 수치 없음
@@ -69,7 +67,7 @@ def test_missing_metric_shows_infoless_not_number():
 
 def test_template_displays_snapshot_time_in_kst():
     spot = get_spot("cheongsapo")
-    risk, as_of = evaluate_spot(spot, Activity.FISHING, doc=_doc(missing_wind=False))
+    risk, as_of = evaluate_spot(spot, doc=_doc(missing_wind=False))
     slots = build_slots(spot, risk, as_of)
     text = render_template(spot, risk, slots)
 
@@ -78,7 +76,5 @@ def test_template_displays_snapshot_time_in_kst():
 
 def test_present_spot_not_confession():
     spot = get_spot("cheongsapo")
-    briefing = brief_spot(
-        spot, Activity.SWIMMING, doc=_doc(missing_wind=False), llm_fn=_fake_llm_clean
-    )
+    briefing = brief_spot(spot, doc=_doc(missing_wind=False), llm_fn=_fake_llm_clean)
     assert briefing.is_confession is False

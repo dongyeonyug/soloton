@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Literal
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic import Field
 
 # backend/ 기준 프로젝트 루트
 BACKEND_DIR = Path(__file__).resolve().parent.parent
@@ -26,6 +27,9 @@ class Settings(BaseSettings):
     kma_api_key: str = ""
     anthropic_api_key: str = ""
     anthropic_model: str = "claude-opus-4-8"
+    batch_llm_timeout_seconds: float = Field(default=8.0, gt=0)
+    collect_spot_timeout_seconds: float = Field(default=10.0, gt=0)
+    collect_forecast_timeout_seconds: float = Field(default=10.0, gt=0)
 
     # 데이터 provider: auto=키 있으면 hybrid(KHOA 실측+예보 백필), 없으면 openmeteo
     data_provider: Literal["auto", "openmeteo", "khoa", "hybrid"] = "auto"

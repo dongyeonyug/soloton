@@ -19,8 +19,9 @@ from ..models import (
     AdvisoryKind,
     MarineObservation,
     Metric,
+    MissingReason,
 )
-from ..spots import Spot
+from ..spots import Spot, tide_reference_for
 
 UNITS: dict[Metric, str] = {
     Metric.WAVE_HEIGHT: "m",
@@ -47,28 +48,54 @@ def normalize_spot(
     fetched_at: datetime,
     *,
     source_labels: dict[Metric, str] | None = None,
+    collection_failure: MissingReason | None = None,
 ) -> tuple[list[MarineObservation], Advisory]:
     """provider 결과 → 관측 리스트 + 특보. 없는 값은 결측."""
     source_labels = source_labels or {}
     values = reading.metrics if reading else {}
     metric_sources = reading.metric_sources if reading else {}
+    metric_missing_reasons = reading.metric_missing_reasons if reading else {}
     observed_at = reading.observed_at if reading else None
+    metric_observed_at = reading.metric_observed_at if reading else {}
+    tide_reference = tide_reference_for(spot)
 
     observations: list[MarineObservation] = []
     for metric in ALL_METRICS:
         val = values.get(metric)
         # 지표별 출처: reading.metric_sources(하이브리드 실측/예보) > provider 라벨 > 기본
         source = metric_sources.get(metric) or source_labels.get(metric, DEFAULT_SOURCE)
+        metric_time = metric_observed_at.get(metric, observed_at)
+        reference_station_name = None
+        reference_station_code = None
+        reference_distance_km = None
+        if metric is Metric.TIDE_LEVEL and tide_reference is not None:
+            station, reference_distance_km = tide_reference
+            reference_station_name = station.name
+            reference_station_code = station.code
+        missing_reason = None
+        if val is None:
+            if reading is None:
+                missing_reason = collection_failure or MissingReason.SOURCE_UNAVAILABLE
+            else:
+                missing_reason = metric_missing_reasons.get(metric)
+                if missing_reason is None and metric is Metric.TIDE_LEVEL and not spot.khoa_tide_obs_code:
+                    missing_reason = MissingReason.NO_STATION_MAPPING
+                if missing_reason is None:
+                    missing_reason = MissingReason.SOURCE_RETURNED_NO_VALUE
         observations.append(
             MarineObservation(
                 spot_id=spot.id,
                 metric=metric,
                 value=val,
                 unit=UNITS[metric],
-                observed_at=observed_at if val is not None else None,
+                observed_at=metric_time if val is not None else None,
                 source=source,
                 is_missing=val is None,
+                missing_reason=missing_reason,
                 fetched_at=fetched_at,
+                reference_station_name=reference_station_name,
+                reference_station_code=reference_station_code,
+                reference_distance_km=reference_distance_km,
             )
         )
 

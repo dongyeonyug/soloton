@@ -4,9 +4,9 @@ import pytest
 
 from app.engine.risk import evaluate, mark_stale
 from app.models import (
-    Activity,
     Advisory,
     AdvisoryKind,
+    DataStatus,
     Grade,
     MarineObservation,
     Metric,
@@ -25,9 +25,9 @@ MISSING_CASES = [
 
 @pytest.mark.parametrize("name,case", MISSING_CASES, ids=[c[0] for c in MISSING_CASES])
 def test_missing_critical_never_safe(name, case):
-    full = {**case, "advisory": "none", "activity": "조업"}
-    obs, adv, act = build_inputs(full)
-    result = evaluate(obs, adv, act, "09-12")
+    full = {**case, "advisory": "none"}
+    obs, adv = build_inputs(full)
+    result = evaluate(obs, adv, "09-12")
     assert result.grade != Grade.SAFE
     assert result.grade.rank >= Grade.CAUTION.rank
     assert result.has_missing_critical is True
@@ -35,21 +35,27 @@ def test_missing_critical_never_safe(name, case):
 
 def test_missing_advisory_forces_floor():
     """특보 결측(모름) → 안전 불가."""
-    case = {"wave": 0.5, "wind": 5.0, "current": 0.2, "advisory": "none", "activity": "조업"}
-    obs, _, act = build_inputs(case)
+    case = {"wave": 0.5, "wind": 5.0, "current": 0.2, "advisory": "none"}
+    obs, _ = build_inputs(case)
     missing_adv = Advisory(kind=AdvisoryKind.NONE, source="KMA", is_missing=True)
-    result = evaluate(obs, missing_adv, act, "09-12")
+    result = evaluate(obs, missing_adv, "09-12")
     assert result.grade != Grade.SAFE
     assert result.has_missing_critical is True
+    advisory_step = next(step for step in result.decision_steps if step.label == "기상특보")
+    assert advisory_step.result_grade is Grade.CAUTION
+    assert "보수 처리" in advisory_step.detail
 
 
 def test_missing_noncritical_current_stays_safe():
-    """비임계 지표(조류) 결측은 floor 를 강제하지 않는다."""
-    case = {"wave": 0.5, "wind": 5.0, "current": None, "advisory": "none", "activity": "조업"}
-    obs, adv, act = build_inputs(case)
-    result = evaluate(obs, adv, act, "09-12")
+    """참고 지표(조류) 결측은 floor 를 강제하지 않는다."""
+    case = {"wave": 0.5, "wind": 5.0, "current": None, "advisory": "none"}
+    obs, adv = build_inputs(case)
+    result = evaluate(obs, adv, "09-12")
     assert result.grade == Grade.SAFE
     assert result.has_missing_critical is False
+    current_step = next(step for step in result.decision_steps if step.label == "조류")
+    assert current_step.result_grade is None
+    assert "등급에 반영하지 않음" in current_step.detail
 
 
 def test_freshness_expiry_becomes_missing():
@@ -68,6 +74,9 @@ def test_freshness_expiry_becomes_missing():
     adv = Advisory(kind=AdvisoryKind.NONE, source="KMA")
     fresh_obs, fresh_adv = mark_stale(obs, adv, as_of=FIXED_TIME)
     assert fresh_obs[Metric.WAVE_HEIGHT].is_missing is True
-    result = evaluate(fresh_obs, fresh_adv, Activity.FISHING, "09-12")
+    assert fresh_obs[Metric.WAVE_HEIGHT].is_stale is True
+    result = evaluate(fresh_obs, fresh_adv, "09-12")
     assert result.grade != Grade.SAFE
     assert result.has_missing_critical is True
+    wave = next(v for v in result.basis_values if v.metric is Metric.WAVE_HEIGHT)
+    assert wave.data_status is DataStatus.STALE

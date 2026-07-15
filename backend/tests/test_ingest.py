@@ -1,15 +1,17 @@
 """AC1: 수집·정규화 스키마·결측 플래그·per-metric 타임스탬프 검증."""
 
+import asyncio
 from datetime import datetime
 from types import SimpleNamespace
 
 import pytest
 
 from app.clients.base import ProviderReading
+from app.ingest import advisory_history
 from app.ingest import collect
 from app.ingest.cache import SnapshotDoc, SpotSnapshot, get_snapshot
 from app.ingest.normalize import ALL_METRICS, normalize_spot
-from app.models import Metric
+from app.models import ForecastCollectionStatus, Metric, MissingReason
 from app.spots import all_spots, get_spot
 
 
@@ -64,6 +66,16 @@ def test_normalize_absent_becomes_missing():
     assert advisory.is_missing is True
 
 
+def test_normalize_preserves_collection_timeout_reason():
+    observations, _ = normalize_spot(
+        get_spot("haeundae"),
+        reading=None,
+        fetched_at=datetime(2026, 7, 10),
+        collection_failure=MissingReason.SOURCE_TIMEOUT,
+    )
+    assert all(obs.missing_reason is MissingReason.SOURCE_TIMEOUT for obs in observations)
+
+
 def _all_missing_doc(source: str) -> SnapshotDoc:
     spot = get_spot("haeundae")
     observations, advisory = normalize_spot(
@@ -103,3 +115,82 @@ def test_all_missing_keyless_keeps_snapshot_and_exit_zero(monkeypatch, capsys):
     collect.main()  # SystemExit 없이 통과해야 한다
     assert written == []  # 기존 스냅샷 덮어쓰기 없음
     assert "기존 스냅샷 유지" in capsys.readouterr().out
+
+
+def test_successful_collect_captures_advisory_history(monkeypatch):
+    spot = get_spot("haeundae")
+    observations, advisory = normalize_spot(
+        spot,
+        reading=ProviderReading(metrics={Metric.WAVE_HEIGHT: 0.4}),
+        fetched_at=datetime(2026, 7, 10),
+    )
+    doc = SnapshotDoc(
+        snapshot_as_of=datetime(2026, 7, 10),
+        source="test",
+        spots={spot.id: SpotSnapshot(observations=observations, advisory=advisory)},
+    )
+
+    async def fake_collect_all(now=None):
+        return doc
+
+    captured = []
+
+    async def fake_capture(api_key, *, now):
+        captured.append((api_key, now))
+        return advisory_history.AdvisoryHistoryCapture(3, 1, True)
+
+    settings = SimpleNamespace(
+        resolved_provider="openmeteo",
+        kma_api_key="history-key",
+        batch_llm_timeout_seconds=1.0,
+    )
+    monkeypatch.setattr(collect, "collect_all", fake_collect_all)
+    monkeypatch.setattr(collect, "get_settings", lambda: settings)
+    monkeypatch.setattr(collect, "capture_advisory_history", fake_capture)
+    monkeypatch.setattr(collect, "bake_briefings", lambda *args, **kwargs: None)
+    monkeypatch.setattr(collect, "write_snapshot", lambda *args, **kwargs: None)
+
+    collect.main()
+
+    assert captured == [("history-key", doc.snapshot_as_of)]
+
+
+def test_collect_records_timeout_and_per_spot_durations(monkeypatch):
+    """T4: 느린 소스는 수집 배치를 막지 않고 원인·소요 시간을 스냅샷에 남긴다."""
+    spot = get_spot("haeundae")
+
+    class SlowProvider:
+        name = "slow"
+        source_labels = {}
+
+        async def fetch_spot(self, _spot):
+            await asyncio.sleep(0.02)
+            return None
+
+    class FastForecaster:
+        async def fetch_forecast_series(self, _spot):
+            return []
+
+    monkeypatch.setattr(
+        collect,
+        "get_settings",
+        lambda: SimpleNamespace(
+            collect_spot_timeout_seconds=0.001,
+            collect_forecast_timeout_seconds=0.1,
+        ),
+    )
+    monkeypatch.setattr(collect, "get_provider", lambda _settings: SlowProvider())
+    monkeypatch.setattr(collect, "OpenMeteoProvider", lambda: FastForecaster())
+    monkeypatch.setattr(collect, "all_spots", lambda: [spot])
+
+    doc = asyncio.run(collect.collect_all(now=datetime(2026, 7, 10)))
+    snap = doc.spot(spot.id)
+    assert snap.observation_fetch_duration_ms is not None
+    assert snap.forecast_fetch_duration_ms is not None
+    assert snap.forecast_status is ForecastCollectionStatus.EMPTY_RESPONSE
+    assert snap.forecast_missing_reason is MissingReason.SOURCE_RETURNED_NO_VALUE
+    assert snap.forecast_collected_at == datetime(2026, 7, 10)
+    assert all(
+        obs.missing_reason is MissingReason.SOURCE_TIMEOUT
+        for obs in snap.observations
+    )

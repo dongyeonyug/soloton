@@ -5,7 +5,6 @@ from __future__ import annotations
 from fastapi import APIRouter
 
 from ..ingest.cache import get_snapshot
-from ..models import Activity
 from ..service import evaluate_spot
 from ..spots import all_spots
 
@@ -18,12 +17,12 @@ def list_spots():
 
 
 @router.get("/overview")
-def overview(activity: Activity = Activity.LEISURE):
-    """전 지점 + 기본 활동 기준 등급 — 지도 신호등 색칠용."""
+def overview():
+    """전 지점의 해안 활동 참고 등급 — 지도 신호등 색칠용."""
     doc = get_snapshot()
     out = []
     for spot in all_spots():
-        risk, as_of = evaluate_spot(spot, activity, doc=doc)
+        risk, as_of = evaluate_spot(spot, doc=doc)
         out.append(
             {
                 "id": spot.id,
@@ -36,4 +35,4 @@ def overview(activity: Activity = Activity.LEISURE):
                 "has_missing_critical": risk.has_missing_critical,
             }
         )
-    return {"snapshot_as_of": doc.snapshot_as_of, "activity": activity.value, "spots": out}
+    return {"snapshot_as_of": doc.snapshot_as_of, "spots": out}

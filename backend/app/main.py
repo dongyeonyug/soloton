@@ -46,4 +46,4 @@ def health():
 
 @app.get("/")
 def root():
-    return {"service": "오늘의 바다", "docs": "/docs", "disclaimer": "참고용 — 실제 항해/입수 판단 근거 아님"}
+    return {"service": "오늘의 바다", "docs": "/docs", "disclaimer": "참고용 — 실제 해안 활동 판단 근거 아님"}

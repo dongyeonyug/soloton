@@ -5,9 +5,9 @@ import asyncio
 import pytest
 
 from app.clients import openmeteo
-from app.clients.openmeteo import OpenMeteoProvider
+from app.clients.openmeteo import ForecastSourceUnavailableError, OpenMeteoProvider
 from app.ingest.normalize import normalize_spot
-from app.models import Metric
+from app.models import Metric, MissingReason
 from app.spots import get_spot
 
 MARINE_FIXTURE = {
@@ -56,6 +56,7 @@ def test_openmeteo_normalized_schema(patched_fetch):
     assert by_metric[Metric.WAVE_HEIGHT].is_missing is False
     assert by_metric[Metric.WIND_SPEED].value == 1.5
     assert by_metric[Metric.TIDE_LEVEL].is_missing is True
+    assert by_metric[Metric.TIDE_LEVEL].missing_reason is MissingReason.SOURCE_NOT_SUPPORTED
     # Open-Meteo 출처 라벨 반영
     assert "Open-Meteo" in by_metric[Metric.WAVE_HEIGHT].source
 
@@ -67,3 +68,13 @@ def test_openmeteo_total_failure_returns_none(monkeypatch):
     monkeypatch.setattr(openmeteo, "fetch_json", fail)
     reading = asyncio.run(OpenMeteoProvider().fetch_spot(get_spot("haeundae")))
     assert reading is None
+
+
+def test_hourly_forecast_total_failure_has_distinct_signal(monkeypatch):
+    """T6: 시간별 예보 소스 장애를 빈 응답과 섞지 않는다."""
+    async def fail(url, params=None, **kwargs):
+        return None
+
+    monkeypatch.setattr(openmeteo, "fetch_json", fail)
+    with pytest.raises(ForecastSourceUnavailableError):
+        asyncio.run(OpenMeteoProvider().fetch_forecast_series(get_spot("haeundae")))

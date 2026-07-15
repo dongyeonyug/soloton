@@ -1,4 +1,4 @@
-import type { Activity, Briefing, GuardDemo, GuardVerdict, Overview } from "../types";
+import type { Briefing, GuardDemo, GuardVerdict, Overview } from "../types";
 
 const BASE = import.meta.env.VITE_API_BASE ?? "http://localhost:8000";
 
@@ -8,14 +8,12 @@ async function getJson<T>(path: string): Promise<T> {
   return res.json() as Promise<T>;
 }
 
-export function fetchOverview(activity: Activity): Promise<Overview> {
-  return getJson<Overview>(`/api/overview?activity=${encodeURIComponent(activity)}`);
+export function fetchOverview(): Promise<Overview> {
+  return getJson<Overview>("/api/overview");
 }
 
-export function fetchBriefing(spotId: string, activity: Activity): Promise<Briefing> {
-  return getJson<Briefing>(
-    `/api/briefing/${spotId}?activity=${encodeURIComponent(activity)}`,
-  );
+export function fetchBriefing(spotId: string): Promise<Briefing> {
+  return getJson<Briefing>(`/api/briefing/${spotId}`);
 }
 
 /** E1 — 준비된 시나리오를 실제 가드에 태운 결과. */

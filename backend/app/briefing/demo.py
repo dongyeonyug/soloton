@@ -16,7 +16,7 @@ from __future__ import annotations
 from pydantic import BaseModel
 
 from ..ingest.cache import SnapshotDoc, get_snapshot
-from ..models import Activity, Grade
+from ..models import Grade, ProseStatus
 from ..service import brief_spot, evaluate_spot
 from ..spots import Spot
 from . import guard
@@ -64,7 +64,7 @@ _SCENARIOS: list[dict[str, str]] = [
         "note": "LLM 이 그럴듯한 파고·풍속을 만들어 쓰는 가장 흔한 환각입니다.",
         "text": (
             "오늘 이곳은 파고 0.5m로 잔잔하고 바람도 초속 4m 수준이라 "
-            "물놀이하기 좋은 날입니다."
+            "바다 활동하기 좋은 날입니다."
         ),
     },
     {
@@ -102,13 +102,12 @@ def check_prose(
     `brief_spot` 에 llm_fn 으로 주입하므로, 이 지점의 실제 관측·등급 위에서
     런타임 가드가 돌고, 폐기 시 폴백까지 프로덕션과 동일하게 일어난다.
 
-    `blocked` 는 여기서 다시 판단하지 않고 프로덕션 결과(`llm_used`)에서 역산한다.
+    `blocked` 는 여기서 다시 판단하지 않고 프로덕션 결과(`prose_status`)에서 역산한다.
     가드 밖에 폐기 조건이 하나 더 생기더라도 시연이 프로덕션과 어긋날 수 없게 하기 위함이다.
     스팬은 판정이 아니라 화면 하이라이트용이다.
     """
     briefing = brief_spot(
         spot,
-        Activity.LEISURE,
         doc=doc,
         llm_fn=_canned_llm(text),
     )
@@ -117,9 +116,9 @@ def check_prose(
         text=text,
         violations=[text[s:e] for s, e in spans],
         violation_spans=spans,
-        blocked=not briefing.llm_used,
+        blocked=briefing.prose_status != ProseStatus.VERIFIED,
         served_prose=briefing.llm_prose,
-        llm_used=briefing.llm_used,
+        llm_used=briefing.prose_status == ProseStatus.VERIFIED,
     )
 
 
@@ -135,7 +134,7 @@ def run_demo(spot: Spot, *, doc: SnapshotDoc | None = None) -> GuardDemo:
         )
         for scenario in _SCENARIOS
     ]
-    risk, _ = evaluate_spot(spot, Activity.LEISURE, doc=doc)
+    risk, _ = evaluate_spot(spot, doc=doc)
     return GuardDemo(
         spot_id=spot.id,
         spot_name=spot.name,

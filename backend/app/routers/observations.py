@@ -20,4 +20,9 @@ def observations(spot_id: str):
         "snapshot_as_of": doc.snapshot_as_of,
         "observations": [o.model_dump() for o in snap.observations],
         "advisory": snap.advisory.model_dump(),
+        "observation_fetch_duration_ms": snap.observation_fetch_duration_ms,
+        "forecast_fetch_duration_ms": snap.forecast_fetch_duration_ms,
+        "forecast_status": snap.forecast_status,
+        "forecast_missing_reason": snap.forecast_missing_reason,
+        "forecast_collected_at": snap.forecast_collected_at,
     }

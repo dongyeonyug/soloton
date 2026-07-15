@@ -2,10 +2,9 @@ import { BriefingPanel } from "./Briefing";
 import { SignalCard } from "./SignalCard";
 import { SpotList } from "./SpotList";
 import { SpotMap } from "./SpotMap";
-import type { Activity, Briefing, Overview } from "../types";
+import type { Briefing, Overview } from "../types";
 
 interface Props {
-  activity: Activity;
   overview: Overview | null;
   selected: string | null;
   onSelect: (id: string) => void;
@@ -21,7 +20,6 @@ interface Props {
  * 상태는 App 이 소유한다 — 시연 페이지를 다녀와도 고른 지점이 유지되도록.
  */
 export function HomeView({
-  activity,
   overview,
   selected,
   onSelect,
@@ -61,7 +59,7 @@ export function HomeView({
             <>
               <div className="section-heading briefing-heading">
                 <h2>{overview?.spots.find((s) => s.id === selected)?.name}</h2>
-                <p>{activity} 활동 기준</p>
+                <p>공식 해양 정보 기반 해안 활동 참고</p>
               </div>
               <SignalCard briefing={briefing} />
               <BriefingPanel briefing={briefing} />

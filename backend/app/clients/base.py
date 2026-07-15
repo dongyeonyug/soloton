@@ -9,7 +9,7 @@ from typing import Any, Protocol, runtime_checkable
 
 import httpx
 
-from ..models import AdvisoryKind, Metric
+from ..models import AdvisoryKind, Metric, MissingReason
 from ..spots import Spot
 
 DEFAULT_TIMEOUT = 10.0
@@ -31,8 +31,12 @@ class ProviderReading:
     supports_advisory: bool = False
     advisory_is_missing: bool = False
     observed_at: datetime | None = None
+    # 서로 다른 소스가 섞인 경우 각 수치의 실제 관측 시각을 보존한다.
+    metric_observed_at: dict[Metric, datetime] = field(default_factory=dict)
     # 지표별 출처 라벨(하이브리드 실측/예보 구분). 없으면 provider.source_labels 사용.
     metric_sources: dict[Metric, str] = field(default_factory=dict)
+    # 지표가 없을 때의 수집 원인. 값이 있는 지표에는 절대 넣지 않는다.
+    metric_missing_reasons: dict[Metric, MissingReason] = field(default_factory=dict)
 
 
 @runtime_checkable

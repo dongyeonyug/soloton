@@ -7,13 +7,16 @@
   wvhgt=파고(m), wspd=풍속(m/s), crsp=유속(cm/s), wtem=수온(°C),
   wndrct=풍향, crdir=유향, wvpd=파주기, artmp=기온, atmpr=기압, slnty=염분.
 응답 래퍼는 ``{header, body:{items:{item:[...]}}}`` 로 ``response`` 상위 래퍼가 없다.
-조위 최신 관측(``15155508``)은 라이브 키 검증 전이므로 방어적 alias 를 유지한다.
+조위 최신 관측(``15155508``)은 실응답의 ``bscTdlvHgt``를 우선 읽고,
+게이트웨이 표기 변형에 대비한 방어적 alias 를 함께 유지한다.
 """
 
 from __future__ import annotations
 
-from datetime import date
+import asyncio
+from datetime import UTC, date, datetime
 from typing import Any, Callable
+from zoneinfo import ZoneInfo
 
 from ..models import Metric
 from ..spots import Spot
@@ -21,6 +24,7 @@ from .base import fetch_json
 
 KHOA_URL = "https://apis.data.go.kr/1192136/twRecent/GetTWRecentApiService"
 KHOA_TIDE_URL = "https://apis.data.go.kr/1192136/dtRecent/GetDTRecentApiService"
+KST = ZoneInfo("Asia/Seoul")
 
 # 실측 확정 공식 필드명을 앞에 두고, 게이트웨이 표기 변형을 뒤에 폴백으로 둔다.
 FIELD_ALIASES: dict[Metric, tuple[str, ...]] = {
@@ -30,6 +34,8 @@ FIELD_ALIASES: dict[Metric, tuple[str, ...]] = {
     Metric.WIND_SPEED: ("wspd", "windSpeed", "wind_speed", "obs_wind_speed", "obs_ws"),
 }
 TIDE_FIELD_ALIASES: tuple[str, ...] = (
+    # dtRecent 실응답(부산 DT_0005)의 기본 조위 높이(cm).
+    "bscTdlvHgt",
     "tideLevel",
     "tide_level",
     "tideLvl",
@@ -47,6 +53,18 @@ _CONVERT: dict[Metric, Callable[[float], float]] = {
 }
 
 
+class KhoaMetrics(dict[Metric, float]):
+    """KHOA 수치와 지표별 관측 시각을 함께 담는 dict 호환 컨테이너."""
+
+    def __init__(
+        self,
+        values: dict[Metric, float] | None = None,
+        metric_observed_at: dict[Metric, datetime] | None = None,
+    ) -> None:
+        super().__init__(values or {})
+        self.metric_observed_at = metric_observed_at or {}
+
+
 async def fetch_spot(
     spot: Spot,
     api_key: str,
@@ -57,20 +75,25 @@ async def fetch_spot(
     ``api_key``는 부이(`15155516`)용, ``tide_api_key``는 조위(`15155508`)용이다.
     공공데이터포털 키가 같은 값이면 ``tide_api_key``를 생략해도 ``api_key``를 재사용한다.
     """
-    buoy = await fetch_buoy_spot(spot, api_key)
-    tide = await fetch_tide_spot(spot, tide_api_key or api_key)
+    # 부이와 조위는 서로 다른 공식 API라 직렬로 기다릴 이유가 없다.
+    buoy, tide = await asyncio.gather(
+        fetch_buoy_spot(spot, api_key),
+        fetch_tide_spot(spot, tide_api_key or api_key),
+    )
     if buoy is None and tide is None:
         return None
 
-    metrics: dict[Metric, float] = {}
+    metrics = KhoaMetrics()
     if buoy:
         metrics.update(buoy)
+        metrics.metric_observed_at.update(buoy.metric_observed_at)
     if tide:
         metrics.update(tide)
+        metrics.metric_observed_at.update(tide.metric_observed_at)
     return metrics or None
 
 
-async def fetch_buoy_spot(spot: Spot, api_key: str) -> dict[Metric, float] | None:
+async def fetch_buoy_spot(spot: Spot, api_key: str) -> KhoaMetrics | None:
     """지점의 최신 해양관측부이 값을 조회한다."""
     if not api_key or not spot.khoa_obs_code or spot.khoa_obs_code.startswith("TBD_"):
         return None
@@ -87,10 +110,10 @@ async def fetch_buoy_spot(spot: Spot, api_key: str) -> dict[Metric, float] | Non
             "min": 60,
         },
     )
-    return _parse_buoy(raw) if raw is not None else None
+    return _with_observed_at(_parse_buoy(raw), raw)
 
 
-async def fetch_tide_spot(spot: Spot, api_key: str) -> dict[Metric, float] | None:
+async def fetch_tide_spot(spot: Spot, api_key: str) -> KhoaMetrics | None:
     """지점의 최신 조위 값을 조회한다."""
     if (
         not api_key
@@ -111,7 +134,7 @@ async def fetch_tide_spot(spot: Spot, api_key: str) -> dict[Metric, float] | Non
             "min": 60,
         },
     )
-    return _parse_tide(raw) if raw is not None else None
+    return _with_observed_at(_parse_tide(raw), raw)
 
 
 def _parse(raw: Any) -> dict[Metric, float] | None:
@@ -149,6 +172,35 @@ def _parse_tide(raw: Any) -> dict[Metric, float] | None:
         try:
             return {Metric.TIDE_LEVEL: float(value)}
         except (TypeError, ValueError):
+            continue
+    return None
+
+
+def _with_observed_at(
+    values: dict[Metric, float] | None,
+    raw: Any,
+) -> KhoaMetrics | None:
+    if not values:
+        return None
+    observed_at = _latest_observed_at(raw)
+    return KhoaMetrics(
+        values,
+        {metric: observed_at for metric in values} if observed_at is not None else {},
+    )
+
+
+def _latest_observed_at(raw: Any) -> datetime | None:
+    """KHOA KST 관측시각을 프로젝트 저장 규칙(naive UTC)으로 변환한다."""
+    for record in reversed(_records(raw)):
+        value = _first(record, ("obsrvnDt", "observedAt", "obsTime"))
+        if not isinstance(value, str):
+            continue
+        try:
+            local = datetime.fromisoformat(value)
+            if local.tzinfo is None:
+                local = local.replace(tzinfo=KST)
+            return local.astimezone(UTC).replace(tzinfo=None)
+        except ValueError:
             continue
     return None
 

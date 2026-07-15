@@ -1,31 +1,28 @@
-"""CLI: python -m app.engine <spot> [activity] — 지점 위험도 확인(W1 검증)."""
+"""CLI: python -m app.engine <spot> — 지점 위험도 확인(W1 검증)."""
 
 from __future__ import annotations
 
 import sys
 
-from ..models import Activity
 from ..service import brief_spot, evaluate_spot, resolve_spot
 
 
 def main(argv: list[str]) -> int:
     if not argv:
-        print("usage: python -m app.engine <spot_id|이름> [조업|레저|갯바위|물놀이]")
-        print("예: python -m app.engine 송정해수욕장 물놀이")
+        print("usage: python -m app.engine <spot_id|이름>")
+        print("예: python -m app.engine 송정해수욕장")
         return 2
     spot = resolve_spot(argv[0])
     if spot is None:
         print(f"알 수 없는 지점: {argv[0]}")
         return 1
-    activity = Activity(argv[1]) if len(argv) > 1 else Activity.LEISURE
-
-    risk, as_of = evaluate_spot(spot, activity)
-    briefing = brief_spot(spot, activity)
-    print(f"■ {spot.name} / {activity.value} / as_of {as_of}")
+    risk, as_of = evaluate_spot(spot)
+    briefing = brief_spot(spot)
+    print(f"■ {spot.name} / 해안 활동 참고 / as_of {as_of}")
     print(f"  등급: {risk.grade.label_ko} ({risk.grade.value})  "
           f"결측임계={risk.has_missing_critical}")
     print(f"  근거: {briefing.template_text}")
-    print(f"  브리핑: {briefing.llm_prose}  (llm_used={briefing.llm_used})")
+    print(f"  브리핑: {briefing.llm_prose}  (prose_status={briefing.prose_status.value})")
     for rec in briefing.recommendations:
         print(f"   - {rec}")
     return 0

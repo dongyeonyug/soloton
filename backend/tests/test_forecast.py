@@ -7,13 +7,15 @@ from __future__ import annotations
 
 from datetime import datetime, timedelta
 
-from app.engine.forecast import grade_point, safest_window
-from app.models import Activity, ForecastPoint, Grade
+from app.engine.forecast import (
+    SELECTION_RULE,
+    assess_forecast_window,
+    grade_point,
+    safest_window,
+)
+from app.models import ForecastCollectionStatus, ForecastPoint, Grade, SafeWindowStatus
 
 NOW = datetime(2026, 7, 12, 9, 0, 0)
-LEISURE = Activity.LEISURE
-
-
 def _pt(hour_offset: int, wave: float | None, wind: float | None) -> ForecastPoint:
     return ForecastPoint(
         time=NOW + timedelta(hours=hour_offset), wave_height=wave, wind_speed=wind
@@ -21,13 +23,13 @@ def _pt(hour_offset: int, wave: float | None, wind: float | None) -> ForecastPoi
 
 
 def test_grade_point_missing_returns_none():
-    assert grade_point(_pt(0, None, 5.0), LEISURE) is None
-    assert grade_point(_pt(0, 0.5, None), LEISURE) is None
+    assert grade_point(_pt(0, None, 5.0)) is None
+    assert grade_point(_pt(0, 0.5, None)) is None
 
 
 def test_grade_point_worst_of_wave_and_wind():
     # 파고 SAFE(0.5<2.0), 풍속 DANGER(22>=21) → worst=DANGER
-    assert grade_point(_pt(0, 0.5, 22.0), LEISURE) is Grade.DANGER
+    assert grade_point(_pt(0, 0.5, 22.0)) is Grade.DANGER
 
 
 def test_picks_earliest_safe_run():
@@ -37,16 +39,21 @@ def test_picks_earliest_safe_run():
         _pt(2, 0.7, 7.0),   # SAFE
         _pt(3, 2.5, 8.0),   # CAUTION(파고)
     ]
-    w = safest_window(series, LEISURE, now=NOW)
+    w = safest_window(series, now=NOW)
     assert w is not None
     assert w.grade is Grade.SAFE
     assert w.start == NOW
     assert w.end == NOW + timedelta(hours=2)
+    assert w.selection_rule == SELECTION_RULE
+    assert w.horizon_hours == 12
+    assert w.forecast_points_considered == 4
+    assert w.forecast_points_graded == 4
+    assert w.selected_points == 3
 
 
 def test_falls_back_to_caution_when_no_safe():
     series = [_pt(0, 2.5, 5.0), _pt(1, 2.6, 6.0)]  # 둘 다 CAUTION(파고)
-    w = safest_window(series, LEISURE, now=NOW)
+    w = safest_window(series, now=NOW)
     assert w is not None
     assert w.grade is Grade.CAUTION
     assert w.start == NOW
@@ -54,7 +61,7 @@ def test_falls_back_to_caution_when_no_safe():
 
 def test_all_danger_returns_none():
     series = [_pt(0, 3.5, 25.0), _pt(1, 4.0, 26.0)]
-    assert safest_window(series, LEISURE, now=NOW) is None
+    assert safest_window(series, now=NOW) is None
 
 
 def test_missing_points_break_contiguity():
@@ -63,7 +70,7 @@ def test_missing_points_break_contiguity():
         _pt(1, None, None),      # 결측 → 제외
         _pt(2, 0.5, 5.0),        # SAFE (2h 간격 → 연속 아님)
     ]
-    w = safest_window(series, LEISURE, now=NOW)
+    w = safest_window(series, now=NOW)
     assert w is not None
     assert w.start == NOW
     assert w.end == NOW  # 첫 run 은 단일 시각(간격으로 끊김)
@@ -71,7 +78,7 @@ def test_missing_points_break_contiguity():
 
 def test_past_points_excluded():
     series = [_pt(-1, 0.5, 5.0), _pt(1, 2.5, 5.0)]  # 과거 SAFE 제외 → 미래는 CAUTION 만
-    w = safest_window(series, LEISURE, now=NOW)
+    w = safest_window(series, now=NOW)
     assert w is not None
     assert w.grade is Grade.CAUTION
     assert w.start == NOW + timedelta(hours=1)
@@ -79,11 +86,25 @@ def test_past_points_excluded():
 
 def test_horizon_excludes_far_future():
     series = [_pt(20, 0.5, 5.0)]  # 12h 지평 밖
-    assert safest_window(series, LEISURE, now=NOW) is None
+    assert safest_window(series, now=NOW) is None
 
 
 def test_empty_series_returns_none():
-    assert safest_window([], LEISURE, now=NOW) is None
+    assert safest_window([], now=NOW) is None
+
+
+def test_forecast_assessment_explains_each_non_selection_case():
+    no_future = assess_forecast_window([], now=NOW)
+    assert no_future.status is SafeWindowStatus.NO_FUTURE_FORECAST
+    assert no_future.safe_window is None
+
+    incomplete = assess_forecast_window([_pt(1, None, 5.0)], now=NOW)
+    assert incomplete.status is SafeWindowStatus.INCOMPLETE_FORECAST
+    assert "파고와 풍속" in incomplete.detail
+
+    no_safe = assess_forecast_window([_pt(1, 3.5, 25.0)], now=NOW)
+    assert no_safe.status is SafeWindowStatus.NO_SAFE_WINDOW
+    assert no_safe.forecast_points_graded == 1
 
 
 # ── provider 파싱(네트워크 없음) ──
@@ -112,7 +133,7 @@ from app.models import (  # noqa: E402
     MarineObservation,
     Metric,
 )
-from app.service import brief_spot, safe_window_for  # noqa: E402
+from app.service import brief_spot, safe_window_assessment_for, safe_window_for  # noqa: E402
 from app.spots import get_spot  # noqa: E402
 
 _KST = ZoneInfo("Asia/Seoul")
@@ -153,13 +174,21 @@ def _clean_llm(system, user):
 def test_safe_window_for_deterministic():
     now = datetime(2026, 7, 12, 9, 0, 0)
     fc = [ForecastPoint(time=now + timedelta(hours=1), wave_height=0.5, wind_speed=5.0)]
-    w = safe_window_for(get_spot("haeundae"), LEISURE, doc=_full_doc(fc), now=now)
+    w = safe_window_for(get_spot("haeundae"), doc=_full_doc(fc), now=now)
     assert w is not None
     assert w.grade is Grade.SAFE
 
 
 def test_safe_window_none_without_forecast():
-    assert safe_window_for(get_spot("haeundae"), LEISURE, doc=_full_doc([])) is None
+    assert safe_window_for(get_spot("haeundae"), doc=_full_doc([])) is None
+
+
+def test_safe_window_assessment_keeps_forecast_collection_failure_reason():
+    doc = _full_doc([])
+    doc.spot("haeundae").forecast_status = ForecastCollectionStatus.SOURCE_TIMEOUT
+    assessment = safe_window_assessment_for(get_spot("haeundae"), doc=doc, now=NOW)
+    assert assessment.status is SafeWindowStatus.FORECAST_UNAVAILABLE
+    assert "정해진 수집 시간" in assessment.detail
 
 
 def test_brief_spot_includes_safe_window():
@@ -169,9 +198,14 @@ def test_brief_spot_includes_safe_window():
         ForecastPoint(time=now + timedelta(hours=1), wave_height=0.5, wind_speed=5.0),
         ForecastPoint(time=now + timedelta(hours=2), wave_height=0.5, wind_speed=5.0),
     ]
-    b = brief_spot(get_spot("haeundae"), LEISURE, doc=_full_doc(fc), llm_fn=_clean_llm)
+    b = brief_spot(get_spot("haeundae"), doc=_full_doc(fc), llm_fn=_clean_llm)
     assert b.safe_window is not None
     assert b.safe_window.grade is Grade.SAFE
+    assert b.safe_window.forecast_points_considered == 2
+    assert b.safe_window.forecast_points_graded == 2
+    assert b.safe_window.selected_points == 2
+    assert b.safe_window_assessment is not None
+    assert b.safe_window_assessment.status is SafeWindowStatus.AVAILABLE
 
 
 def test_snapshot_roundtrip_preserves_forecast():

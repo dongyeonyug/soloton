@@ -1,4 +1,4 @@
-"""AC3: 골드 케이스 (파고,풍속,특보,활동)→기대등급 100% 일치."""
+"""AC3: 골드 케이스 (파고, 풍속, 특보) -> 기대 등급 100% 일치."""
 
 import pytest
 
@@ -11,14 +11,18 @@ CASES = load_gold_cases()
 
 
 def test_gold_case_count():
-    # 등급 경계·활동별 충분한 케이스 보장
+    # 등급 경계별 충분한 케이스 보장
     assert len(CASES) >= 20
+
+
+def test_gold_cases_use_the_single_coastal_context():
+    assert all("activity" not in case for case in CASES)
 
 
 @pytest.mark.parametrize("case", CASES, ids=[c["id"] for c in CASES])
 def test_gold_case(case):
-    observations, advisory, activity = build_inputs(case)
-    result = evaluate(observations, advisory, activity, time_slot="09-12")
+    observations, advisory = build_inputs(case)
+    result = evaluate(observations, advisory, time_slot="09-12")
     assert result.grade == Grade(case["expected"]), (
         f"{case['id']}: expected {case['expected']}, got {result.grade.value}"
     )

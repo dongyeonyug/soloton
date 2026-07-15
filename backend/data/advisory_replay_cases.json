@@ -1,0 +1,43 @@
+{
+  "_comment": "T11 공식 특보 재현 케이스. source_record는 기상청 기상특보목록(getWthrWrnList)에서 2026-07-16에 조회한 실제 발표 레코드다. wave/wind/current는 특보 override만 고립해 검증하기 위한 합성 제어 입력이며, 당시 현장 관측값 또는 사고 기록을 뜻하지 않는다.",
+  "source": {
+    "provider": "기상청 기상특보 조회서비스",
+    "data_id": "15000415",
+    "operation": "getWthrWrnList",
+    "source_url": "https://www.data.go.kr/data/15000415/openapi.do",
+    "retrieved_at": "2026-07-16",
+    "retention_note": "조회 시점에 오늘 기준 6일보다 이전 기간은 API가 거부했다. 이 파일은 장기 특보 아카이브가 아니다."
+  },
+  "cases": [
+    {
+      "id": "official-wind-wave-warning-20260715",
+      "source_record": {
+        "stn_id": "159",
+        "issued_at": "2026-07-15T00:30:00",
+        "sequence": 26,
+        "title": "[특보] 제07-26호 : 2026.07.15.00:30 / 풍랑주의보 발표 (*)"
+      },
+      "numeric_input_kind": "synthetic_control",
+      "wave": 0.4,
+      "wind": 4.0,
+      "current": 0.1,
+      "advisory": "풍랑주의보",
+      "expected_grade": "CAUTION"
+    },
+    {
+      "id": "official-wind-wave-alert-20260711",
+      "source_record": {
+        "stn_id": "159",
+        "issued_at": "2026-07-11T10:00:00",
+        "sequence": 17,
+        "title": "[특보] 제07-17호 : 2026.07.11.10:00 / 풍랑경보·폭염경보 변경·폭염주의보 발표 (*)"
+      },
+      "numeric_input_kind": "synthetic_control",
+      "wave": 0.4,
+      "wind": 4.0,
+      "current": 0.1,
+      "advisory": "풍랑경보",
+      "expected_grade": "DANGER"
+    }
+  ]
+}

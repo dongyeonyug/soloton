@@ -96,34 +96,6 @@ button:focus-visible,
   color: var(--krds-body);
 }
 
-.activity-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: flex-end;
-}
-
-.activity-tabs button {
-  min-height: 48px;
-  padding: 0 16px;
-  border: 1px solid var(--krds-border-strong);
-  border-radius: 6px;
-  background: var(--krds-canvas);
-  color: var(--krds-text);
-  cursor: pointer;
-}
-
-.activity-tabs button:hover {
-  background: var(--krds-surface);
-}
-
-.activity-tabs button.active {
-  border-color: var(--krds-primary);
-  background: var(--krds-primary);
-  color: #ffffff;
-  font-weight: 700;
-}
-
 .banner.error {
   display: flex;
   flex-wrap: wrap;
@@ -412,12 +384,6 @@ button:focus-visible,
   line-height: 22px;
 }
 
-.signal-activity {
-  margin-left: auto;
-  color: var(--krds-muted);
-  font-size: 15px;
-}
-
 .briefing {
   margin-top: 16px;
 }
@@ -466,6 +432,199 @@ button:focus-visible,
   color: #4b5565;
   background: #f2f4f8;
   border-color: #d8dde6;
+}
+
+/* T3: 값 자체보다 '이 값이 무엇이며 등급에 어떻게 쓰였나'를 먼저 읽게 한다. */
+.data-status {
+  margin: 0 0 16px;
+  border-top: 1px solid var(--krds-divider);
+  border-bottom: 1px solid var(--krds-divider);
+}
+
+.data-status-heading {
+  padding: 14px 0 10px;
+}
+
+.data-status-heading h3 {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.data-status-heading p {
+  margin: 2px 0 0;
+  color: var(--krds-body);
+  font-size: 14px;
+}
+
+.data-status-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.data-status-row,
+.advisory-status {
+  padding: 12px 0;
+  border-top: 1px solid var(--krds-divider);
+}
+
+.data-status-main,
+.data-status-labels {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.data-status-main {
+  justify-content: space-between;
+}
+
+.data-status-labels {
+  min-width: 0;
+  flex-wrap: wrap;
+}
+
+.data-status-badge,
+.data-role {
+  display: inline-flex;
+  min-height: 22px;
+  align-items: center;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.data-status-badge {
+  border: 1px solid var(--krds-divider);
+  background: var(--krds-surface);
+  color: var(--krds-body);
+}
+
+.status-observed .data-status-badge {
+  border-color: #cbe5d1;
+  background: #eef7f0;
+  color: #1f5a2d;
+}
+
+.status-forecast .data-status-badge {
+  border-color: #d8dde6;
+  background: #f2f4f8;
+  color: #4b5565;
+}
+
+.status-missing .data-status-badge,
+.status-stale .data-status-badge,
+.advisory-status.is-missing .data-status-badge {
+  border-color: var(--krds-warning-bg);
+  background: #fff3db;
+  color: #614100;
+}
+
+.data-role {
+  padding-left: 0;
+  color: var(--krds-muted);
+  font-weight: 500;
+}
+
+.data-status-value {
+  flex: none;
+  margin-left: 12px;
+  color: var(--krds-text);
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.data-status-meta {
+  margin: 5px 0 0;
+  color: var(--krds-body);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+/* T5: 등급 결과를 숨기지 않고 엔진의 계산 순서를 그대로 보여준다. */
+.decision-path {
+  margin: 0 0 16px;
+  border-top: 1px solid var(--krds-divider);
+  border-bottom: 1px solid var(--krds-divider);
+}
+
+.decision-path-heading {
+  padding: 14px 0 10px;
+}
+
+.decision-path-heading h3 {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.decision-path-heading p,
+.decision-step p {
+  margin: 2px 0 0;
+  color: var(--krds-body);
+  font-size: 14px;
+}
+
+.decision-steps {
+  list-style: decimal;
+  margin: 0;
+  padding: 0 0 0 24px;
+}
+
+.decision-step {
+  padding: 10px 0;
+  border-top: 1px solid var(--krds-divider);
+}
+
+.decision-step-main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.decision-grade,
+.decision-evidence {
+  display: inline-flex;
+  min-height: 22px;
+  align-items: center;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.decision-grade {
+  border: 1px solid var(--krds-border);
+  background: var(--krds-surface);
+  color: var(--krds-text);
+}
+
+.decision-grade.grade-safe {
+  border-color: var(--krds-grade-safe-border);
+  background: var(--krds-grade-safe-surface);
+  color: var(--krds-grade-safe-ink);
+}
+
+.decision-grade.grade-caution {
+  border-color: var(--krds-grade-caution-border);
+  background: var(--krds-grade-caution-surface);
+  color: var(--krds-grade-caution-ink);
+}
+
+.decision-grade.grade-danger {
+  border-color: var(--krds-grade-danger-border);
+  background: var(--krds-grade-danger-surface);
+  color: var(--krds-grade-danger-ink);
+}
+
+.decision-evidence {
+  color: var(--krds-muted);
+  font-weight: 500;
 }
 
 .citation-basis {
@@ -543,7 +702,51 @@ button:focus-visible,
   color: var(--krds-body);
 }
 
-/* E2: 가장 안전한 시간대 — 코드가 계산한 예보 기반 참고값 */
+/* T7: 예보 시간대는 결과가 없어도 계산 불가 사유를 남긴다. */
+.time-guidance {
+  margin-top: 16px;
+  border-top: 1px solid var(--krds-divider);
+  border-bottom: 1px solid var(--krds-divider);
+}
+
+.time-guidance-heading {
+  padding: 14px 0 10px;
+}
+
+.time-guidance-heading h3 {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.time-guidance-heading p,
+.time-guidance-empty,
+.time-guidance-meta {
+  margin: 2px 0 0;
+  color: var(--krds-body);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.time-guidance-empty {
+  margin: 0;
+  padding: 12px 0;
+  border-top: 1px solid var(--krds-divider);
+}
+
+.time-guidance-meta {
+  padding: 10px 0;
+  border-top: 1px solid var(--krds-divider);
+  font-size: 13px;
+}
+
+.time-forecast-unavailable .time-guidance-heading h3,
+.time-no-future-forecast .time-guidance-heading h3,
+.time-incomplete-forecast .time-guidance-heading h3,
+.time-no-safe-window .time-guidance-heading h3 {
+  color: var(--krds-warning-text);
+}
+
 .safe-window {
   display: flex;
   flex-wrap: wrap;
@@ -604,6 +807,12 @@ button:focus-visible,
   flex-basis: 100%;
   font-size: 13px;
   color: var(--krds-body);
+}
+
+.safe-window-deadline {
+  flex-basis: 100%;
+  color: var(--krds-text);
+  font-size: 14px;
 }
 
 .recs {
@@ -1007,10 +1216,6 @@ mark.violation {
     flex-direction: column;
   }
 
-  .activity-tabs {
-    justify-content: flex-start;
-  }
-
   .layout {
     grid-template-columns: 1fr;
   }
@@ -1035,11 +1240,6 @@ mark.violation {
     font-size: 28px;
   }
 
-  .activity-tabs button {
-    min-height: 44px;
-    flex: 1 1 120px;
-  }
-
   .map,
   .map-empty {
     height: 320px;
@@ -1057,11 +1257,6 @@ mark.violation {
 
   .signal-grade {
     font-size: 24px;
-  }
-
-  .signal-activity {
-    width: 100%;
-    margin-left: 34px;
   }
 
   .contrast {

@@ -5,7 +5,7 @@ import asyncio
 from app.clients import resolver
 from app.clients.base import ProviderReading
 from app.ingest.normalize import normalize_spot, observations_to_map
-from app.models import AdvisoryKind, Metric
+from app.models import AdvisoryKind, Metric, MissingReason
 from app.spots import get_spot
 
 
@@ -86,6 +86,7 @@ def test_official_none_falls_back_to_model_without_advisory_floor(monkeypatch):
     assert reading.metrics[Metric.WAVE_HEIGHT] == 0.5
     assert reading.supports_advisory is False
     assert reading.advisory_is_missing is False
+    assert reading.metric_missing_reasons[Metric.TIDE_LEVEL] is MissingReason.SOURCE_UNAVAILABLE
 
 
 def test_all_missing_returns_none(monkeypatch):

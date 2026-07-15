@@ -27,10 +27,71 @@ class Grade(str, Enum):
         return {"SAFE": "안전", "CAUTION": "주의", "DANGER": "위험"}[self.value]
 
 
+class ProseStatus(str, Enum):
+    """브리핑 산문의 생성·검증 결과.
+
+    공개 요청은 이 상태를 새로 생성하지 않는다. 배치에서 저장한 결과를 다시 가드로
+    확인하거나, 코드 폴백을 선택한 이유만 응답에 드러낸다.
+    """
+
+    VERIFIED = "verified"
+    BLOCKED_BY_GUARD = "blocked_by_guard"
+    GENERATION_UNAVAILABLE = "generation_unavailable"
+    DETERMINISTIC_FALLBACK = "deterministic_fallback"
+
+
+class DataStatus(str, Enum):
+    """지표 값의 이용 가능 상태. 표시는 프런트가 맡고 판정은 코드가 맡는다."""
+
+    OBSERVED = "observed"
+    FORECAST = "forecast"
+    AVAILABLE = "available"
+    MISSING = "missing"
+    STALE = "stale"
+
+
+class MissingReason(str, Enum):
+    """결측의 수집 단계 원인. 값 자체의 출처와 혼동하지 않는다."""
+
+    SOURCE_NOT_SUPPORTED = "source_not_supported"
+    NO_STATION_MAPPING = "no_station_mapping"
+    SOURCE_RETURNED_NO_VALUE = "source_returned_no_value"
+    SOURCE_UNAVAILABLE = "source_unavailable"
+    SOURCE_TIMEOUT = "source_timeout"
+    LEGACY_UNKNOWN = "legacy_unknown"
+
+
+class RuleEvidence(str, Enum):
+    """임계값이 어디까지 검증된 기준인지 나타낸다."""
+
+    OFFICIAL_BASELINE = "official_baseline"
+    CONSERVATIVE_MAPPING = "conservative_mapping"
+
+
+class ForecastCollectionStatus(str, Enum):
+    """시간별 예보 수집 결과. 위험도 입력 결측과 별도로 보존한다."""
+
+    AVAILABLE = "available"
+    EMPTY_RESPONSE = "empty_response"
+    SOURCE_TIMEOUT = "source_timeout"
+    SOURCE_UNAVAILABLE = "source_unavailable"
+    LEGACY_UNKNOWN = "legacy_unknown"
+
+
+class SafeWindowStatus(str, Enum):
+    """시간대 계산 결과. 시간대를 만들지 않은 이유도 코드가 소유한다."""
+
+    AVAILABLE = "available"
+    FORECAST_UNAVAILABLE = "forecast_unavailable"
+    NO_FUTURE_FORECAST = "no_future_forecast"
+    INCOMPLETE_FORECAST = "incomplete_forecast"
+    NO_SAFE_WINDOW = "no_safe_window"
+
+
 class Metric(str, Enum):
     WAVE_HEIGHT = "wave_height"      # 유의파고 (m)
     WIND_SPEED = "wind_speed"        # 해상 풍속 (m/s)
-    CURRENT_SPEED = "current_speed"  # 조류 유속 (m/s)
+    CURRENT_SPEED = "current_speed"  # 조류 유속 (m/s) — 지역 임계값 검증 전 참고값
     TIDE_LEVEL = "tide_level"        # 조위 (cm) — 참고 지표(등급 비임계)
     WATER_TEMP = "water_temp"        # 수온 (°C) — 참고 지표
 
@@ -47,13 +108,6 @@ class AdvisoryKind(str, Enum):
     WIND_WAVE_ALERT = "풍랑경보"
     WAVE_WARNING = "풍파주의보"
     WAVE_ALERT = "풍파경보"
-
-
-class Activity(str, Enum):
-    FISHING = "조업"        # 소형선박
-    LEISURE = "레저"        # 요트/보트
-    ROCK_FISHING = "갯바위"  # 갯바위 낚시
-    SWIMMING = "물놀이"      # 해수욕/입수
 
 
 class SpotType(str, Enum):
@@ -83,7 +137,13 @@ class MarineObservation(BaseModel):
     observed_at: datetime | None = None
     source: str
     is_missing: bool = False
+    is_stale: bool = False
+    missing_reason: MissingReason | None = None
     fetched_at: datetime | None = None
+    # 조위처럼 서비스 지점이 아닌 관측소 값을 참고하는 경우의 위치적 한계.
+    reference_station_name: str | None = None
+    reference_station_code: str | None = None
+    reference_distance_km: float | None = None
 
 
 class Advisory(BaseModel):
@@ -92,6 +152,7 @@ class Advisory(BaseModel):
     effective_at: datetime | None = None
     source: str
     is_missing: bool = False
+    is_stale: bool = False
 
 
 class BasisValue(BaseModel):
@@ -106,19 +167,29 @@ class BasisValue(BaseModel):
     value: float | None  # 결측이면 None
     unit: str
     observed_source: str = ""   # 관측 출처 — MarineObservation.source 를 그대로 전달
+    checked_source: str = ""    # 결측이어도 확인을 시도한 출처. 관측값 출처와 구분한다.
     criterion: str = ""         # 판단 기준 — 임계 밴드 텍스트(구 source, 의미 교정 개명)
+    rule_evidence: RuleEvidence | None = None
     observed_at: datetime | None = None
     is_missing: bool = False
-    is_reference: bool = False  # True 면 등급 비반영 참고 지표(조위·수온)
+    missing_reason: MissingReason | None = None
+    data_status: DataStatus = DataStatus.MISSING
+    is_critical: bool = False
+    is_reference: bool = False  # True 면 등급 비반영 참고 지표
+    reference_note: str = ""    # 등급 비반영 사유 또는 참고 범위
+    reference_station_name: str | None = None
+    reference_station_code: str | None = None
+    reference_distance_km: float | None = None
     contributed_grade: Grade
 
 
 class RiskGrade(BaseModel):
     grade: Grade
     time_slot: str
-    activity: Activity
     basis_values: list[BasisValue] = Field(default_factory=list)
     basis_advisories: list[Advisory] = Field(default_factory=list)
+    advisory: Advisory | None = None
+    decision_steps: list["DecisionStep"] = Field(default_factory=list)
     has_missing_critical: bool = False
 
 
@@ -129,17 +200,25 @@ class FilledNumber(BaseModel):
     value: float | None
     unit: str
     observed_source: str = ""   # 관측 출처(실측/예보 원문 라벨)
+    checked_source: str = ""    # 결측일 때도 확인을 시도한 데이터 출처
     observed_kind: str = ""     # "실측" | "예보" | "" — UI 배지용, 코드가 분류
     criterion: str = ""         # 판단 기준(임계 밴드) — 등급 비반영 참고 지표는 빈 문자열
+    rule_evidence: RuleEvidence | None = None
     observed_at: datetime | None = None
     is_missing: bool = False
+    missing_reason: MissingReason | None = None
+    data_status: DataStatus = DataStatus.MISSING
+    is_critical: bool = False
     is_reference: bool = False
+    reference_note: str = ""
+    reference_station_name: str | None = None
+    reference_station_code: str | None = None
+    reference_distance_km: float | None = None
 
 
 class BriefingSlots(BaseModel):
     spot_id: str
     time_slot: str
-    activity: Activity
     grade: Grade
     filled_numbers: list[FilledNumber] = Field(default_factory=list)
     is_confession: bool = False
@@ -149,17 +228,20 @@ class BriefingSlots(BaseModel):
 class Briefing(BaseModel):
     spot_id: str
     time_slot: str
-    activity: Activity
     grade: Grade
     template_text: str
     llm_prose: str
     citations: list[FilledNumber] = Field(default_factory=list)
     recommendations: list[str] = Field(default_factory=list)
     is_confession: bool = False
-    llm_used: bool = False           # False 면 가드/폴백으로 템플릿만 서빙
+    has_missing_critical: bool = False
+    advisory: Advisory | None = None
+    decision_steps: list["DecisionStep"] = Field(default_factory=list)
+    prose_status: ProseStatus = ProseStatus.DETERMINISTIC_FALLBACK
     snapshot_as_of: datetime | None = None
     # E2: 엔진이 고른 '가장 안전한 시간대'(예보 기반). 데이터 없으면 None.
     safe_window: "SafeWindow | None" = None
+    safe_window_assessment: "SafeWindowAssessment | None" = None
 
 
 class ForecastPoint(BaseModel):
@@ -174,6 +256,15 @@ class ForecastPoint(BaseModel):
     wind_speed: float | None = None
 
 
+class DecisionStep(BaseModel):
+    """코드가 기록한 위험도 결정 과정의 한 단계."""
+
+    label: str
+    detail: str
+    result_grade: Grade | None = None
+    rule_evidence: RuleEvidence | None = None
+
+
 class SafeWindow(BaseModel):
     """엔진이 결정론적으로 고른 '가장 안전한 시간대'. 시각은 코드가 소유(인용 슬롯).
 
@@ -185,7 +276,28 @@ class SafeWindow(BaseModel):
     end: datetime
     grade: Grade
     source: str = "Open-Meteo 예보(수치모델)"
+    horizon_hours: int = 12
+    forecast_points_considered: int = 0
+    forecast_points_graded: int = 0
+    selected_points: int = 0
+    selection_rule: str = "안전 시각을 우선하고, 없으면 주의 시각 중 가장 이른 연속 구간을 선택"
+
+
+class SafeWindowAssessment(BaseModel):
+    """시간대 선택 또는 계산 불가 사유를 포함한 코드 소유 평가 결과."""
+
+    status: SafeWindowStatus
+    detail: str
+    source: str = "Open-Meteo 예보(수치모델)"
+    forecast_collected_at: datetime | None = None
+    horizon_hours: int = 12
+    forecast_points_collected: int = 0
+    forecast_points_considered: int = 0
+    forecast_points_graded: int = 0
+    selection_rule: str = "안전 시각을 우선하고, 없으면 주의 시각 중 가장 이른 연속 구간을 선택"
+    safe_window: SafeWindow | None = None
 
 
 # Briefing 이 뒤에 정의된 SafeWindow 를 전방참조하므로 여기서 확정한다.
 Briefing.model_rebuild()
+RiskGrade.model_rebuild()

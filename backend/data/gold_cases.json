@@ -1,36 +1,181 @@
 {
-  "_comment": "골드 케이스 (AC3). 등급 경계·worst-of·특보 override·활동 보정 커버. 전부 지표 present(결측은 test_missing_grade). expected 는 확정 등급.",
+  "_comment": "골드 케이스 (AC3). 파고·풍속 보수 매핑과 공식 특보 override를 커버한다. 조류는 참고값이며 등급을 바꾸지 않는다. 결측은 test_missing_grade에서 다룬다.",
   "cases": [
-    {"id": "wind-safe-below",     "wave": 0.5, "wind": 13.9, "current": 0.2, "advisory": "none", "activity": "조업",  "expected": "SAFE"},
-    {"id": "wind-caution-lower",  "wave": 0.5, "wind": 14.0, "current": 0.2, "advisory": "none", "activity": "조업",  "expected": "CAUTION"},
-    {"id": "wind-caution-upper",  "wave": 0.5, "wind": 20.9, "current": 0.2, "advisory": "none", "activity": "조업",  "expected": "CAUTION"},
-    {"id": "wind-danger-at",      "wave": 0.5, "wind": 21.0, "current": 0.2, "advisory": "none", "activity": "조업",  "expected": "DANGER"},
-    {"id": "wind-calm",           "wave": 0.5, "wind": 5.0,  "current": 0.2, "advisory": "none", "activity": "조업",  "expected": "SAFE"},
-
-    {"id": "wave-safe-below",     "wave": 1.9, "wind": 5.0,  "current": 0.2, "advisory": "none", "activity": "조업",  "expected": "SAFE"},
-    {"id": "wave-caution-lower",  "wave": 2.0, "wind": 5.0,  "current": 0.2, "advisory": "none", "activity": "조업",  "expected": "CAUTION"},
-    {"id": "wave-caution-upper",  "wave": 2.9, "wind": 5.0,  "current": 0.2, "advisory": "none", "activity": "조업",  "expected": "CAUTION"},
-    {"id": "wave-danger-at",      "wave": 3.0, "wind": 5.0,  "current": 0.2, "advisory": "none", "activity": "조업",  "expected": "DANGER"},
-
-    {"id": "current-safe-below",  "wave": 0.5, "wind": 5.0,  "current": 0.9, "advisory": "none", "activity": "조업",  "expected": "SAFE"},
-    {"id": "current-caution-low", "wave": 0.5, "wind": 5.0,  "current": 1.0, "advisory": "none", "activity": "조업",  "expected": "CAUTION"},
-    {"id": "current-caution-up",  "wave": 0.5, "wind": 5.0,  "current": 1.9, "advisory": "none", "activity": "조업",  "expected": "CAUTION"},
-    {"id": "current-danger-at",   "wave": 0.5, "wind": 5.0,  "current": 2.0, "advisory": "none", "activity": "조업",  "expected": "DANGER"},
-
-    {"id": "worst-wind",          "wave": 0.5, "wind": 15.0, "current": 0.2, "advisory": "none", "activity": "레저",  "expected": "CAUTION"},
-    {"id": "worst-wave",          "wave": 3.5, "wind": 5.0,  "current": 0.2, "advisory": "none", "activity": "레저",  "expected": "DANGER"},
-    {"id": "worst-wind-danger",   "wave": 2.2, "wind": 22.0, "current": 0.5, "advisory": "none", "activity": "레저",  "expected": "DANGER"},
-    {"id": "worst-current",       "wave": 0.5, "wind": 5.0,  "current": 2.5, "advisory": "none", "activity": "레저",  "expected": "DANGER"},
-
-    {"id": "adv-windwave-warn",   "wave": 0.5, "wind": 5.0,  "current": 0.2, "advisory": "풍랑주의보", "activity": "조업", "expected": "CAUTION"},
-    {"id": "adv-windwave-alert",  "wave": 0.5, "wind": 5.0,  "current": 0.2, "advisory": "풍랑경보",   "activity": "조업", "expected": "DANGER"},
-    {"id": "adv-wave-warn",       "wave": 0.5, "wind": 5.0,  "current": 0.2, "advisory": "풍파주의보", "activity": "조업", "expected": "CAUTION"},
-    {"id": "adv-warn-both-cau",   "wave": 2.5, "wind": 5.0,  "current": 0.2, "advisory": "풍랑주의보", "activity": "조업", "expected": "CAUTION"},
-    {"id": "adv-warn-data-worse", "wave": 3.5, "wind": 5.0,  "current": 0.2, "advisory": "풍랑주의보", "activity": "조업", "expected": "DANGER"},
-
-    {"id": "swim-safe-below",     "wave": 1.4, "wind": 5.0,  "current": 0.2, "advisory": "none", "activity": "물놀이", "expected": "SAFE"},
-    {"id": "swim-caution-adj",    "wave": 1.5, "wind": 5.0,  "current": 0.2, "advisory": "none", "activity": "물놀이", "expected": "CAUTION"},
-    {"id": "swim-caution-base-safe", "wave": 1.9, "wind": 5.0, "current": 0.2, "advisory": "none", "activity": "물놀이", "expected": "CAUTION"},
-    {"id": "rock-danger",         "wave": 3.0, "wind": 5.0,  "current": 0.2, "advisory": "none", "activity": "갯바위", "expected": "DANGER"}
+    {
+      "id": "wind-safe-below",
+      "wave": 0.5,
+      "wind": 13.9,
+      "current": 0.2,
+      "advisory": "none",
+      "expected": "SAFE"
+    },
+    {
+      "id": "wind-caution-lower",
+      "wave": 0.5,
+      "wind": 14.0,
+      "current": 0.2,
+      "advisory": "none",
+      "expected": "CAUTION"
+    },
+    {
+      "id": "wind-caution-upper",
+      "wave": 0.5,
+      "wind": 20.9,
+      "current": 0.2,
+      "advisory": "none",
+      "expected": "CAUTION"
+    },
+    {
+      "id": "wind-danger-at",
+      "wave": 0.5,
+      "wind": 21.0,
+      "current": 0.2,
+      "advisory": "none",
+      "expected": "DANGER"
+    },
+    {
+      "id": "wind-calm",
+      "wave": 0.5,
+      "wind": 5.0,
+      "current": 0.2,
+      "advisory": "none",
+      "expected": "SAFE"
+    },
+    {
+      "id": "wave-safe-below",
+      "wave": 1.9,
+      "wind": 5.0,
+      "current": 0.2,
+      "advisory": "none",
+      "expected": "SAFE"
+    },
+    {
+      "id": "wave-caution-lower",
+      "wave": 2.0,
+      "wind": 5.0,
+      "current": 0.2,
+      "advisory": "none",
+      "expected": "CAUTION"
+    },
+    {
+      "id": "wave-caution-upper",
+      "wave": 2.9,
+      "wind": 5.0,
+      "current": 0.2,
+      "advisory": "none",
+      "expected": "CAUTION"
+    },
+    {
+      "id": "wave-danger-at",
+      "wave": 3.0,
+      "wind": 5.0,
+      "current": 0.2,
+      "advisory": "none",
+      "expected": "DANGER"
+    },
+    {
+      "id": "current-reference-normal",
+      "wave": 0.5,
+      "wind": 5.0,
+      "current": 0.9,
+      "advisory": "none",
+      "expected": "SAFE"
+    },
+    {
+      "id": "current-reference-at-former-caution",
+      "wave": 0.5,
+      "wind": 5.0,
+      "current": 1.0,
+      "advisory": "none",
+      "expected": "SAFE"
+    },
+    {
+      "id": "current-reference-above-former-caution",
+      "wave": 0.5,
+      "wind": 5.0,
+      "current": 1.9,
+      "advisory": "none",
+      "expected": "SAFE"
+    },
+    {
+      "id": "current-reference-at-former-danger",
+      "wave": 0.5,
+      "wind": 5.0,
+      "current": 2.0,
+      "advisory": "none",
+      "expected": "SAFE"
+    },
+    {
+      "id": "worst-wind",
+      "wave": 0.5,
+      "wind": 15.0,
+      "current": 0.2,
+      "advisory": "none",
+      "expected": "CAUTION"
+    },
+    {
+      "id": "worst-wave",
+      "wave": 3.5,
+      "wind": 5.0,
+      "current": 0.2,
+      "advisory": "none",
+      "expected": "DANGER"
+    },
+    {
+      "id": "worst-wind-danger",
+      "wave": 2.2,
+      "wind": 22.0,
+      "current": 0.5,
+      "advisory": "none",
+      "expected": "DANGER"
+    },
+    {
+      "id": "current-high-does-not-change-grade",
+      "wave": 0.5,
+      "wind": 5.0,
+      "current": 2.5,
+      "advisory": "none",
+      "expected": "SAFE"
+    },
+    {
+      "id": "adv-windwave-warn",
+      "wave": 0.5,
+      "wind": 5.0,
+      "current": 0.2,
+      "advisory": "풍랑주의보",
+      "expected": "CAUTION"
+    },
+    {
+      "id": "adv-windwave-alert",
+      "wave": 0.5,
+      "wind": 5.0,
+      "current": 0.2,
+      "advisory": "풍랑경보",
+      "expected": "DANGER"
+    },
+    {
+      "id": "adv-wave-warn",
+      "wave": 0.5,
+      "wind": 5.0,
+      "current": 0.2,
+      "advisory": "풍파주의보",
+      "expected": "CAUTION"
+    },
+    {
+      "id": "adv-warn-both-cau",
+      "wave": 2.5,
+      "wind": 5.0,
+      "current": 0.2,
+      "advisory": "풍랑주의보",
+      "expected": "CAUTION"
+    },
+    {
+      "id": "adv-warn-data-worse",
+      "wave": 3.5,
+      "wind": 5.0,
+      "current": 0.2,
+      "advisory": "풍랑주의보",
+      "expected": "DANGER"
+    }
   ]
 }

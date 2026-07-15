@@ -5,7 +5,7 @@ from datetime import datetime
 from app.clients.base import ProviderReading
 from app.engine.risk import evaluate
 from app.ingest.normalize import normalize_spot, observations_to_map
-from app.models import Activity, AdvisoryKind, Grade, Metric
+from app.models import AdvisoryKind, Grade, Metric
 from app.spots import get_spot
 
 FIXED = datetime(2026, 7, 10, 9, 0, 0)
@@ -36,7 +36,7 @@ def test_safe_survives_without_advisory_source():
     spot = get_spot("haeundae")
     obs_list, advisory = normalize_spot(spot, _reading(False), fetched_at=FIXED)
     obs = observations_to_map(obs_list)
-    result = evaluate(obs, advisory, Activity.LEISURE, "현재")
+    result = evaluate(obs, advisory, "현재")
     assert result.grade == Grade.SAFE
     assert result.has_missing_critical is False
 
@@ -48,7 +48,7 @@ def test_missing_wave_still_floors_without_advisory():
     del reading.metrics[Metric.WAVE_HEIGHT]  # 파고 결측 주입
     obs_list, advisory = normalize_spot(spot, reading, fetched_at=FIXED)
     obs = observations_to_map(obs_list)
-    result = evaluate(obs, advisory, Activity.LEISURE, "현재")
+    result = evaluate(obs, advisory, "현재")
     assert result.grade != Grade.SAFE
     assert result.has_missing_critical is True
 
@@ -59,7 +59,7 @@ def test_supported_advisory_still_escalates():
     reading = _reading(True, advisory=AdvisoryKind.WIND_WAVE_ALERT)
     obs_list, advisory = normalize_spot(spot, reading, fetched_at=FIXED)
     obs = observations_to_map(obs_list)
-    result = evaluate(obs, advisory, Activity.LEISURE, "현재")
+    result = evaluate(obs, advisory, "현재")
     assert result.grade == Grade.DANGER
 
 

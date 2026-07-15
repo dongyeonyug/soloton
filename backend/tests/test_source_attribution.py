@@ -13,12 +13,13 @@ from app.briefing.template import build_slots, observed_kind, render_template
 from app.engine.risk import evaluate
 from app.engine.thresholds import THRESHOLDS
 from app.models import (
-    Activity,
     Advisory,
     AdvisoryKind,
+    DataStatus,
     Grade,
     MarineObservation,
     Metric,
+    RuleEvidence,
 )
 from app.spots import all_spots
 
@@ -47,7 +48,7 @@ def _advisory() -> Advisory:
 
 
 def _brief(observations):
-    risk = evaluate(observations, _advisory(), Activity.LEISURE, "현재")
+    risk = evaluate(observations, _advisory(), "현재")
     spot = all_spots()[0]
     slots = build_slots(spot, risk, FIXED_TIME)
     return risk, slots, render_template(spot, risk, slots)
@@ -78,6 +79,9 @@ def test_observed_source_flows_to_citation_and_differs_by_origin():
     assert wave_m.observed_source != wave_b.observed_source
     assert wave_m.observed_kind == "실측"
     assert wave_b.observed_kind == "예보"
+    assert wave_m.data_status is DataStatus.OBSERVED
+    assert wave_b.data_status is DataStatus.FORECAST
+    assert wave_m.is_critical is True
 
 
 def test_criterion_is_band_not_source():
@@ -92,6 +96,7 @@ def test_criterion_is_band_not_source():
     assert "실측" not in wave.criterion
     # 템플릿 산문에서 '출처:'는 관측 출처를, '판단 기준:'은 밴드를 가리킨다
     assert f"출처: {KHOA_WAVE} / 판단 기준:" in template
+    assert wave.rule_evidence is RuleEvidence.CONSERVATIVE_MAPPING
 
 
 def test_missing_value_claims_no_source():
@@ -105,6 +110,9 @@ def test_missing_value_claims_no_source():
     assert wave.is_missing
     assert wave.observed_source == ""
     assert wave.observed_kind == ""
+    assert wave.checked_source == KHOA_WAVE
+    assert wave.data_status is DataStatus.MISSING
+    assert wave.is_critical is True
 
 
 def test_tide_reference_citation_present_and_grade_neutral():
@@ -118,6 +126,8 @@ def test_tide_reference_citation_present_and_grade_neutral():
     risk_missing, slots_missing, _ = _brief(dict(base))
     tide = _by_label(slots_missing)["조위"]
     assert tide.is_reference and tide.is_missing
+    assert tide.checked_source == ""
+    assert tide.is_critical is False
     assert risk_missing.grade is Grade.SAFE
     assert not slots_missing.is_confession
     assert not risk_missing.has_missing_critical
@@ -131,6 +141,7 @@ def test_tide_reference_citation_present_and_grade_neutral():
     assert tide2.value == 999.0
     assert tide2.observed_source == KHOA_TIDE
     assert tide2.criterion == ""
+    assert tide2.data_status is DataStatus.OBSERVED
     assert "등급 비반영 참고값" in template
 
 
