@@ -126,24 +126,24 @@ function PreviewBody({
 export function HeroIntro({ overview, selected, briefing, loading, error, onSpotSelect }: Props) {
   const spot = selectedSpot(overview, selected);
   const title = !overview
-    ? "예시 브리핑 · 데이터를 불러오는 중"
+    ? "현재 참고 현황 · 데이터를 불러오는 중"
     : spot
-      ? `예시 브리핑 · ${spot.name} · 기준 시각 ${previewTime(overview, briefing)}`
-      : "예시 브리핑 · 표시할 지점 정보없음";
+      ? `현재 참고 현황 · ${spot.name} · 기준 시각 ${previewTime(overview, briefing)}`
+      : "현재 참고 현황 · 표시할 지점 정보없음";
 
   return (
     <header className="hero-intro">
       <div className="hero-copy">
-        <p className="eyebrow">부산 해안 활동 전 30초 확인</p>
-        <h1>바다 가기 전, 지금 지점의 참고 등급을 신호등처럼 확인하세요</h1>
+        <p className="eyebrow">부산 물놀이 전 30초 계획 확인</p>
+        <h1>바다에 가기 전, 내 계획부터 확인하세요</h1>
         <p className="hero-lead">
-          파고·풍속·특보 같은 공개 해양 정보를 모아 안전/주의/위험 참고 등급과 근거를
-          보여줍니다. 실제 활동 전 공식 기관의 최신 안내를 함께 확인하세요.
+          장소와 예정 시각을 고르면 그때의 예보와 지금 발효 중인 특보를 나눠 보여드립니다.
+          실제 활동 전에는 공식 기관과 현장 안내를 함께 확인하세요.
         </p>
 
         <div className="hero-actions" aria-label="주요 행동">
           <button type="button" className="hero-primary" onClick={onSpotSelect}>
-            지점 선택하기
+            내 계획 확인하기
           </button>
           <a className="hero-secondary" href="#/verify">
             AI가 숫자를 못 만드는 방식 보기
@@ -152,16 +152,16 @@ export function HeroIntro({ overview, selected, briefing, loading, error, onSpot
 
         <ul className="hero-proof" aria-label="서비스 확인 흐름">
           <li>
-            <strong>지점 선택</strong>
-            <span>부산 연안 대표 지점</span>
+            <strong>장소 선택</strong>
+            <span>물놀이할 해안 지점</span>
           </li>
           <li>
-            <strong>참고 등급</strong>
-            <span>코드가 계산한 신호등</span>
+            <strong>예정 시각 선택</strong>
+            <span>실제 예보가 있는 시간만</span>
           </li>
           <li>
-            <strong>근거 확인</strong>
-            <span>수치·출처·정보없음 표시</span>
+            <strong>계획 브리핑 확인</strong>
+            <span>예보와 현재 특보를 분리</span>
           </li>
         </ul>
       </div>

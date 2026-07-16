@@ -1,8 +1,10 @@
 import { BriefingPanel } from "./Briefing";
+import { PlanBriefingPanel } from "./PlanBriefing";
+import { PlanComposer } from "./PlanComposer";
 import { SignalCard } from "./SignalCard";
 import { SpotList } from "./SpotList";
 import { SpotMap } from "./SpotMap";
-import type { Briefing, Overview } from "../types";
+import type { Briefing, Overview, PlanBriefing, PlanOptions } from "../types";
 
 interface Props {
   overview: Overview | null;
@@ -12,6 +14,14 @@ interface Props {
   loading: boolean;
   error: string | null;
   onRetry: () => void;
+  planOptions: PlanOptions | null;
+  planTime: string | null;
+  planBriefing: PlanBriefing | null;
+  planLoading: boolean;
+  planOptionsLoading: boolean;
+  planError: string | null;
+  onPlanTimeChange: (time: string) => void;
+  onPlanSubmit: () => void;
 }
 
 /**
@@ -27,6 +37,14 @@ export function HomeView({
   loading,
   error,
   onRetry,
+  planOptions,
+  planTime,
+  planBriefing,
+  planLoading,
+  planOptionsLoading,
+  planError,
+  onPlanTimeChange,
+  onPlanSubmit,
 }: Props) {
   return (
     <>
@@ -38,6 +56,21 @@ export function HomeView({
           </button>
         </div>
       )}
+
+      <PlanComposer
+        spots={overview?.spots ?? []}
+        selectedSpotId={selected}
+        options={planOptions}
+        selectedTime={planTime}
+        loadingOptions={planOptionsLoading}
+        loadingBriefing={planLoading}
+        error={planError}
+        onSpotChange={onSelect}
+        onTimeChange={onPlanTimeChange}
+        onSubmit={onPlanSubmit}
+      />
+
+      {planBriefing && <PlanBriefingPanel briefing={planBriefing} />}
 
       <main className="layout">
         <section className="left" id="spot-selection" aria-labelledby="spot-selection-heading">

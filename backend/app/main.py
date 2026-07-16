@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from .config import get_settings
 from .ingest.cache import get_snapshot
-from .routers import briefing, guard, observations, risk, spots
+from .routers import briefing, guard, observations, plans, risk, spots
 
 app = FastAPI(
     title="오늘의 바다 API",
@@ -18,8 +18,12 @@ app = FastAPI(
 settings = get_settings()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[settings.frontend_origin, "http://localhost:5173"],
-    allow_methods=["GET"],
+    allow_origins=[
+        settings.frontend_origin,
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    ],
+    allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )
 
@@ -28,6 +32,7 @@ app.include_router(observations.router)
 app.include_router(risk.router)
 app.include_router(briefing.router)
 app.include_router(guard.router)
+app.include_router(plans.router)
 
 
 @app.get("/api/health")

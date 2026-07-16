@@ -50,6 +50,19 @@ export function formatKstHourLabel(value: string | null | undefined): string {
   return `${period} ${hour12}시`;
 }
 
+/** KST naive 예보 시각을 선택칩에 쓸 날짜·시간 문장으로. */
+export function formatForecastOption(value: string): string {
+  const match = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/.exec(value);
+  if (!match) return "정보없음";
+  const [, , month, day] = match;
+  return `${Number(month)}월 ${Number(day)}일 ${formatKstHourLabel(value)}`;
+}
+
+/** API가 요구하는 +09:00 시각. 예보 시각은 이미 KST 벽시계값이다. */
+export function forecastTimeToKstOffset(value: string): string {
+  return /(?:Z|[+-]\d{2}:\d{2})$/i.test(value) ? value : `${value}+09:00`;
+}
+
 /** 안전창 시간대 라벨. 시작=끝이면 단일 시각, 아니면 범위. */
 export function formatSafeWindow(start: string, end: string): string {
   const startLabel = formatKstHourLabel(start);
