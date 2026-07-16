@@ -40,13 +40,28 @@ export function HomeView({
       )}
 
       <main className="layout">
-        <section className="left">
+        <section className="left" id="spot-selection" aria-labelledby="spot-selection-heading">
+          <div className="section-heading">
+            <h2 id="spot-selection-heading" tabIndex={-1}>
+              해역 선택
+            </h2>
+            <p>지도 또는 목록에서 확인할 지점을 선택하세요.</p>
+          </div>
+
+          {!overview && !error && (
+            <p className="spot-list-empty" role="status">
+              지점 정보를 불러오는 중입니다.
+            </p>
+          )}
+
+          {!overview && error && (
+            <p className="spot-list-empty" role="status">
+              현재 표시할 지점 정보가 없습니다.
+            </p>
+          )}
+
           {overview && (
             <>
-              <div className="section-heading">
-                <h2>해역 선택</h2>
-                <p>지도 또는 목록에서 확인할 지점을 선택하세요.</p>
-              </div>
               <SpotMap spots={overview.spots} selected={selected} onSelect={onSelect} />
               <SpotList spots={overview.spots} selected={selected} onSelect={onSelect} />
             </>
@@ -55,6 +70,9 @@ export function HomeView({
 
         <section className="right" aria-label="선택 지점 브리핑" aria-live="polite">
           {loading && <div className="muted">불러오는 중…</div>}
+          {!loading && !briefing && !error && (
+            <div className="muted">지점을 선택하면 참고 등급과 근거가 표시됩니다.</div>
+          )}
           {briefing && !loading && (
             <>
               <div className="section-heading briefing-heading">

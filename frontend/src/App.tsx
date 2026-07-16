@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { fetchBriefing, fetchOverview } from "./api/client";
 import { DisclaimerFooter } from "./components/DisclaimerFooter";
 import { GuardDemoPage } from "./components/GuardDemo";
+import { HeroIntro } from "./components/HeroIntro";
 import { HomeView } from "./components/HomeView";
 import { PrincipleSection } from "./components/Principle";
 import type { Briefing, Overview } from "./types";
@@ -40,6 +41,16 @@ export default function App() {
   const retry = () => {
     setError(null);
     setReloadKey((k) => k + 1);
+  };
+
+  const focusSpotSelection = () => {
+    window.history.replaceState(null, "", "#spot-selection");
+    requestAnimationFrame(() => {
+      const target = document.getElementById("spot-selection-heading");
+      const reducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+      target?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
+      target?.focus({ preventScroll: true });
+    });
   };
 
   // 개요 재조회 (지도 색칠)
@@ -81,13 +92,16 @@ export default function App() {
 
   return (
     <div className="app">
-      <header className="topbar">
-        <div>
-          <p className="eyebrow">부산 연안 해양안전 참고 서비스</p>
-          <h1>오늘의 바다</h1>
-          <p className="tagline">공식 해양 정보 기반 위험도와 근거를 함께 확인합니다.</p>
-        </div>
-      </header>
+      {route === "home" && (
+        <HeroIntro
+          overview={overview}
+          selected={selected}
+          briefing={briefing}
+          loading={loading}
+          error={error}
+          onSpotSelect={focusSpotSelection}
+        />
+      )}
 
       <nav className="mainnav" aria-label="주요 화면">
         <a href="#/" aria-current={route === "home" ? "page" : undefined}>
