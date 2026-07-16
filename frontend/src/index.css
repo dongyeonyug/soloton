@@ -119,6 +119,8 @@ button:focus-visible,
   font-weight: 700;
   letter-spacing: 1px;
   line-height: 1.5;
+  overflow-wrap: break-word;
+  word-break: keep-all;
 }
 
 .hero-lead {
@@ -127,6 +129,7 @@ button:focus-visible,
   color: var(--krds-body);
   font-size: 19px;
   line-height: 1.65;
+  word-break: keep-all;
 }
 
 .hero-actions {
