@@ -7,10 +7,10 @@
 
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timedelta
 from enum import Enum
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 
 class Grade(str, Enum):
@@ -88,6 +88,32 @@ class SafeWindowStatus(str, Enum):
     NO_SAFE_WINDOW = "no_safe_window"
 
 
+class PlanActivity(str, Enum):
+    """Phase 1에서 깊게 지원하는 계획 활동."""
+
+    WATER_PLAY = "water_play"
+
+
+class PlanDataState(str, Enum):
+    """계획 브리핑에 필요한 데이터의 사용 가능 상태."""
+
+    READY = "ready"
+    PARTIAL = "partial"
+    STALE = "stale"
+    UNAVAILABLE = "unavailable"
+    INVALID_TIME = "invalid_time"
+
+
+class PlanCoverageState(str, Enum):
+    """데이터 상태를 사용자에게 보여 줄 최종 Phase 1 상태."""
+
+    DETAILED = "detailed"
+    PARTIAL = "partial"
+    STALE = "stale"
+    UNAVAILABLE = "unavailable"
+    INVALID_TIME = "invalid_time"
+
+
 class Metric(str, Enum):
     WAVE_HEIGHT = "wave_height"      # 유의파고 (m)
     WIND_SPEED = "wind_speed"        # 해상 풍속 (m/s)
@@ -125,6 +151,25 @@ class Spot(BaseModel):
     khoa_obs_code: str | None = None
     khoa_tide_obs_code: str | None = None
     kma_area: str | None = None
+
+
+class PlanIntent(BaseModel):
+    """사용자가 선택 UI에서 확정한 Phase 1 계획.
+
+    API는 KST 오프셋이 포함된 ISO 시각만 받는다. 저장된 예보 시각은 KST naive
+    벽시계값이라, 서비스 계층이 이 입력을 KST로 정규화해 정확히 매칭한다.
+    """
+
+    spot_id: str
+    activity: PlanActivity
+    requested_at: datetime
+
+    @field_validator("requested_at")
+    @classmethod
+    def requested_at_must_be_kst(cls, value: datetime) -> datetime:
+        if value.tzinfo is None or value.utcoffset() != timedelta(hours=9):
+            raise ValueError("requested_at must include the Asia/Seoul (+09:00) offset")
+        return value
 
 
 class MarineObservation(BaseModel):
@@ -254,6 +299,63 @@ class ForecastPoint(BaseModel):
     time: datetime
     wave_height: float | None = None
     wind_speed: float | None = None
+
+
+class OfficialLink(BaseModel):
+    """활동 판단을 대체하지 않는, 검증 가능한 공식 확인 경로."""
+
+    label: str
+    url: str
+    source_owner: str
+    activity_scope: PlanActivity
+    region_scope: str
+    last_verified_at: datetime
+    fallback_text: str
+
+
+class ForecastConditions(BaseModel):
+    """선택한 미래 시각의 수치예보만으로 만든 참고 조건."""
+
+    forecast_at: datetime
+    grade: Grade | None = None
+    citations: list[FilledNumber] = Field(default_factory=list)
+    has_missing_critical: bool = False
+    source: str = "Open-Meteo 시간별 예보(수치모델)"
+
+
+class CurrentAdvisory(BaseModel):
+    """현재 확인된 특보. 미래 예측이나 선택 시각 등급에 사용하지 않는다."""
+
+    advisory: Advisory
+    checked_at: datetime | None = None
+    scope_label: str = "현재 기준 · 미래 보장 아님"
+
+
+class PlanBriefing(BaseModel):
+    """LLM 없이 결정론적으로 구성되는 Phase 1 계획 브리핑."""
+
+    spot_id: str
+    activity: PlanActivity
+    requested_at: datetime
+    data_state: PlanDataState
+    coverage_state: PlanCoverageState
+    forecast_conditions: ForecastConditions | None = None
+    current_advisory: CurrentAdvisory | None = None
+    action: str
+    limitations: list[str] = Field(default_factory=list)
+    official_links: list[OfficialLink] = Field(default_factory=list)
+    snapshot_as_of: datetime | None = None
+
+
+class PlanOptions(BaseModel):
+    """선택 UI가 보여 줄 실제 수집 예보 시각 목록."""
+
+    spot_id: str
+    activity: PlanActivity = PlanActivity.WATER_PLAY
+    forecast_times: list[datetime] = Field(default_factory=list)
+    forecast_status: ForecastCollectionStatus
+    forecast_collected_at: datetime | None = None
+    snapshot_as_of: datetime
 
 
 class DecisionStep(BaseModel):

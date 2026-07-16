@@ -19,6 +19,14 @@ export type SafeWindowStatus =
   | "no_future_forecast"
   | "incomplete_forecast"
   | "no_safe_window";
+export type PlanActivity = "water_play";
+export type PlanDataState = "ready" | "partial" | "stale" | "unavailable" | "invalid_time";
+export type PlanCoverageState =
+  | "detailed"
+  | "partial"
+  | "stale"
+  | "unavailable"
+  | "invalid_time";
 
 export interface SpotOverview {
   id: string;
@@ -120,6 +128,59 @@ export interface Briefing {
   snapshot_as_of: string | null;
   safe_window: SafeWindow | null;
   safe_window_assessment: SafeWindowAssessment | null;
+}
+
+export interface PlanOptions {
+  spot_id: string;
+  activity: PlanActivity;
+  forecast_times: string[];
+  forecast_status: string;
+  forecast_collected_at: string | null;
+  snapshot_as_of: string;
+}
+
+export interface ForecastConditions {
+  forecast_at: string;
+  grade: Grade | null;
+  citations: FilledNumber[];
+  has_missing_critical: boolean;
+  source: string;
+}
+
+export interface CurrentAdvisory {
+  advisory: Advisory;
+  checked_at: string | null;
+  scope_label: string;
+}
+
+export interface OfficialLink {
+  label: string;
+  url: string;
+  source_owner: string;
+  activity_scope: PlanActivity;
+  region_scope: string;
+  last_verified_at: string;
+  fallback_text: string;
+}
+
+export interface PlanBriefing {
+  spot_id: string;
+  activity: PlanActivity;
+  requested_at: string;
+  data_state: PlanDataState;
+  coverage_state: PlanCoverageState;
+  forecast_conditions: ForecastConditions | null;
+  current_advisory: CurrentAdvisory | null;
+  action: string;
+  limitations: string[];
+  official_links: OfficialLink[];
+  snapshot_as_of: string | null;
+}
+
+export interface PlanIntent {
+  spot_id: string;
+  activity: PlanActivity;
+  requested_at: string;
 }
 
 /** E1 — 가드 판정 결과. 위반 스팬은 코드포인트 오프셋(백엔드 guard 와 동일 규칙). */

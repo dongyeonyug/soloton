@@ -70,17 +70,18 @@ function spotLabel(spot: SpotOverview, isSelected: boolean): string {
  *  divIcon HTML은 선택/등급 변경 시마다 재생성되므로 aria-label이 항상 최신이다
  *  (react-leaflet은 Marker의 title prop을 마운트 후 갱신하지 않는다). */
 function markerIcon(spot: SpotOverview, isSelected: boolean): ReturnType<typeof divIcon> {
-  const size = isSelected ? 34 : 26;
+  const touchSize = 44;
+  const symbolSize = isSelected ? 34 : 26;
   const label = spotLabel(spot, isSelected).replace(/"/g, "&quot;");
   return divIcon({
     className: `map-marker${isSelected ? " is-selected" : ""}`,
     html: `<span class="map-marker-inner" role="button" tabindex="0" aria-label="${label}" data-spot-id="${spot.id}">${symbolSvg(
       spot.grade,
-      size,
+      symbolSize,
       spot.has_missing_critical,
     )}</span>`,
-    iconSize: [size, size],
-    iconAnchor: [size / 2, size / 2],
+    iconSize: [touchSize, touchSize],
+    iconAnchor: [touchSize / 2, touchSize / 2],
   });
 }
 
