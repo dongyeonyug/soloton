@@ -40,6 +40,13 @@ class Settings(BaseSettings):
     frontend_origin: str = "http://localhost:5173"
 
     @property
+    def frontend_origins(self) -> list[str]:
+        """쉼표로 구분한 운영·미리보기 프론트엔드 주소만 CORS에 허용한다."""
+        configured = [origin.strip() for origin in self.frontend_origin.split(",") if origin.strip()]
+        local_origins = ["http://localhost:5173", "http://127.0.0.1:5173"]
+        return list(dict.fromkeys([*configured, *local_origins]))
+
+    @property
     def has_llm(self) -> bool:
         return bool(self.anthropic_api_key)
 

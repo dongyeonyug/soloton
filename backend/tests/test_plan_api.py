@@ -10,6 +10,7 @@ import pytest
 
 import app.service as service
 from app.ingest.cache import SnapshotDoc, SpotSnapshot
+from app.config import Settings
 from app.main import app
 from app.models import Advisory, AdvisoryKind, ForecastPoint
 
@@ -101,6 +102,19 @@ def test_plan_api_rejects_a_time_without_kst_offset():
 def test_plan_options_unknown_spot_is_404():
     response = client.get("/api/plans/options/nonexistent")
     assert response.status_code == 404
+
+
+def test_frontend_origins_accepts_multiple_explicit_deployments_only():
+    settings = Settings(
+        frontend_origin="https://oneul-ui-bada.vercel.app, https://oneul-ui-bada-preview.vercel.app"
+    )
+
+    assert settings.frontend_origins == [
+        "https://oneul-ui-bada.vercel.app",
+        "https://oneul-ui-bada-preview.vercel.app",
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    ]
 
 
 @pytest.mark.parametrize("origin", ["http://localhost:5173", "http://127.0.0.1:5173"])
