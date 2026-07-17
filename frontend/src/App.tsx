@@ -7,8 +7,8 @@ import {
 } from "./api/client";
 import { DisclaimerFooter } from "./components/DisclaimerFooter";
 import { GuardDemoPage } from "./components/GuardDemo";
-import { HeroIntro } from "./components/HeroIntro";
 import { HomeView } from "./components/HomeView";
+import { PlanLanding } from "./components/PlanLanding";
 import { PrincipleSection } from "./components/Principle";
 import type { Briefing, Overview, PlanBriefing, PlanOptions } from "./types";
 import { forecastTimeToKstOffset } from "./utils/time";
@@ -64,14 +64,29 @@ export default function App() {
     setReloadKey((k) => k + 1);
   };
 
+  const scrollAndFocus = (scrollTarget: Element | null, focusTarget: HTMLElement | null) => {
+    requestAnimationFrame(() => {
+      const reducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+      scrollTarget?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
+      focusTarget?.focus({ preventScroll: true });
+    });
+  };
+
   const focusPlanComposer = () => {
     window.history.replaceState(null, "", "#plan-composer");
-    requestAnimationFrame(() => {
-      const target = document.getElementById("plan-composer-heading");
-      const reducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-      target?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
-      target?.focus({ preventScroll: true });
-    });
+    const heading = document.getElementById("plan-composer-heading");
+    scrollAndFocus(heading, heading);
+  };
+
+  // invalid_time 재선택 — 계획 시간 영역으로 스크롤하고 첫 시간 버튼에 포커스를 옮긴다.
+  // 시간 옵션이 아직 없으면(로딩·빈 목록) 작성기 제목으로 대신 이동한다.
+  const focusPlanTime = () => {
+    const firstOption = document.querySelector<HTMLButtonElement>(".plan-time-option");
+    if (firstOption) {
+      scrollAndFocus(document.getElementById("plan-time-label"), firstOption);
+    } else {
+      focusPlanComposer();
+    }
   };
 
   // 개요 재조회 (지도 색칠)
@@ -85,6 +100,8 @@ export default function App() {
       .catch((e) => {
         console.error(e);
         setError("해양 데이터를 불러오지 못했어요. 잠시 후 다시 시도해 주세요.");
+        // 계획 입력이 첫 화면의 주인공이므로, 지점 목록 실패도 계획 영역에서 알린다.
+        setPlanError("지점 정보를 불러오지 못했어요. 잠시 후 다시 시도해 주세요.");
       });
   }, [reloadKey]);
 
@@ -201,27 +218,23 @@ export default function App() {
     routeRef.current?.focus();
   }, [route]);
 
+  const selectedSpotName = overview?.spots.find((s) => s.id === selected)?.name ?? null;
+
   return (
     <div className="app">
-      {route === "home" && (
-        <HeroIntro
-          overview={overview}
-          selected={selected}
-          briefing={briefing}
-          loading={loading}
-          error={error}
-          onSpotSelect={focusPlanComposer}
-        />
-      )}
-
-      <nav className="mainnav" aria-label="주요 화면">
-        <a href="#/" aria-current={route === "home" ? "page" : undefined}>
-          해역 현황
+      <header className="mainnav-bar">
+        <a className="mainnav-brand" href="#/">
+          오늘의 바다
         </a>
-        <a href="#/verify" aria-current={route === "verify" ? "page" : undefined}>
-          AI 거짓말 차단
-        </a>
-      </nav>
+        <nav className="mainnav" aria-label="주요 화면">
+          <a href="#/" aria-current={route === "home" ? "page" : undefined}>
+            내 계획
+          </a>
+          <a href="#/verify" aria-current={route === "verify" ? "page" : undefined}>
+            AI 거짓말 차단
+          </a>
+        </nav>
+      </header>
 
       <div className="route" ref={routeRef} tabIndex={-1}>
         {route === "verify" ? (
@@ -231,23 +244,36 @@ export default function App() {
             <GuardDemoPage />
           </>
         ) : (
-          <HomeView
-            overview={overview}
-            selected={selected}
-            onSelect={setSelected}
-            briefing={briefing}
-            loading={loading}
-            error={error}
-            onRetry={retry}
-            planOptions={planOptions}
-            planTime={planTime}
-            planBriefing={planBriefing}
-            planLoading={planLoading}
-            planOptionsLoading={planOptionsLoading}
-            planError={planError}
-            onPlanTimeChange={selectPlanTime}
-            onPlanSubmit={submitPlan}
-          />
+          <main className="home">
+            <PlanLanding
+              spots={overview?.spots ?? []}
+              selectedSpotId={selected}
+              selectedSpotName={selectedSpotName}
+              snapshotAsOf={overview?.snapshot_as_of ?? null}
+              options={planOptions}
+              selectedTime={planTime}
+              briefing={planBriefing}
+              loadingSpots={!overview && !error}
+              loadingOptions={planOptionsLoading}
+              loadingBriefing={planLoading}
+              error={planError}
+              onSpotChange={setSelected}
+              onTimeChange={selectPlanTime}
+              onSubmit={submitPlan}
+              onRetry={retry}
+              onPlanStart={focusPlanComposer}
+              onReselect={focusPlanTime}
+            />
+            <HomeView
+              overview={overview}
+              selected={selected}
+              onSelect={setSelected}
+              briefing={briefing}
+              loading={loading}
+              error={error}
+              onRetry={retry}
+            />
+          </main>
         )}
       </div>
 

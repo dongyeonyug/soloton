@@ -15,18 +15,35 @@ const STATE_LABEL = {
   invalid_time: "시각 다시 선택",
 } as const;
 
-/** 선택 시각 예보와 현재 특보를 한 카드 안에서도 독립된 사실로 보여 준다. */
-export function PlanBriefingPanel({ briefing }: { briefing: PlanBriefing }) {
+interface PlanBriefingPanelProps {
+  briefing: PlanBriefing;
+  spotName: string | null;
+  onReselect: () => void;
+}
+
+/**
+ * 판단 중심의 한 장 계획 브리핑.
+ *
+ * 백엔드 `action`이 중심 문장이고, 선택 시각 예보와 현재 특보는
+ * 한 화면 안에서도 독립된 사실로 분리해 보여 준다. UI는 안전 판단이나
+ * 수치를 새로 만들지 않는다.
+ */
+export function PlanBriefingPanel({ briefing, spotName, onReselect }: PlanBriefingPanelProps) {
   const conditions = briefing.forecast_conditions;
-  const gradeClass = conditions?.grade?.toLowerCase() ?? "partial";
+  // 등급 강조는 detailed 에서만 — partial/stale/unavailable/invalid_time 이
+  // 안전처럼 보이면 안 된다는 상태 계약. 근거 수치와 출처는 그대로 보인다.
+  const showGrade = briefing.coverage_state === "detailed" && Boolean(conditions?.grade);
+  const gradeClass = showGrade && conditions?.grade ? conditions.grade.toLowerCase() : "partial";
+  const invalidTime = briefing.coverage_state === "invalid_time";
+  const planTimeLabel = formatForecastOption(conditions?.forecast_at ?? briefing.requested_at);
 
   return (
-    <section className="plan-briefing" aria-labelledby="plan-briefing-heading" aria-live="polite">
+    <section className="plan-briefing" aria-labelledby="plan-briefing-heading">
       <div className="plan-briefing-heading">
         <div>
-          <p className="eyebrow">내 물놀이 계획</p>
+          <p className="eyebrow">내 계획 브리핑</p>
           <h2 id="plan-briefing-heading">
-            {conditions ? formatForecastOption(conditions.forecast_at) : "선택 시각을 다시 확인해 주세요"}
+            {spotName ? `${spotName} · ${planTimeLabel}` : planTimeLabel}
           </h2>
         </div>
         <span className={`plan-state plan-state-${briefing.coverage_state}`}>
@@ -36,10 +53,16 @@ export function PlanBriefingPanel({ briefing }: { briefing: PlanBriefing }) {
 
       <p className="plan-action">{briefing.action}</p>
 
+      {invalidTime && (
+        <button type="button" className="plan-reselect" onClick={onReselect}>
+          시간 다시 선택하기
+        </button>
+      )}
+
       <div className="plan-fact-grid">
         <article className={`plan-fact-card plan-forecast-card grade-${gradeClass}`}>
           <p className="plan-fact-kicker">선택 시각 예보</p>
-          {conditions?.grade ? (
+          {showGrade && conditions?.grade ? (
             <strong>예보 기준 {GRADE_KO[conditions.grade]}</strong>
           ) : (
             <strong>예보 판단 보류</strong>
@@ -65,20 +88,21 @@ export function PlanBriefingPanel({ briefing }: { briefing: PlanBriefing }) {
           <p className="plan-fact-kicker">현재 특보</p>
           <strong>{advisoryLabel(briefing.current_advisory?.advisory ?? null)}</strong>
           <p>{briefing.current_advisory?.scope_label ?? "현재 특보를 확인하지 못했습니다."}</p>
-          <small>
-            확인 시각 {formatKstDateTime(briefing.current_advisory?.checked_at ?? null)}
-          </small>
+          <small>확인 시각 {formatKstDateTime(briefing.current_advisory?.checked_at ?? null)}</small>
         </article>
       </div>
 
-      <ul className="plan-limitations">
-        {briefing.limitations.map((limitation) => (
-          <li key={limitation}>{limitation}</li>
-        ))}
-      </ul>
+      <div className="plan-checklist" aria-label="출발 전 확인할 것">
+        <h3>출발 전 확인할 것</h3>
+        <ul className="plan-limitations">
+          {briefing.limitations.map((limitation) => (
+            <li key={limitation}>{limitation}</li>
+          ))}
+        </ul>
+      </div>
 
       <div className="plan-links" aria-label="공식 확인 경로">
-        <h3>출발 전 공식 확인</h3>
+        <h3>공식 확인 경로</h3>
         {briefing.official_links.map((link) => (
           <a key={link.url} href={link.url} target="_blank" rel="noreferrer">
             {link.label} <span aria-hidden="true">↗</span>

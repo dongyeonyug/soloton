@@ -28,6 +28,8 @@
   --krds-grade-danger-surface: #fbefec;
   --krds-grade-danger-border: #e2a99c;
   --krds-signal-off: #cdd1d5;
+  /* 페이지 바탕 — 승인 시안의 옅은 한색 톤. 카드(canvas)는 흰색을 유지한다. */
+  --krds-page: #f6f8fc;
   font-family: "Pretendard GOV", "Pretendard", -apple-system, BlinkMacSystemFont,
     "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif;
   color: var(--krds-text);
@@ -42,10 +44,22 @@
 
 body {
   margin: 0;
-  background: var(--krds-canvas);
+  background: var(--krds-page);
   color: var(--krds-text);
   font-size: 17px;
   line-height: 1.5;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 button {
@@ -64,17 +78,6 @@ button:focus-visible,
   padding: 32px 0 24px;
 }
 
-.topbar {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 24px;
-  border: 1px solid var(--krds-border);
-  border-radius: 8px;
-  background: var(--krds-canvas);
-}
-
 .eyebrow {
   margin: 0 0 6px;
   color: var(--krds-primary-deep);
@@ -82,29 +85,18 @@ button:focus-visible,
   font-weight: 700;
 }
 
-.topbar h1 {
-  margin: 0;
-  color: var(--krds-text);
-  font-size: 40px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  line-height: 1.5;
-}
-
-.tagline {
-  margin: 4px 0 0;
-  color: var(--krds-body);
+/* 계획 오프닝 — 데스크톱은 질문(좌)·계획 작성기(우), 모바일은 세로 한 열 */
+.plan-opening {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
+  gap: 32px;
+  align-items: center;
+  margin-top: 40px;
 }
 
 .hero-intro {
-  display: grid;
-  grid-template-columns: minmax(0, 1.22fr) minmax(320px, 0.78fr);
-  gap: 24px;
-  align-items: stretch;
-  padding: 28px;
-  border: 1px solid var(--krds-border);
-  border-radius: 8px;
-  background: var(--krds-canvas);
+  min-width: 0;
+  padding: 8px 0;
 }
 
 .hero-copy {
@@ -185,193 +177,11 @@ button:focus-visible,
   transform: scale(0.97);
 }
 
-.hero-proof {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 18px 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.hero-proof li {
-  display: inline-flex;
-  min-height: 34px;
-  align-items: center;
-  gap: 6px;
-  padding: 5px 10px;
-  border: 1px solid var(--krds-divider);
-  border-radius: 6px;
-  background: var(--krds-canvas);
-  color: var(--krds-body);
-  font-size: 14px;
-}
-
-.hero-proof strong {
-  color: var(--krds-text);
-}
-
-.hero-preview {
-  min-width: 0;
-  padding: 20px;
-  border: 1px solid var(--krds-border);
-  border-radius: 8px;
-  background: var(--krds-canvas);
-}
-
-.hero-preview-title {
-  margin: 0 0 12px;
-  color: var(--krds-muted);
-  font-size: 13px;
-  line-height: 1.5;
-}
-
-.hero-preview-empty {
-  min-height: 130px;
-  display: flex;
-  align-items: center;
-  padding: 16px;
-  border: 1px dashed var(--krds-border);
-  border-radius: 6px;
-  background: var(--krds-surface);
-  color: var(--krds-body);
-  font-size: 15px;
-  line-height: 1.55;
-}
-
-.hero-preview-signal {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 14px;
-  border: 1px solid var(--krds-border);
-  border-radius: 8px;
-  background: var(--krds-canvas);
-}
-
-.hero-preview-signal.grade-safe {
-  border-color: var(--krds-grade-safe-border);
-  background: var(--krds-grade-safe-surface);
-}
-
-.hero-preview-signal.grade-caution {
-  border-color: var(--krds-grade-caution-border);
-  background: var(--krds-grade-caution-surface);
-}
-
-.hero-preview-signal.grade-danger {
-  border-color: var(--krds-grade-danger-border);
-  background: var(--krds-grade-danger-surface);
-}
-
-.hero-preview-lights {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.hero-preview-light {
-  width: 15px;
-  height: 15px;
-  border: 1px solid rgba(30, 33, 36, 0.12);
-  border-radius: 50%;
-}
-
-.hero-preview-grade {
-  display: inline-flex;
-  align-items: center;
-  margin-right: 8px;
-  font-size: 28px;
-  font-weight: 700;
-  line-height: 1.5;
-}
-
-.hero-preview-grade.grade-safe {
-  color: var(--krds-grade-safe-ink);
-}
-
-.hero-preview-grade.grade-caution {
-  color: var(--krds-grade-caution-ink);
-}
-
-.hero-preview-grade.grade-danger {
-  color: var(--krds-grade-danger-ink);
-}
-
-.hero-preview-tag,
-.hero-preview-chip {
-  display: inline-flex;
-  min-height: 24px;
-  align-items: center;
-  padding: 1px 8px;
-  border: 1px solid var(--krds-border);
-  border-radius: 4px;
-  background: var(--krds-canvas);
-  color: var(--krds-body);
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 1.4;
-}
-
-.hero-preview-facts {
-  display: grid;
-  gap: 0;
-  margin: 12px 0 0;
-  border-top: 1px solid var(--krds-divider);
-  border-bottom: 1px solid var(--krds-divider);
-}
-
-.hero-preview-facts div {
-  display: grid;
-  grid-template-columns: 82px minmax(0, 1fr);
-  gap: 12px;
-  padding: 10px 0;
-  border-top: 1px solid var(--krds-divider);
-}
-
-.hero-preview-facts div:first-child {
-  border-top: 0;
-}
-
-.hero-preview-facts dt {
-  color: var(--krds-muted);
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.hero-preview-facts dd {
-  min-width: 0;
-  margin: 0;
-  color: var(--krds-text);
-  font-size: 14px;
-  overflow-wrap: anywhere;
-}
-
-.hero-preview-note,
 .hero-trust {
-  margin: 12px 0 0;
-  color: var(--krds-body);
+  margin: 20px 0 0;
+  color: var(--krds-muted);
   font-size: 13px;
   line-height: 1.55;
-}
-
-.hero-preview-citations {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 12px;
-}
-
-.hero-preview-chip.is-missing {
-  border-color: var(--krds-warning-bg);
-  background: #fff3db;
-  color: #614100;
-}
-
-.hero-trust {
-  padding-top: 12px;
-  border-top: 1px solid var(--krds-divider);
-  color: var(--krds-muted);
 }
 
 .banner.error {
@@ -404,6 +214,17 @@ button:focus-visible,
   background: #fbe4de;
 }
 
+/* 보조 해역 현황 — 계획 브리핑 아래의 명확한 2차 섹션 */
+.sea-status {
+  margin-top: 56px;
+  padding-top: 32px;
+  border-top: 1px solid var(--krds-divider);
+}
+
+.sea-status-heading h2 {
+  font-size: 24px;
+}
+
 .layout {
   display: grid;
   grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.92fr);
@@ -422,12 +243,17 @@ button:focus-visible,
 }
 
 .section-heading h2,
+.section-heading h3,
 .right h2 {
   margin: 0;
   color: var(--krds-text);
   font-size: 24px;
   font-weight: 700;
   line-height: 1.5;
+}
+
+.layout .section-heading h3 {
+  font-size: 20px;
 }
 
 .section-heading p {
@@ -1127,12 +953,33 @@ button:focus-visible,
   border-radius: 2px;
 }
 
-/* 주요 화면 전환 (해역 현황 / AI 거짓말 차단) */
+/* 상단 바 — 브랜드 + 주요 화면 전환 (내 계획 / AI 거짓말 차단) */
+.mainnav-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 24px;
+  border-bottom: 1px solid var(--krds-divider);
+}
+
+.mainnav-brand {
+  color: var(--krds-primary-deep);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+}
+
+.mainnav-brand:focus-visible {
+  outline: none;
+  box-shadow: var(--krds-focus);
+  border-radius: 2px;
+}
+
 .mainnav {
   display: flex;
   gap: 8px;
-  margin-top: 16px;
-  border-bottom: 1px solid var(--krds-divider);
 }
 
 .mainnav a {
@@ -1520,24 +1367,26 @@ mark.violation {
   color: var(--krds-body);
 }
 
-.plan-fields {
-  display: grid;
-  grid-template-columns: minmax(220px, 0.55fr) minmax(0, 1.45fr);
-  gap: 20px;
-  margin-top: 22px;
-}
-
-.plan-field {
-  display: grid;
-  align-content: start;
+/* 문장형 계획 입력 — 선택 UI가 한 문장처럼 읽힌다 */
+.plan-sentence {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   gap: 8px;
-  color: var(--krds-body);
-  font-size: 15px;
-  font-weight: 700;
+  margin: 22px 0 0;
+  color: var(--krds-text);
+  font-size: 19px;
+  line-height: 1.6;
+  word-break: keep-all;
 }
 
-.plan-field select {
-  width: 100%;
+.plan-sentence-field {
+  display: inline-flex;
+  min-width: 0;
+}
+
+.plan-sentence select {
+  max-width: 100%;
   min-height: 50px;
   padding: 0 14px;
   border: 1px solid var(--krds-border-strong);
@@ -1545,12 +1394,44 @@ mark.violation {
   background: var(--krds-canvas);
   color: var(--krds-text);
   font: inherit;
+  font-weight: 700;
+}
+
+.plan-activity {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  padding: 0 14px;
+  border-radius: 6px;
+  background: var(--krds-surface-primary);
+  color: var(--krds-primary-deep);
+  font-weight: 700;
+}
+
+.plan-time-field {
+  display: grid;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.plan-time-label {
+  color: var(--krds-body);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.plan-time-label small {
+  margin-left: 6px;
+  color: var(--krds-muted);
+  font-size: 13px;
   font-weight: 500;
 }
 
-.plan-field select:focus-visible,
+.plan-sentence select:focus-visible,
 .plan-time-option:focus-visible,
 .plan-submit:focus-visible,
+.plan-reselect:focus-visible,
+.plan-error-retry:focus-visible,
 .plan-links a:focus-visible {
   outline: none;
   box-shadow: var(--krds-focus);
@@ -1591,7 +1472,7 @@ mark.violation {
   transform: scale(0.97);
 }
 
-.plan-field-status,
+.plan-time-status,
 .plan-disclaimer {
   margin: 0;
   color: var(--krds-muted);
@@ -1601,10 +1482,31 @@ mark.violation {
 }
 
 .plan-error {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
   margin: 16px 0 0;
   color: var(--krds-danger);
   font-size: 15px;
   font-weight: 700;
+}
+
+.plan-error-retry {
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--krds-danger);
+  border-radius: 6px;
+  background: var(--krds-canvas);
+  color: var(--krds-grade-danger-ink);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.plan-error-retry:hover {
+  background: #fbe4de;
 }
 
 .plan-submit {
@@ -1671,15 +1573,36 @@ mark.violation {
   color: var(--krds-grade-caution-ink);
 }
 
+/* 백엔드 action — 브리핑에서 가장 강한 문장. 장식 없이 크기와 굵기로 위계를 만든다. */
 .plan-action {
-  margin: 18px 0 0;
-  padding: 14px 16px;
-  border-left: 4px solid var(--krds-primary);
-  background: var(--krds-surface-primary);
+  max-width: 34em;
+  margin: 20px 0 0;
   color: var(--krds-text);
+  font-size: 27px;
   font-weight: 700;
-  line-height: 1.65;
+  line-height: 1.45;
   word-break: keep-all;
+}
+
+.plan-reselect {
+  min-height: 48px;
+  margin-top: 16px;
+  padding: 0 18px;
+  border: 1px solid var(--krds-primary);
+  border-radius: 6px;
+  background: var(--krds-surface-primary);
+  color: var(--krds-primary-deep);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    transform 120ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.plan-reselect:active {
+  transform: scale(0.97);
 }
 
 .plan-fact-grid {
@@ -1751,10 +1674,22 @@ mark.violation {
   font-size: 14px;
 }
 
+/* 출발 전 확인 — limitations 를 읽기 전용 확인 목록으로. 체크박스 상태 저장은 없다. */
+.plan-checklist {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--krds-divider);
+}
+
+.plan-checklist h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+
 .plan-limitations {
   display: grid;
   gap: 6px;
-  margin: 18px 0 0;
+  margin: 0;
   padding: 0;
   color: var(--krds-body);
   font-size: 14px;
@@ -1813,20 +1748,17 @@ mark.violation {
 }
 
 @media (max-width: 980px) {
-  .topbar {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .hero-intro {
+  /* 모바일은 한 열 — 질문 → 입력 → 결과 → 보조 현황 순서 */
+  .plan-opening {
     grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 24px;
   }
 
   .layout {
     grid-template-columns: 1fr;
   }
 
-  .plan-fields,
   .plan-fact-grid {
     grid-template-columns: 1fr;
   }
@@ -1837,10 +1769,6 @@ mark.violation {
 }
 
 @media (max-width: 840px) {
-  .hero-intro {
-    padding: 24px;
-  }
-
   .hero-copy h1 {
     font-size: 32px;
   }
@@ -1848,32 +1776,20 @@ mark.violation {
   .hero-lead {
     font-size: 17px;
   }
-
-  .hero-proof {
-    margin-top: 14px;
-  }
 }
 
 @media (max-width: 640px) {
-  .hero-preview {
-    display: none;
-  }
-
   .app {
     width: min(100% - 32px, 1200px);
     padding-top: 16px;
   }
 
-  .topbar,
-  .hero-intro,
-  .hero-preview,
   .right,
   .plan-composer,
   .plan-briefing {
     padding: 16px;
   }
 
-  .topbar h1,
   .hero-copy h1 {
     font-size: 28px;
   }
@@ -1888,21 +1804,25 @@ mark.violation {
     width: 100%;
   }
 
-  .hero-proof li {
+  .plan-sentence {
+    font-size: 17px;
+  }
+
+  .plan-sentence-field {
     width: 100%;
-    justify-content: space-between;
   }
 
-  .hero-preview-signal {
-    align-items: flex-start;
+  .plan-sentence select {
+    width: 100%;
   }
 
-  .hero-preview-grade {
-    font-size: 24px;
+  .plan-action {
+    font-size: 22px;
   }
 
-  .hero-preview-facts div {
-    grid-template-columns: 72px minmax(0, 1fr);
+  .sea-status {
+    margin-top: 40px;
+    padding-top: 24px;
   }
 
   .map,
@@ -1941,7 +1861,8 @@ mark.violation {
   }
 
   .plan-time-option,
-  .plan-submit {
+  .plan-submit,
+  .plan-reselect {
     width: 100%;
   }
 }
@@ -1953,16 +1874,6 @@ mark.violation {
 
   .hero-copy h1 {
     font-size: 26px;
-  }
-
-  .hero-preview-title {
-    overflow-wrap: anywhere;
-  }
-
-  .hero-proof li {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 0;
   }
 }
 
@@ -1987,7 +1898,8 @@ mark.violation {
   }
 
   .plan-time-option:active,
-  .plan-submit:active {
+  .plan-submit:active,
+  .plan-reselect:active {
     transform: none;
   }
 }
