@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "snapshot_as_of": "2026-08-18T01:27:12.926881",
+  "snapshot_as_of": "2026-08-18T06:51:20.189614",
   "source": "live-collect (hybrid)",
   "spots": {
     "haeundae": {
@@ -15,7 +15,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -30,7 +30,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -45,7 +45,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -60,7 +60,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": "부산 조위관측소",
           "reference_station_code": "DT_0005",
           "reference_distance_km": 13.3
@@ -75,7 +75,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -91,8 +91,8 @@
       },
       "llm_prose": null,
       "prose_status": "generation_unavailable",
-      "observation_fetch_duration_ms": 1796,
-      "forecast_fetch_duration_ms": 960,
+      "observation_fetch_duration_ms": 1593,
+      "forecast_fetch_duration_ms": 892,
       "forecast": [
         {
           "time": "2026-08-18T00:00:00",
@@ -337,7 +337,7 @@
       ],
       "forecast_status": "available",
       "forecast_missing_reason": null,
-      "forecast_collected_at": "2026-08-18T01:27:12.926881"
+      "forecast_collected_at": "2026-08-18T06:51:20.189614"
     },
     "gwangalli": {
       "observations": [
@@ -351,7 +351,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -366,7 +366,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -381,7 +381,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -396,7 +396,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": "부산 조위관측소",
           "reference_station_code": "DT_0005",
           "reference_distance_km": 9.9
@@ -411,7 +411,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -427,8 +427,8 @@
       },
       "llm_prose": null,
       "prose_status": "generation_unavailable",
-      "observation_fetch_duration_ms": 1743,
-      "forecast_fetch_duration_ms": 1014,
+      "observation_fetch_duration_ms": 1593,
+      "forecast_fetch_duration_ms": 893,
       "forecast": [
         {
           "time": "2026-08-18T00:00:00",
@@ -673,7 +673,7 @@
       ],
       "forecast_status": "available",
       "forecast_missing_reason": null,
-      "forecast_collected_at": "2026-08-18T01:27:12.926881"
+      "forecast_collected_at": "2026-08-18T06:51:20.189614"
     },
     "songjeong": {
       "observations": [
@@ -687,7 +687,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -702,7 +702,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -717,7 +717,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -732,7 +732,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": "부산 조위관측소",
           "reference_station_code": "DT_0005",
           "reference_distance_km": 17.6
@@ -747,7 +747,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -763,8 +763,8 @@
       },
       "llm_prose": null,
       "prose_status": "generation_unavailable",
-      "observation_fetch_duration_ms": 3078,
-      "forecast_fetch_duration_ms": 702,
+      "observation_fetch_duration_ms": 1592,
+      "forecast_fetch_duration_ms": 886,
       "forecast": [
         {
           "time": "2026-08-18T00:00:00",
@@ -1009,21 +1009,21 @@
       ],
       "forecast_status": "available",
       "forecast_missing_reason": null,
-      "forecast_collected_at": "2026-08-18T01:27:12.926881"
+      "forecast_collected_at": "2026-08-18T06:51:20.189614"
     },
     "songdo": {
       "observations": [
         {
           "spot_id": "songdo",
           "metric": "wave_height",
-          "value": 0.48,
+          "value": 0.6,
           "unit": "m",
-          "observed_at": "2026-08-18T10:15:00",
+          "observed_at": "2026-08-18T15:45:00",
           "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1031,14 +1031,14 @@
         {
           "spot_id": "songdo",
           "metric": "wind_speed",
-          "value": 1.61,
+          "value": 4.27,
           "unit": "m/s",
-          "observed_at": "2026-08-18T10:15:00",
+          "observed_at": "2026-08-18T15:45:00",
           "source": "Open-Meteo 기상모델",
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1053,7 +1053,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1068,7 +1068,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": "부산 조위관측소",
           "reference_station_code": "DT_0005",
           "reference_distance_km": 2.8
@@ -1083,7 +1083,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1099,8 +1099,8 @@
       },
       "llm_prose": null,
       "prose_status": "generation_unavailable",
-      "observation_fetch_duration_ms": 1796,
-      "forecast_fetch_duration_ms": 965,
+      "observation_fetch_duration_ms": 1592,
+      "forecast_fetch_duration_ms": 885,
       "forecast": [
         {
           "time": "2026-08-18T00:00:00",
@@ -1345,21 +1345,21 @@
       ],
       "forecast_status": "available",
       "forecast_missing_reason": null,
-      "forecast_collected_at": "2026-08-18T01:27:12.926881"
+      "forecast_collected_at": "2026-08-18T06:51:20.189614"
     },
     "dadaepo": {
       "observations": [
         {
           "spot_id": "dadaepo",
           "metric": "wave_height",
-          "value": 0.42,
+          "value": 0.52,
           "unit": "m",
-          "observed_at": "2026-08-18T10:15:00",
+          "observed_at": "2026-08-18T15:45:00",
           "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1367,14 +1367,14 @@
         {
           "spot_id": "dadaepo",
           "metric": "wind_speed",
-          "value": 4.0,
+          "value": 6.91,
           "unit": "m/s",
-          "observed_at": "2026-08-18T10:15:00",
+          "observed_at": "2026-08-18T15:45:00",
           "source": "Open-Meteo 기상모델",
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1389,7 +1389,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1404,7 +1404,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": "부산 조위관측소",
           "reference_station_code": "DT_0005",
           "reference_distance_km": 8.2
@@ -1419,7 +1419,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1435,8 +1435,8 @@
       },
       "llm_prose": null,
       "prose_status": "generation_unavailable",
-      "observation_fetch_duration_ms": 1796,
-      "forecast_fetch_duration_ms": 973,
+      "observation_fetch_duration_ms": 1592,
+      "forecast_fetch_duration_ms": 870,
       "forecast": [
         {
           "time": "2026-08-18T00:00:00",
@@ -1681,7 +1681,7 @@
       ],
       "forecast_status": "available",
       "forecast_missing_reason": null,
-      "forecast_collected_at": "2026-08-18T01:27:12.926881"
+      "forecast_collected_at": "2026-08-18T06:51:20.189614"
     },
     "ilgwang": {
       "observations": [
@@ -1695,7 +1695,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1710,7 +1710,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1725,7 +1725,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1740,7 +1740,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": "부산 조위관측소",
           "reference_station_code": "DT_0005",
           "reference_distance_km": 25.9
@@ -1755,7 +1755,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1771,8 +1771,8 @@
       },
       "llm_prose": null,
       "prose_status": "generation_unavailable",
-      "observation_fetch_duration_ms": 1796,
-      "forecast_fetch_duration_ms": 976,
+      "observation_fetch_duration_ms": 1555,
+      "forecast_fetch_duration_ms": 908,
       "forecast": [
         {
           "time": "2026-08-18T00:00:00",
@@ -2017,7 +2017,7 @@
       ],
       "forecast_status": "available",
       "forecast_missing_reason": null,
-      "forecast_collected_at": "2026-08-18T01:27:12.926881"
+      "forecast_collected_at": "2026-08-18T06:51:20.189614"
     },
     "imnang": {
       "observations": [
@@ -2031,7 +2031,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -2046,7 +2046,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -2061,7 +2061,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -2076,7 +2076,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": "울산 조위관측소",
           "reference_station_code": "DT_0020",
           "reference_distance_km": 22.9
@@ -2091,7 +2091,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -2107,8 +2107,8 @@
       },
       "llm_prose": null,
       "prose_status": "generation_unavailable",
-      "observation_fetch_duration_ms": 3186,
-      "forecast_fetch_duration_ms": 753,
+      "observation_fetch_duration_ms": 1513,
+      "forecast_fetch_duration_ms": 755,
       "forecast": [
         {
           "time": "2026-08-18T00:00:00",
@@ -2353,21 +2353,21 @@
       ],
       "forecast_status": "available",
       "forecast_missing_reason": null,
-      "forecast_collected_at": "2026-08-18T01:27:12.926881"
+      "forecast_collected_at": "2026-08-18T06:51:20.189614"
     },
     "busanhang": {
       "observations": [
         {
           "spot_id": "busanhang",
           "metric": "wave_height",
-          "value": 0.42,
+          "value": 0.48,
           "unit": "m",
-          "observed_at": "2026-08-18T10:15:00",
+          "observed_at": "2026-08-18T15:45:00",
           "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -2375,14 +2375,14 @@
         {
           "spot_id": "busanhang",
           "metric": "wind_speed",
-          "value": 2.0,
+          "value": 5.08,
           "unit": "m/s",
-          "observed_at": "2026-08-18T10:15:00",
+          "observed_at": "2026-08-18T15:45:00",
           "source": "Open-Meteo 기상모델",
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -2397,7 +2397,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -2412,7 +2412,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": "부산 조위관측소",
           "reference_station_code": "DT_0005",
           "reference_distance_km": 0.0
@@ -2427,7 +2427,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -2443,8 +2443,8 @@
       },
       "llm_prose": null,
       "prose_status": "generation_unavailable",
-      "observation_fetch_duration_ms": 1796,
-      "forecast_fetch_duration_ms": 970,
+      "observation_fetch_duration_ms": 1592,
+      "forecast_fetch_duration_ms": 884,
       "forecast": [
         {
           "time": "2026-08-18T00:00:00",
@@ -2689,21 +2689,21 @@
       ],
       "forecast_status": "available",
       "forecast_missing_reason": null,
-      "forecast_collected_at": "2026-08-18T01:27:12.926881"
+      "forecast_collected_at": "2026-08-18T06:51:20.189614"
     },
     "gamcheon": {
       "observations": [
         {
           "spot_id": "gamcheon",
           "metric": "wave_height",
-          "value": 0.48,
+          "value": 0.6,
           "unit": "m",
-          "observed_at": "2026-08-18T10:15:00",
+          "observed_at": "2026-08-18T15:45:00",
           "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -2711,14 +2711,14 @@
         {
           "spot_id": "gamcheon",
           "metric": "wind_speed",
-          "value": 1.61,
+          "value": 4.27,
           "unit": "m/s",
-          "observed_at": "2026-08-18T10:15:00",
+          "observed_at": "2026-08-18T15:45:00",
           "source": "Open-Meteo 기상모델",
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -2733,7 +2733,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -2748,7 +2748,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": "부산 조위관측소",
           "reference_station_code": "DT_0005",
           "reference_distance_km": 2.9
@@ -2763,7 +2763,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -2779,8 +2779,8 @@
       },
       "llm_prose": null,
       "prose_status": "generation_unavailable",
-      "observation_fetch_duration_ms": 1796,
-      "forecast_fetch_duration_ms": 978,
+      "observation_fetch_duration_ms": 1592,
+      "forecast_fetch_duration_ms": 885,
       "forecast": [
         {
           "time": "2026-08-18T00:00:00",
@@ -3025,7 +3025,7 @@
       ],
       "forecast_status": "available",
       "forecast_missing_reason": null,
-      "forecast_collected_at": "2026-08-18T01:27:12.926881"
+      "forecast_collected_at": "2026-08-18T06:51:20.189614"
     },
     "daebyeon": {
       "observations": [
@@ -3039,7 +3039,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -3054,7 +3054,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -3069,7 +3069,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -3084,7 +3084,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": "부산 조위관측소",
           "reference_station_code": "DT_0005",
           "reference_distance_km": 23.8
@@ -3099,7 +3099,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -3115,8 +3115,8 @@
       },
       "llm_prose": null,
       "prose_status": "generation_unavailable",
-      "observation_fetch_duration_ms": 1796,
-      "forecast_fetch_duration_ms": 965,
+      "observation_fetch_duration_ms": 1592,
+      "forecast_fetch_duration_ms": 886,
       "forecast": [
         {
           "time": "2026-08-18T00:00:00",
@@ -3361,21 +3361,21 @@
       ],
       "forecast_status": "available",
       "forecast_missing_reason": null,
-      "forecast_collected_at": "2026-08-18T01:27:12.926881"
+      "forecast_collected_at": "2026-08-18T06:51:20.189614"
     },
     "dadaepohang": {
       "observations": [
         {
           "spot_id": "dadaepohang",
           "metric": "wave_height",
-          "value": 0.42,
+          "value": 0.52,
           "unit": "m",
-          "observed_at": "2026-08-18T10:15:00",
+          "observed_at": "2026-08-18T15:45:00",
           "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -3383,14 +3383,14 @@
         {
           "spot_id": "dadaepohang",
           "metric": "wind_speed",
-          "value": 3.26,
+          "value": 6.44,
           "unit": "m/s",
-          "observed_at": "2026-08-18T10:15:00",
+          "observed_at": "2026-08-18T15:45:00",
           "source": "Open-Meteo 기상모델",
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -3405,7 +3405,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -3420,7 +3420,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": "부산 조위관측소",
           "reference_station_code": "DT_0005",
           "reference_distance_km": 8.1
@@ -3435,7 +3435,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -3451,8 +3451,8 @@
       },
       "llm_prose": null,
       "prose_status": "generation_unavailable",
-      "observation_fetch_duration_ms": 1796,
-      "forecast_fetch_duration_ms": 977,
+      "observation_fetch_duration_ms": 1593,
+      "forecast_fetch_duration_ms": 882,
       "forecast": [
         {
           "time": "2026-08-18T00:00:00",
@@ -3697,21 +3697,21 @@
       ],
       "forecast_status": "available",
       "forecast_missing_reason": null,
-      "forecast_collected_at": "2026-08-18T01:27:12.926881"
+      "forecast_collected_at": "2026-08-18T06:51:20.189614"
     },
     "taejongdae": {
       "observations": [
         {
           "spot_id": "taejongdae",
           "metric": "wave_height",
-          "value": 0.58,
+          "value": 0.68,
           "unit": "m",
-          "observed_at": "2026-08-18T10:15:00",
+          "observed_at": "2026-08-18T15:45:00",
           "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -3719,14 +3719,14 @@
         {
           "spot_id": "taejongdae",
           "metric": "wind_speed",
-          "value": 3.05,
+          "value": 6.68,
           "unit": "m/s",
-          "observed_at": "2026-08-18T10:15:00",
+          "observed_at": "2026-08-18T15:45:00",
           "source": "Open-Meteo 기상모델",
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -3741,7 +3741,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -3756,7 +3756,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": "부산 조위관측소",
           "reference_station_code": "DT_0005",
           "reference_distance_km": 6.8
@@ -3771,7 +3771,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -3787,8 +3787,8 @@
       },
       "llm_prose": null,
       "prose_status": "generation_unavailable",
-      "observation_fetch_duration_ms": 1796,
-      "forecast_fetch_duration_ms": 978,
+      "observation_fetch_duration_ms": 1593,
+      "forecast_fetch_duration_ms": 879,
       "forecast": [
         {
           "time": "2026-08-18T00:00:00",
@@ -4033,21 +4033,21 @@
       ],
       "forecast_status": "available",
       "forecast_missing_reason": null,
-      "forecast_collected_at": "2026-08-18T01:27:12.926881"
+      "forecast_collected_at": "2026-08-18T06:51:20.189614"
     },
     "oryukdo": {
       "observations": [
         {
           "spot_id": "oryukdo",
           "metric": "wave_height",
-          "value": 0.5,
+          "value": 0.58,
           "unit": "m",
-          "observed_at": "2026-08-18T10:15:00",
+          "observed_at": "2026-08-18T15:45:00",
           "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -4055,14 +4055,14 @@
         {
           "spot_id": "oryukdo",
           "metric": "wind_speed",
-          "value": 2.6,
+          "value": 6.61,
           "unit": "m/s",
-          "observed_at": "2026-08-18T10:15:00",
+          "observed_at": "2026-08-18T15:45:00",
           "source": "Open-Meteo 기상모델",
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -4077,7 +4077,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -4092,7 +4092,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": "부산 조위관측소",
           "reference_station_code": "DT_0005",
           "reference_distance_km": 8.0
@@ -4107,7 +4107,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -4123,8 +4123,8 @@
       },
       "llm_prose": null,
       "prose_status": "generation_unavailable",
-      "observation_fetch_duration_ms": 3149,
-      "forecast_fetch_duration_ms": 630,
+      "observation_fetch_duration_ms": 1593,
+      "forecast_fetch_duration_ms": 890,
       "forecast": [
         {
           "time": "2026-08-18T00:00:00",
@@ -4369,7 +4369,7 @@
       ],
       "forecast_status": "available",
       "forecast_missing_reason": null,
-      "forecast_collected_at": "2026-08-18T01:27:12.926881"
+      "forecast_collected_at": "2026-08-18T06:51:20.189614"
     },
     "cheongsapo": {
       "observations": [
@@ -4383,7 +4383,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -4398,7 +4398,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -4413,7 +4413,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -4428,7 +4428,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": "부산 조위관측소",
           "reference_station_code": "DT_0005",
           "reference_distance_km": 15.8
@@ -4443,7 +4443,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -4459,8 +4459,8 @@
       },
       "llm_prose": null,
       "prose_status": "generation_unavailable",
-      "observation_fetch_duration_ms": 1796,
-      "forecast_fetch_duration_ms": 961,
+      "observation_fetch_duration_ms": 1593,
+      "forecast_fetch_duration_ms": 886,
       "forecast": [
         {
           "time": "2026-08-18T00:00:00",
@@ -4705,21 +4705,21 @@
       ],
       "forecast_status": "available",
       "forecast_missing_reason": null,
-      "forecast_collected_at": "2026-08-18T01:27:12.926881"
+      "forecast_collected_at": "2026-08-18T06:51:20.189614"
     },
     "igidae": {
       "observations": [
         {
           "spot_id": "igidae",
           "metric": "wave_height",
-          "value": 0.5,
+          "value": 0.58,
           "unit": "m",
-          "observed_at": "2026-08-18T10:15:00",
+          "observed_at": "2026-08-18T15:45:00",
           "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -4727,14 +4727,14 @@
         {
           "spot_id": "igidae",
           "metric": "wind_speed",
-          "value": 2.6,
+          "value": 6.61,
           "unit": "m/s",
-          "observed_at": "2026-08-18T10:15:00",
+          "observed_at": "2026-08-18T15:45:00",
           "source": "Open-Meteo 기상모델",
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -4749,7 +4749,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -4764,7 +4764,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": "부산 조위관측소",
           "reference_station_code": "DT_0005",
           "reference_distance_km": 8.4
@@ -4779,7 +4779,7 @@
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-08-18T01:27:12.926881",
+          "fetched_at": "2026-08-18T06:51:20.189614",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -4795,8 +4795,8 @@
       },
       "llm_prose": null,
       "prose_status": "generation_unavailable",
-      "observation_fetch_duration_ms": 1796,
-      "forecast_fetch_duration_ms": 977,
+      "observation_fetch_duration_ms": 1593,
+      "forecast_fetch_duration_ms": 892,
       "forecast": [
         {
           "time": "2026-08-18T00:00:00",
@@ -5041,7 +5041,7 @@
       ],
       "forecast_status": "available",
       "forecast_missing_reason": null,
-      "forecast_collected_at": "2026-08-18T01:27:12.926881"
+      "forecast_collected_at": "2026-08-18T06:51:20.189614"
     }
   }
 }
