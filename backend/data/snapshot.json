@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "snapshot_as_of": "2026-10-03T20:50:19.622820",
+  "snapshot_as_of": "2026-10-04T05:13:31.893122",
   "source": "live-collect (hybrid)",
   "spots": {
     "haeundae": {
@@ -8,14 +8,14 @@
         {
           "spot_id": "haeundae",
           "metric": "wave_height",
-          "value": null,
+          "value": 1.1,
           "unit": "m",
-          "observed_at": null,
+          "observed_at": "2026-10-03T15:00:00",
           "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -23,14 +23,14 @@
         {
           "spot_id": "haeundae",
           "metric": "wind_speed",
-          "value": null,
+          "value": 4.3,
           "unit": "m/s",
-          "observed_at": null,
+          "observed_at": "2026-10-03T15:00:00",
           "source": "KHOA 해양관측부이(실측)",
-          "is_missing": true,
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -38,14 +38,14 @@
         {
           "spot_id": "haeundae",
           "metric": "current_speed",
-          "value": null,
+          "value": 0.13,
           "unit": "m/s",
-          "observed_at": null,
+          "observed_at": "2026-10-03T15:00:00",
           "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -53,14 +53,14 @@
         {
           "spot_id": "haeundae",
           "metric": "tide_level",
-          "value": null,
+          "value": 103.0,
           "unit": "cm",
-          "observed_at": null,
+          "observed_at": "2026-10-03T15:00:00",
           "source": "KHOA 조위관측소(실측)",
-          "is_missing": true,
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": "부산 조위관측소",
           "reference_station_code": "DT_0005",
           "reference_distance_km": 13.3
@@ -68,584 +68,14 @@
         {
           "spot_id": "haeundae",
           "metric": "water_temp",
-          "value": null,
+          "value": 23.85,
           "unit": "°C",
-          "observed_at": null,
-          "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
-          "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
-          "reference_station_name": null,
-          "reference_station_code": null,
-          "reference_distance_km": null
-        }
-      ],
-      "advisory": {
-        "kind": "none",
-        "threshold_value": null,
-        "effective_at": null,
-        "source": "특보 소스 없음",
-        "is_missing": true,
-        "is_stale": false
-      },
-      "llm_prose": null,
-      "prose_status": "generation_unavailable",
-      "observation_fetch_duration_ms": 10008,
-      "forecast_fetch_duration_ms": 10011,
-      "forecast": [],
-      "forecast_status": "source_timeout",
-      "forecast_missing_reason": "source_timeout",
-      "forecast_collected_at": "2026-10-03T20:50:19.622820"
-    },
-    "gwangalli": {
-      "observations": [
-        {
-          "spot_id": "gwangalli",
-          "metric": "wave_height",
-          "value": null,
-          "unit": "m",
-          "observed_at": null,
-          "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
-          "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
-          "reference_station_name": null,
-          "reference_station_code": null,
-          "reference_distance_km": null
-        },
-        {
-          "spot_id": "gwangalli",
-          "metric": "wind_speed",
-          "value": null,
-          "unit": "m/s",
-          "observed_at": null,
-          "source": "KHOA 해양관측부이(실측)",
-          "is_missing": true,
-          "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
-          "reference_station_name": null,
-          "reference_station_code": null,
-          "reference_distance_km": null
-        },
-        {
-          "spot_id": "gwangalli",
-          "metric": "current_speed",
-          "value": null,
-          "unit": "m/s",
-          "observed_at": null,
-          "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
-          "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
-          "reference_station_name": null,
-          "reference_station_code": null,
-          "reference_distance_km": null
-        },
-        {
-          "spot_id": "gwangalli",
-          "metric": "tide_level",
-          "value": null,
-          "unit": "cm",
-          "observed_at": null,
-          "source": "KHOA 조위관측소(실측)",
-          "is_missing": true,
-          "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
-          "reference_station_name": "부산 조위관측소",
-          "reference_station_code": "DT_0005",
-          "reference_distance_km": 9.9
-        },
-        {
-          "spot_id": "gwangalli",
-          "metric": "water_temp",
-          "value": null,
-          "unit": "°C",
-          "observed_at": null,
-          "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
-          "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
-          "reference_station_name": null,
-          "reference_station_code": null,
-          "reference_distance_km": null
-        }
-      ],
-      "advisory": {
-        "kind": "none",
-        "threshold_value": null,
-        "effective_at": null,
-        "source": "특보 소스 없음",
-        "is_missing": true,
-        "is_stale": false
-      },
-      "llm_prose": null,
-      "prose_status": "generation_unavailable",
-      "observation_fetch_duration_ms": 10008,
-      "forecast_fetch_duration_ms": 10012,
-      "forecast": [],
-      "forecast_status": "source_timeout",
-      "forecast_missing_reason": "source_timeout",
-      "forecast_collected_at": "2026-10-03T20:50:19.622820"
-    },
-    "songjeong": {
-      "observations": [
-        {
-          "spot_id": "songjeong",
-          "metric": "wave_height",
-          "value": null,
-          "unit": "m",
-          "observed_at": null,
-          "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
-          "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
-          "reference_station_name": null,
-          "reference_station_code": null,
-          "reference_distance_km": null
-        },
-        {
-          "spot_id": "songjeong",
-          "metric": "wind_speed",
-          "value": null,
-          "unit": "m/s",
-          "observed_at": null,
-          "source": "KHOA 해양관측부이(실측)",
-          "is_missing": true,
-          "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
-          "reference_station_name": null,
-          "reference_station_code": null,
-          "reference_distance_km": null
-        },
-        {
-          "spot_id": "songjeong",
-          "metric": "current_speed",
-          "value": null,
-          "unit": "m/s",
-          "observed_at": null,
-          "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
-          "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
-          "reference_station_name": null,
-          "reference_station_code": null,
-          "reference_distance_km": null
-        },
-        {
-          "spot_id": "songjeong",
-          "metric": "tide_level",
-          "value": null,
-          "unit": "cm",
-          "observed_at": null,
-          "source": "KHOA 조위관측소(실측)",
-          "is_missing": true,
-          "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
-          "reference_station_name": "부산 조위관측소",
-          "reference_station_code": "DT_0005",
-          "reference_distance_km": 17.6
-        },
-        {
-          "spot_id": "songjeong",
-          "metric": "water_temp",
-          "value": null,
-          "unit": "°C",
-          "observed_at": null,
-          "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
-          "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
-          "reference_station_name": null,
-          "reference_station_code": null,
-          "reference_distance_km": null
-        }
-      ],
-      "advisory": {
-        "kind": "none",
-        "threshold_value": null,
-        "effective_at": null,
-        "source": "특보 소스 없음",
-        "is_missing": true,
-        "is_stale": false
-      },
-      "llm_prose": null,
-      "prose_status": "generation_unavailable",
-      "observation_fetch_duration_ms": 10008,
-      "forecast_fetch_duration_ms": 10013,
-      "forecast": [],
-      "forecast_status": "source_timeout",
-      "forecast_missing_reason": "source_timeout",
-      "forecast_collected_at": "2026-10-03T20:50:19.622820"
-    },
-    "songdo": {
-      "observations": [
-        {
-          "spot_id": "songdo",
-          "metric": "wave_height",
-          "value": null,
-          "unit": "m",
-          "observed_at": null,
-          "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
-          "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
-          "reference_station_name": null,
-          "reference_station_code": null,
-          "reference_distance_km": null
-        },
-        {
-          "spot_id": "songdo",
-          "metric": "wind_speed",
-          "value": null,
-          "unit": "m/s",
-          "observed_at": null,
-          "source": "KHOA 해양관측부이(실측)",
-          "is_missing": true,
-          "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
-          "reference_station_name": null,
-          "reference_station_code": null,
-          "reference_distance_km": null
-        },
-        {
-          "spot_id": "songdo",
-          "metric": "current_speed",
-          "value": null,
-          "unit": "m/s",
-          "observed_at": null,
-          "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
-          "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
-          "reference_station_name": null,
-          "reference_station_code": null,
-          "reference_distance_km": null
-        },
-        {
-          "spot_id": "songdo",
-          "metric": "tide_level",
-          "value": null,
-          "unit": "cm",
-          "observed_at": null,
-          "source": "KHOA 조위관측소(실측)",
-          "is_missing": true,
-          "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
-          "reference_station_name": "부산 조위관측소",
-          "reference_station_code": "DT_0005",
-          "reference_distance_km": 2.8
-        },
-        {
-          "spot_id": "songdo",
-          "metric": "water_temp",
-          "value": null,
-          "unit": "°C",
-          "observed_at": null,
-          "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
-          "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
-          "reference_station_name": null,
-          "reference_station_code": null,
-          "reference_distance_km": null
-        }
-      ],
-      "advisory": {
-        "kind": "none",
-        "threshold_value": null,
-        "effective_at": null,
-        "source": "특보 소스 없음",
-        "is_missing": true,
-        "is_stale": false
-      },
-      "llm_prose": null,
-      "prose_status": "generation_unavailable",
-      "observation_fetch_duration_ms": 10008,
-      "forecast_fetch_duration_ms": 10015,
-      "forecast": [],
-      "forecast_status": "source_timeout",
-      "forecast_missing_reason": "source_timeout",
-      "forecast_collected_at": "2026-10-03T20:50:19.622820"
-    },
-    "dadaepo": {
-      "observations": [
-        {
-          "spot_id": "dadaepo",
-          "metric": "wave_height",
-          "value": null,
-          "unit": "m",
-          "observed_at": null,
-          "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
-          "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
-          "reference_station_name": null,
-          "reference_station_code": null,
-          "reference_distance_km": null
-        },
-        {
-          "spot_id": "dadaepo",
-          "metric": "wind_speed",
-          "value": null,
-          "unit": "m/s",
-          "observed_at": null,
-          "source": "KHOA 해양관측부이(실측)",
-          "is_missing": true,
-          "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
-          "reference_station_name": null,
-          "reference_station_code": null,
-          "reference_distance_km": null
-        },
-        {
-          "spot_id": "dadaepo",
-          "metric": "current_speed",
-          "value": null,
-          "unit": "m/s",
-          "observed_at": null,
-          "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
-          "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
-          "reference_station_name": null,
-          "reference_station_code": null,
-          "reference_distance_km": null
-        },
-        {
-          "spot_id": "dadaepo",
-          "metric": "tide_level",
-          "value": null,
-          "unit": "cm",
-          "observed_at": null,
-          "source": "KHOA 조위관측소(실측)",
-          "is_missing": true,
-          "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
-          "reference_station_name": "부산 조위관측소",
-          "reference_station_code": "DT_0005",
-          "reference_distance_km": 8.2
-        },
-        {
-          "spot_id": "dadaepo",
-          "metric": "water_temp",
-          "value": null,
-          "unit": "°C",
-          "observed_at": null,
-          "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
-          "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
-          "reference_station_name": null,
-          "reference_station_code": null,
-          "reference_distance_km": null
-        }
-      ],
-      "advisory": {
-        "kind": "none",
-        "threshold_value": null,
-        "effective_at": null,
-        "source": "특보 소스 없음",
-        "is_missing": true,
-        "is_stale": false
-      },
-      "llm_prose": null,
-      "prose_status": "generation_unavailable",
-      "observation_fetch_duration_ms": 10008,
-      "forecast_fetch_duration_ms": 10016,
-      "forecast": [],
-      "forecast_status": "source_timeout",
-      "forecast_missing_reason": "source_timeout",
-      "forecast_collected_at": "2026-10-03T20:50:19.622820"
-    },
-    "ilgwang": {
-      "observations": [
-        {
-          "spot_id": "ilgwang",
-          "metric": "wave_height",
-          "value": null,
-          "unit": "m",
-          "observed_at": null,
-          "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
-          "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
-          "reference_station_name": null,
-          "reference_station_code": null,
-          "reference_distance_km": null
-        },
-        {
-          "spot_id": "ilgwang",
-          "metric": "wind_speed",
-          "value": null,
-          "unit": "m/s",
-          "observed_at": null,
-          "source": "KHOA 해양관측부이(실측)",
-          "is_missing": true,
-          "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
-          "reference_station_name": null,
-          "reference_station_code": null,
-          "reference_distance_km": null
-        },
-        {
-          "spot_id": "ilgwang",
-          "metric": "current_speed",
-          "value": null,
-          "unit": "m/s",
-          "observed_at": null,
-          "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
-          "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
-          "reference_station_name": null,
-          "reference_station_code": null,
-          "reference_distance_km": null
-        },
-        {
-          "spot_id": "ilgwang",
-          "metric": "tide_level",
-          "value": null,
-          "unit": "cm",
-          "observed_at": null,
-          "source": "KHOA 조위관측소(실측)",
-          "is_missing": true,
-          "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
-          "reference_station_name": "부산 조위관측소",
-          "reference_station_code": "DT_0005",
-          "reference_distance_km": 25.9
-        },
-        {
-          "spot_id": "ilgwang",
-          "metric": "water_temp",
-          "value": null,
-          "unit": "°C",
-          "observed_at": null,
-          "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
-          "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
-          "reference_station_name": null,
-          "reference_station_code": null,
-          "reference_distance_km": null
-        }
-      ],
-      "advisory": {
-        "kind": "none",
-        "threshold_value": null,
-        "effective_at": null,
-        "source": "특보 소스 없음",
-        "is_missing": true,
-        "is_stale": false
-      },
-      "llm_prose": null,
-      "prose_status": "generation_unavailable",
-      "observation_fetch_duration_ms": 10008,
-      "forecast_fetch_duration_ms": 10018,
-      "forecast": [],
-      "forecast_status": "source_timeout",
-      "forecast_missing_reason": "source_timeout",
-      "forecast_collected_at": "2026-10-03T20:50:19.622820"
-    },
-    "imnang": {
-      "observations": [
-        {
-          "spot_id": "imnang",
-          "metric": "wave_height",
-          "value": 0.5,
-          "unit": "m",
-          "observed_at": "2026-10-02T15:00:00",
+          "observed_at": "2026-10-03T15:00:00",
           "source": "KHOA 바다누리(실측)",
           "is_missing": false,
           "is_stale": false,
           "missing_reason": null,
-          "fetched_at": "2026-10-03T20:50:19.622820",
-          "reference_station_name": null,
-          "reference_station_code": null,
-          "reference_distance_km": null
-        },
-        {
-          "spot_id": "imnang",
-          "metric": "wind_speed",
-          "value": 6.0,
-          "unit": "m/s",
-          "observed_at": "2026-10-02T15:00:00",
-          "source": "KHOA 해양관측부이(실측)",
-          "is_missing": false,
-          "is_stale": false,
-          "missing_reason": null,
-          "fetched_at": "2026-10-03T20:50:19.622820",
-          "reference_station_name": null,
-          "reference_station_code": null,
-          "reference_distance_km": null
-        },
-        {
-          "spot_id": "imnang",
-          "metric": "current_speed",
-          "value": 0.462,
-          "unit": "m/s",
-          "observed_at": "2026-10-02T15:00:00",
-          "source": "KHOA 바다누리(실측)",
-          "is_missing": false,
-          "is_stale": false,
-          "missing_reason": null,
-          "fetched_at": "2026-10-03T20:50:19.622820",
-          "reference_station_name": null,
-          "reference_station_code": null,
-          "reference_distance_km": null
-        },
-        {
-          "spot_id": "imnang",
-          "metric": "tide_level",
-          "value": 60.0,
-          "unit": "cm",
-          "observed_at": "2026-10-02T15:00:00",
-          "source": "KHOA 조위관측소(실측)",
-          "is_missing": false,
-          "is_stale": false,
-          "missing_reason": null,
-          "fetched_at": "2026-10-03T20:50:19.622820",
-          "reference_station_name": "울산 조위관측소",
-          "reference_station_code": "DT_0020",
-          "reference_distance_km": 22.9
-        },
-        {
-          "spot_id": "imnang",
-          "metric": "water_temp",
-          "value": 24.23,
-          "unit": "°C",
-          "observed_at": "2026-10-02T15:00:00",
-          "source": "KHOA 바다누리(실측)",
-          "is_missing": false,
-          "is_stale": false,
-          "missing_reason": null,
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -661,267 +91,2283 @@
       },
       "llm_prose": null,
       "prose_status": "generation_unavailable",
-      "observation_fetch_duration_ms": 3069,
-      "forecast_fetch_duration_ms": 654,
+      "observation_fetch_duration_ms": 1793,
+      "forecast_fetch_duration_ms": 1019,
       "forecast": [
         {
           "time": "2026-10-04T00:00:00",
-          "wave_height": 1.28,
-          "wind_speed": 5.66
+          "wave_height": 1.04,
+          "wind_speed": 7.92
         },
         {
           "time": "2026-10-04T01:00:00",
-          "wave_height": 1.28,
-          "wind_speed": 4.72
+          "wave_height": 1.0,
+          "wind_speed": 6.94
         },
         {
           "time": "2026-10-04T02:00:00",
-          "wave_height": 1.26,
-          "wind_speed": 3.7
+          "wave_height": 0.96,
+          "wind_speed": 5.45
         },
         {
           "time": "2026-10-04T03:00:00",
-          "wave_height": 1.26,
-          "wind_speed": 4.18
+          "wave_height": 0.92,
+          "wind_speed": 6.3
         },
         {
           "time": "2026-10-04T04:00:00",
-          "wave_height": 1.24,
-          "wind_speed": 3.95
+          "wave_height": 0.9,
+          "wind_speed": 5.88
         },
         {
           "time": "2026-10-04T05:00:00",
-          "wave_height": 1.22,
-          "wind_speed": 4.49
+          "wave_height": 0.9,
+          "wind_speed": 4.77
         },
         {
           "time": "2026-10-04T06:00:00",
-          "wave_height": 1.2,
-          "wind_speed": 4.39
+          "wave_height": 0.88,
+          "wind_speed": 4.8
         },
         {
           "time": "2026-10-04T07:00:00",
-          "wave_height": 1.18,
-          "wind_speed": 3.91
+          "wave_height": 0.9,
+          "wind_speed": 4.24
         },
         {
           "time": "2026-10-04T08:00:00",
-          "wave_height": 1.18,
-          "wind_speed": 3.52
+          "wave_height": 0.92,
+          "wind_speed": 4.8
         },
         {
           "time": "2026-10-04T09:00:00",
-          "wave_height": 1.16,
-          "wind_speed": 3.72
+          "wave_height": 0.94,
+          "wind_speed": 4.88
         },
         {
           "time": "2026-10-04T10:00:00",
-          "wave_height": 1.14,
-          "wind_speed": 4.96
+          "wave_height": 0.92,
+          "wind_speed": 4.34
         },
         {
           "time": "2026-10-04T11:00:00",
-          "wave_height": 1.14,
-          "wind_speed": 5.53
+          "wave_height": 0.88,
+          "wind_speed": 5.73
         },
         {
           "time": "2026-10-04T12:00:00",
-          "wave_height": 1.12,
-          "wind_speed": 4.82
+          "wave_height": 0.86,
+          "wind_speed": 5.79
         },
         {
           "time": "2026-10-04T13:00:00",
-          "wave_height": 1.1,
-          "wind_speed": 4.06
+          "wave_height": 0.82,
+          "wind_speed": 5.84
         },
         {
           "time": "2026-10-04T14:00:00",
-          "wave_height": 1.08,
-          "wind_speed": 3.42
+          "wave_height": 0.76,
+          "wind_speed": 5.0
         },
         {
           "time": "2026-10-04T15:00:00",
-          "wave_height": 1.06,
-          "wind_speed": 3.18
+          "wave_height": 0.72,
+          "wind_speed": 4.32
         },
         {
           "time": "2026-10-04T16:00:00",
-          "wave_height": 1.04,
-          "wind_speed": 3.42
+          "wave_height": 0.7,
+          "wind_speed": 3.71
         },
         {
           "time": "2026-10-04T17:00:00",
-          "wave_height": 1.04,
-          "wind_speed": 3.01
+          "wave_height": 0.68,
+          "wind_speed": 3.67
         },
         {
           "time": "2026-10-04T18:00:00",
-          "wave_height": 1.02,
-          "wind_speed": 2.47
+          "wave_height": 0.66,
+          "wind_speed": 3.91
         },
         {
           "time": "2026-10-04T19:00:00",
-          "wave_height": 1.0,
-          "wind_speed": 1.97
+          "wave_height": 0.64,
+          "wind_speed": 4.0
         },
         {
           "time": "2026-10-04T20:00:00",
-          "wave_height": 0.96,
-          "wind_speed": 1.66
+          "wave_height": 0.6,
+          "wind_speed": 3.41
         },
         {
           "time": "2026-10-04T21:00:00",
-          "wave_height": 0.94,
-          "wind_speed": 0.89
+          "wave_height": 0.58,
+          "wind_speed": 2.72
         },
         {
           "time": "2026-10-04T22:00:00",
-          "wave_height": 0.9,
-          "wind_speed": 0.81
+          "wave_height": 0.56,
+          "wind_speed": 2.43
         },
         {
           "time": "2026-10-04T23:00:00",
-          "wave_height": 0.88,
-          "wind_speed": 1.86
+          "wave_height": 0.56,
+          "wind_speed": 1.08
         },
         {
           "time": "2026-10-05T00:00:00",
-          "wave_height": 0.84,
-          "wind_speed": 2.4
+          "wave_height": 0.54,
+          "wind_speed": 1.12
         },
         {
           "time": "2026-10-05T01:00:00",
-          "wave_height": 0.8,
-          "wind_speed": 2.6
+          "wave_height": 0.52,
+          "wind_speed": 1.78
         },
         {
           "time": "2026-10-05T02:00:00",
-          "wave_height": 0.76,
-          "wind_speed": 2.5
+          "wave_height": 0.5,
+          "wind_speed": 2.05
         },
         {
           "time": "2026-10-05T03:00:00",
-          "wave_height": 0.72,
-          "wind_speed": 2.62
+          "wave_height": 0.48,
+          "wind_speed": 2.28
         },
         {
           "time": "2026-10-05T04:00:00",
-          "wave_height": 0.7,
-          "wind_speed": 2.82
+          "wave_height": 0.46,
+          "wind_speed": 2.18
         },
         {
           "time": "2026-10-05T05:00:00",
-          "wave_height": 0.66,
-          "wind_speed": 3.11
+          "wave_height": 0.44,
+          "wind_speed": 2.92
         },
         {
           "time": "2026-10-05T06:00:00",
-          "wave_height": 0.64,
-          "wind_speed": 3.26
+          "wave_height": 0.42,
+          "wind_speed": 4.24
         },
         {
           "time": "2026-10-05T07:00:00",
-          "wave_height": 0.6,
-          "wind_speed": 3.28
+          "wave_height": 0.4,
+          "wind_speed": 4.02
         },
         {
           "time": "2026-10-05T08:00:00",
-          "wave_height": 0.58,
-          "wind_speed": 3.73
+          "wave_height": 0.4,
+          "wind_speed": 5.02
         },
         {
           "time": "2026-10-05T09:00:00",
-          "wave_height": 0.54,
-          "wind_speed": 3.44
+          "wave_height": 0.38,
+          "wind_speed": 4.25
         },
         {
           "time": "2026-10-05T10:00:00",
-          "wave_height": 0.52,
-          "wind_speed": 3.72
+          "wave_height": 0.38,
+          "wind_speed": 4.28
         },
         {
           "time": "2026-10-05T11:00:00",
-          "wave_height": 0.5,
-          "wind_speed": 4.37
+          "wave_height": 0.36,
+          "wind_speed": 5.06
         },
         {
           "time": "2026-10-05T12:00:00",
-          "wave_height": 0.48,
-          "wind_speed": 4.65
+          "wave_height": 0.36,
+          "wind_speed": 5.48
         },
         {
           "time": "2026-10-05T13:00:00",
-          "wave_height": 0.46,
-          "wind_speed": 5.12
+          "wave_height": 0.38,
+          "wind_speed": 5.63
         },
         {
           "time": "2026-10-05T14:00:00",
-          "wave_height": 0.46,
-          "wind_speed": 5.12
+          "wave_height": 0.38,
+          "wind_speed": 5.9
         },
         {
           "time": "2026-10-05T15:00:00",
-          "wave_height": 0.44,
-          "wind_speed": 4.87
+          "wave_height": 0.4,
+          "wind_speed": 5.73
         },
         {
           "time": "2026-10-05T16:00:00",
-          "wave_height": 0.44,
-          "wind_speed": 4.47
+          "wave_height": 0.4,
+          "wind_speed": 5.96
         },
         {
           "time": "2026-10-05T17:00:00",
-          "wave_height": 0.46,
-          "wind_speed": 4.3
+          "wave_height": 0.42,
+          "wind_speed": 5.77
         },
         {
           "time": "2026-10-05T18:00:00",
-          "wave_height": 0.46,
-          "wind_speed": 3.57
+          "wave_height": 0.42,
+          "wind_speed": 4.83
         },
         {
           "time": "2026-10-05T19:00:00",
-          "wave_height": 0.46,
-          "wind_speed": 3.86
+          "wave_height": 0.42,
+          "wind_speed": 5.01
         },
         {
           "time": "2026-10-05T20:00:00",
-          "wave_height": 0.48,
-          "wind_speed": 3.74
+          "wave_height": 0.4,
+          "wind_speed": 4.78
         },
         {
           "time": "2026-10-05T21:00:00",
-          "wave_height": 0.48,
-          "wind_speed": 4.18
+          "wave_height": 0.4,
+          "wind_speed": 4.68
         },
         {
           "time": "2026-10-05T22:00:00",
-          "wave_height": 0.48,
-          "wind_speed": 4.47
+          "wave_height": 0.38,
+          "wind_speed": 5.1
         },
         {
           "time": "2026-10-05T23:00:00",
-          "wave_height": 0.48,
-          "wind_speed": 4.55
+          "wave_height": 0.38,
+          "wind_speed": 5.28
         }
       ],
       "forecast_status": "available",
       "forecast_missing_reason": null,
-      "forecast_collected_at": "2026-10-03T20:50:19.622820"
+      "forecast_collected_at": "2026-10-04T05:13:31.893122"
+    },
+    "gwangalli": {
+      "observations": [
+        {
+          "spot_id": "gwangalli",
+          "metric": "wave_height",
+          "value": 1.1,
+          "unit": "m",
+          "observed_at": "2026-10-03T15:00:00",
+          "source": "KHOA 바다누리(실측)",
+          "is_missing": false,
+          "is_stale": false,
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
+          "reference_station_name": null,
+          "reference_station_code": null,
+          "reference_distance_km": null
+        },
+        {
+          "spot_id": "gwangalli",
+          "metric": "wind_speed",
+          "value": 4.3,
+          "unit": "m/s",
+          "observed_at": "2026-10-03T15:00:00",
+          "source": "KHOA 해양관측부이(실측)",
+          "is_missing": false,
+          "is_stale": false,
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
+          "reference_station_name": null,
+          "reference_station_code": null,
+          "reference_distance_km": null
+        },
+        {
+          "spot_id": "gwangalli",
+          "metric": "current_speed",
+          "value": 0.13,
+          "unit": "m/s",
+          "observed_at": "2026-10-03T15:00:00",
+          "source": "KHOA 바다누리(실측)",
+          "is_missing": false,
+          "is_stale": false,
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
+          "reference_station_name": null,
+          "reference_station_code": null,
+          "reference_distance_km": null
+        },
+        {
+          "spot_id": "gwangalli",
+          "metric": "tide_level",
+          "value": 103.0,
+          "unit": "cm",
+          "observed_at": "2026-10-03T15:00:00",
+          "source": "KHOA 조위관측소(실측)",
+          "is_missing": false,
+          "is_stale": false,
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
+          "reference_station_name": "부산 조위관측소",
+          "reference_station_code": "DT_0005",
+          "reference_distance_km": 9.9
+        },
+        {
+          "spot_id": "gwangalli",
+          "metric": "water_temp",
+          "value": 23.85,
+          "unit": "°C",
+          "observed_at": "2026-10-03T15:00:00",
+          "source": "KHOA 바다누리(실측)",
+          "is_missing": false,
+          "is_stale": false,
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
+          "reference_station_name": null,
+          "reference_station_code": null,
+          "reference_distance_km": null
+        }
+      ],
+      "advisory": {
+        "kind": "none",
+        "threshold_value": null,
+        "effective_at": null,
+        "source": "기상청 특보",
+        "is_missing": false,
+        "is_stale": false
+      },
+      "llm_prose": null,
+      "prose_status": "generation_unavailable",
+      "observation_fetch_duration_ms": 2087,
+      "forecast_fetch_duration_ms": 730,
+      "forecast": [
+        {
+          "time": "2026-10-04T00:00:00",
+          "wave_height": 1.04,
+          "wind_speed": 4.57
+        },
+        {
+          "time": "2026-10-04T01:00:00",
+          "wave_height": 1.0,
+          "wind_speed": 3.77
+        },
+        {
+          "time": "2026-10-04T02:00:00",
+          "wave_height": 0.96,
+          "wind_speed": 3.07
+        },
+        {
+          "time": "2026-10-04T03:00:00",
+          "wave_height": 0.92,
+          "wind_speed": 3.67
+        },
+        {
+          "time": "2026-10-04T04:00:00",
+          "wave_height": 0.9,
+          "wind_speed": 3.61
+        },
+        {
+          "time": "2026-10-04T05:00:00",
+          "wave_height": 0.9,
+          "wind_speed": 3.22
+        },
+        {
+          "time": "2026-10-04T06:00:00",
+          "wave_height": 0.88,
+          "wind_speed": 3.22
+        },
+        {
+          "time": "2026-10-04T07:00:00",
+          "wave_height": 0.9,
+          "wind_speed": 2.57
+        },
+        {
+          "time": "2026-10-04T08:00:00",
+          "wave_height": 0.92,
+          "wind_speed": 3.14
+        },
+        {
+          "time": "2026-10-04T09:00:00",
+          "wave_height": 0.94,
+          "wind_speed": 3.18
+        },
+        {
+          "time": "2026-10-04T10:00:00",
+          "wave_height": 0.92,
+          "wind_speed": 2.83
+        },
+        {
+          "time": "2026-10-04T11:00:00",
+          "wave_height": 0.88,
+          "wind_speed": 3.4
+        },
+        {
+          "time": "2026-10-04T12:00:00",
+          "wave_height": 0.86,
+          "wind_speed": 4.04
+        },
+        {
+          "time": "2026-10-04T13:00:00",
+          "wave_height": 0.82,
+          "wind_speed": 4.3
+        },
+        {
+          "time": "2026-10-04T14:00:00",
+          "wave_height": 0.76,
+          "wind_speed": 3.93
+        },
+        {
+          "time": "2026-10-04T15:00:00",
+          "wave_height": 0.72,
+          "wind_speed": 3.34
+        },
+        {
+          "time": "2026-10-04T16:00:00",
+          "wave_height": 0.7,
+          "wind_speed": 3.06
+        },
+        {
+          "time": "2026-10-04T17:00:00",
+          "wave_height": 0.68,
+          "wind_speed": 2.89
+        },
+        {
+          "time": "2026-10-04T18:00:00",
+          "wave_height": 0.66,
+          "wind_speed": 2.35
+        },
+        {
+          "time": "2026-10-04T19:00:00",
+          "wave_height": 0.64,
+          "wind_speed": 2.22
+        },
+        {
+          "time": "2026-10-04T20:00:00",
+          "wave_height": 0.6,
+          "wind_speed": 2.06
+        },
+        {
+          "time": "2026-10-04T21:00:00",
+          "wave_height": 0.58,
+          "wind_speed": 1.8
+        },
+        {
+          "time": "2026-10-04T22:00:00",
+          "wave_height": 0.56,
+          "wind_speed": 1.49
+        },
+        {
+          "time": "2026-10-04T23:00:00",
+          "wave_height": 0.56,
+          "wind_speed": 1.2
+        },
+        {
+          "time": "2026-10-05T00:00:00",
+          "wave_height": 0.54,
+          "wind_speed": 1.43
+        },
+        {
+          "time": "2026-10-05T01:00:00",
+          "wave_height": 0.52,
+          "wind_speed": 1.66
+        },
+        {
+          "time": "2026-10-05T02:00:00",
+          "wave_height": 0.5,
+          "wind_speed": 1.7
+        },
+        {
+          "time": "2026-10-05T03:00:00",
+          "wave_height": 0.48,
+          "wind_speed": 1.84
+        },
+        {
+          "time": "2026-10-05T04:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 1.75
+        },
+        {
+          "time": "2026-10-05T05:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 2.06
+        },
+        {
+          "time": "2026-10-05T06:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 2.77
+        },
+        {
+          "time": "2026-10-05T07:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 2.7
+        },
+        {
+          "time": "2026-10-05T08:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 3.38
+        },
+        {
+          "time": "2026-10-05T09:00:00",
+          "wave_height": 0.38,
+          "wind_speed": 3.04
+        },
+        {
+          "time": "2026-10-05T10:00:00",
+          "wave_height": 0.38,
+          "wind_speed": 3.42
+        },
+        {
+          "time": "2026-10-05T11:00:00",
+          "wave_height": 0.36,
+          "wind_speed": 4.02
+        },
+        {
+          "time": "2026-10-05T12:00:00",
+          "wave_height": 0.36,
+          "wind_speed": 4.21
+        },
+        {
+          "time": "2026-10-05T13:00:00",
+          "wave_height": 0.38,
+          "wind_speed": 4.26
+        },
+        {
+          "time": "2026-10-05T14:00:00",
+          "wave_height": 0.38,
+          "wind_speed": 4.41
+        },
+        {
+          "time": "2026-10-05T15:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 4.24
+        },
+        {
+          "time": "2026-10-05T16:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 4.3
+        },
+        {
+          "time": "2026-10-05T17:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 4.02
+        },
+        {
+          "time": "2026-10-05T18:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 3.31
+        },
+        {
+          "time": "2026-10-05T19:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 3.35
+        },
+        {
+          "time": "2026-10-05T20:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 3.22
+        },
+        {
+          "time": "2026-10-05T21:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 3.04
+        },
+        {
+          "time": "2026-10-05T22:00:00",
+          "wave_height": 0.38,
+          "wind_speed": 3.36
+        },
+        {
+          "time": "2026-10-05T23:00:00",
+          "wave_height": 0.38,
+          "wind_speed": 3.56
+        }
+      ],
+      "forecast_status": "available",
+      "forecast_missing_reason": null,
+      "forecast_collected_at": "2026-10-04T05:13:31.893122"
+    },
+    "songjeong": {
+      "observations": [
+        {
+          "spot_id": "songjeong",
+          "metric": "wave_height",
+          "value": 1.6,
+          "unit": "m",
+          "observed_at": "2026-10-03T15:00:00",
+          "source": "KHOA 바다누리(실측)",
+          "is_missing": false,
+          "is_stale": false,
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
+          "reference_station_name": null,
+          "reference_station_code": null,
+          "reference_distance_km": null
+        },
+        {
+          "spot_id": "songjeong",
+          "metric": "wind_speed",
+          "value": 7.3,
+          "unit": "m/s",
+          "observed_at": "2026-10-03T15:00:00",
+          "source": "KHOA 해양관측부이(실측)",
+          "is_missing": false,
+          "is_stale": false,
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
+          "reference_station_name": null,
+          "reference_station_code": null,
+          "reference_distance_km": null
+        },
+        {
+          "spot_id": "songjeong",
+          "metric": "current_speed",
+          "value": 0.313,
+          "unit": "m/s",
+          "observed_at": "2026-10-03T15:00:00",
+          "source": "KHOA 바다누리(실측)",
+          "is_missing": false,
+          "is_stale": false,
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
+          "reference_station_name": null,
+          "reference_station_code": null,
+          "reference_distance_km": null
+        },
+        {
+          "spot_id": "songjeong",
+          "metric": "tide_level",
+          "value": 103.0,
+          "unit": "cm",
+          "observed_at": "2026-10-03T15:00:00",
+          "source": "KHOA 조위관측소(실측)",
+          "is_missing": false,
+          "is_stale": false,
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
+          "reference_station_name": "부산 조위관측소",
+          "reference_station_code": "DT_0005",
+          "reference_distance_km": 17.6
+        },
+        {
+          "spot_id": "songjeong",
+          "metric": "water_temp",
+          "value": 24.1,
+          "unit": "°C",
+          "observed_at": "2026-10-04T14:00:00",
+          "source": "Open-Meteo 해양모델",
+          "is_missing": false,
+          "is_stale": false,
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
+          "reference_station_name": null,
+          "reference_station_code": null,
+          "reference_distance_km": null
+        }
+      ],
+      "advisory": {
+        "kind": "none",
+        "threshold_value": null,
+        "effective_at": null,
+        "source": "기상청 특보",
+        "is_missing": false,
+        "is_stale": false
+      },
+      "llm_prose": null,
+      "prose_status": "generation_unavailable",
+      "observation_fetch_duration_ms": 1793,
+      "forecast_fetch_duration_ms": 1019,
+      "forecast": [
+        {
+          "time": "2026-10-04T00:00:00",
+          "wave_height": 1.2,
+          "wind_speed": 4.96
+        },
+        {
+          "time": "2026-10-04T01:00:00",
+          "wave_height": 1.16,
+          "wind_speed": 4.21
+        },
+        {
+          "time": "2026-10-04T02:00:00",
+          "wave_height": 1.1,
+          "wind_speed": 3.26
+        },
+        {
+          "time": "2026-10-04T03:00:00",
+          "wave_height": 1.06,
+          "wind_speed": 3.79
+        },
+        {
+          "time": "2026-10-04T04:00:00",
+          "wave_height": 1.06,
+          "wind_speed": 3.64
+        },
+        {
+          "time": "2026-10-04T05:00:00",
+          "wave_height": 1.04,
+          "wind_speed": 3.08
+        },
+        {
+          "time": "2026-10-04T06:00:00",
+          "wave_height": 1.04,
+          "wind_speed": 3.01
+        },
+        {
+          "time": "2026-10-04T07:00:00",
+          "wave_height": 1.06,
+          "wind_speed": 2.53
+        },
+        {
+          "time": "2026-10-04T08:00:00",
+          "wave_height": 1.08,
+          "wind_speed": 2.91
+        },
+        {
+          "time": "2026-10-04T09:00:00",
+          "wave_height": 1.1,
+          "wind_speed": 3.08
+        },
+        {
+          "time": "2026-10-04T10:00:00",
+          "wave_height": 1.06,
+          "wind_speed": 2.82
+        },
+        {
+          "time": "2026-10-04T11:00:00",
+          "wave_height": 1.02,
+          "wind_speed": 3.83
+        },
+        {
+          "time": "2026-10-04T12:00:00",
+          "wave_height": 0.98,
+          "wind_speed": 4.14
+        },
+        {
+          "time": "2026-10-04T13:00:00",
+          "wave_height": 0.94,
+          "wind_speed": 4.32
+        },
+        {
+          "time": "2026-10-04T14:00:00",
+          "wave_height": 0.9,
+          "wind_speed": 3.67
+        },
+        {
+          "time": "2026-10-04T15:00:00",
+          "wave_height": 0.86,
+          "wind_speed": 3.16
+        },
+        {
+          "time": "2026-10-04T16:00:00",
+          "wave_height": 0.82,
+          "wind_speed": 2.77
+        },
+        {
+          "time": "2026-10-04T17:00:00",
+          "wave_height": 0.8,
+          "wind_speed": 2.43
+        },
+        {
+          "time": "2026-10-04T18:00:00",
+          "wave_height": 0.76,
+          "wind_speed": 2.33
+        },
+        {
+          "time": "2026-10-04T19:00:00",
+          "wave_height": 0.74,
+          "wind_speed": 2.32
+        },
+        {
+          "time": "2026-10-04T20:00:00",
+          "wave_height": 0.72,
+          "wind_speed": 1.94
+        },
+        {
+          "time": "2026-10-04T21:00:00",
+          "wave_height": 0.7,
+          "wind_speed": 1.66
+        },
+        {
+          "time": "2026-10-04T22:00:00",
+          "wave_height": 0.68,
+          "wind_speed": 1.39
+        },
+        {
+          "time": "2026-10-04T23:00:00",
+          "wave_height": 0.66,
+          "wind_speed": 1.43
+        },
+        {
+          "time": "2026-10-05T00:00:00",
+          "wave_height": 0.64,
+          "wind_speed": 1.77
+        },
+        {
+          "time": "2026-10-05T01:00:00",
+          "wave_height": 0.62,
+          "wind_speed": 1.7
+        },
+        {
+          "time": "2026-10-05T02:00:00",
+          "wave_height": 0.58,
+          "wind_speed": 1.89
+        },
+        {
+          "time": "2026-10-05T03:00:00",
+          "wave_height": 0.56,
+          "wind_speed": 1.97
+        },
+        {
+          "time": "2026-10-05T04:00:00",
+          "wave_height": 0.54,
+          "wind_speed": 2.06
+        },
+        {
+          "time": "2026-10-05T05:00:00",
+          "wave_height": 0.5,
+          "wind_speed": 2.33
+        },
+        {
+          "time": "2026-10-05T06:00:00",
+          "wave_height": 0.48,
+          "wind_speed": 2.95
+        },
+        {
+          "time": "2026-10-05T07:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 2.68
+        },
+        {
+          "time": "2026-10-05T08:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 3.26
+        },
+        {
+          "time": "2026-10-05T09:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 3.12
+        },
+        {
+          "time": "2026-10-05T10:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 3.3
+        },
+        {
+          "time": "2026-10-05T11:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 3.81
+        },
+        {
+          "time": "2026-10-05T12:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 4.12
+        },
+        {
+          "time": "2026-10-05T13:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 4.44
+        },
+        {
+          "time": "2026-10-05T14:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 4.47
+        },
+        {
+          "time": "2026-10-05T15:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 4.18
+        },
+        {
+          "time": "2026-10-05T16:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 4.09
+        },
+        {
+          "time": "2026-10-05T17:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 3.58
+        },
+        {
+          "time": "2026-10-05T18:00:00",
+          "wave_height": 0.48,
+          "wind_speed": 2.79
+        },
+        {
+          "time": "2026-10-05T19:00:00",
+          "wave_height": 0.48,
+          "wind_speed": 2.82
+        },
+        {
+          "time": "2026-10-05T20:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 2.78
+        },
+        {
+          "time": "2026-10-05T21:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 2.9
+        },
+        {
+          "time": "2026-10-05T22:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 3.2
+        },
+        {
+          "time": "2026-10-05T23:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 3.54
+        }
+      ],
+      "forecast_status": "available",
+      "forecast_missing_reason": null,
+      "forecast_collected_at": "2026-10-04T05:13:31.893122"
+    },
+    "songdo": {
+      "observations": [
+        {
+          "spot_id": "songdo",
+          "metric": "wave_height",
+          "value": 0.72,
+          "unit": "m",
+          "observed_at": "2026-10-04T14:00:00",
+          "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
+          "is_missing": false,
+          "is_stale": false,
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
+          "reference_station_name": null,
+          "reference_station_code": null,
+          "reference_distance_km": null
+        },
+        {
+          "spot_id": "songdo",
+          "metric": "wind_speed",
+          "value": 4.2,
+          "unit": "m/s",
+          "observed_at": "2026-10-04T14:00:00",
+          "source": "Open-Meteo 기상모델",
+          "is_missing": false,
+          "is_stale": false,
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
+          "reference_station_name": null,
+          "reference_station_code": null,
+          "reference_distance_km": null
+        },
+        {
+          "spot_id": "songdo",
+          "metric": "current_speed",
+          "value": 0.008,
+          "unit": "m/s",
+          "observed_at": "2026-10-03T15:00:00",
+          "source": "KHOA 바다누리(실측)",
+          "is_missing": false,
+          "is_stale": false,
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
+          "reference_station_name": null,
+          "reference_station_code": null,
+          "reference_distance_km": null
+        },
+        {
+          "spot_id": "songdo",
+          "metric": "tide_level",
+          "value": 103.0,
+          "unit": "cm",
+          "observed_at": "2026-10-03T15:00:00",
+          "source": "KHOA 조위관측소(실측)",
+          "is_missing": false,
+          "is_stale": false,
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
+          "reference_station_name": "부산 조위관측소",
+          "reference_station_code": "DT_0005",
+          "reference_distance_km": 2.8
+        },
+        {
+          "spot_id": "songdo",
+          "metric": "water_temp",
+          "value": 23.1,
+          "unit": "°C",
+          "observed_at": "2026-10-03T15:00:00",
+          "source": "KHOA 바다누리(실측)",
+          "is_missing": false,
+          "is_stale": false,
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
+          "reference_station_name": null,
+          "reference_station_code": null,
+          "reference_distance_km": null
+        }
+      ],
+      "advisory": {
+        "kind": "none",
+        "threshold_value": null,
+        "effective_at": null,
+        "source": "기상청 특보",
+        "is_missing": false,
+        "is_stale": false
+      },
+      "llm_prose": null,
+      "prose_status": "generation_unavailable",
+      "observation_fetch_duration_ms": 1663,
+      "forecast_fetch_duration_ms": 883,
+      "forecast": [
+        {
+          "time": "2026-10-04T00:00:00",
+          "wave_height": 1.04,
+          "wind_speed": 3.26
+        },
+        {
+          "time": "2026-10-04T01:00:00",
+          "wave_height": 1.0,
+          "wind_speed": 2.51
+        },
+        {
+          "time": "2026-10-04T02:00:00",
+          "wave_height": 0.94,
+          "wind_speed": 3.21
+        },
+        {
+          "time": "2026-10-04T03:00:00",
+          "wave_height": 0.9,
+          "wind_speed": 3.2
+        },
+        {
+          "time": "2026-10-04T04:00:00",
+          "wave_height": 0.88,
+          "wind_speed": 3.26
+        },
+        {
+          "time": "2026-10-04T05:00:00",
+          "wave_height": 0.86,
+          "wind_speed": 3.4
+        },
+        {
+          "time": "2026-10-04T06:00:00",
+          "wave_height": 0.84,
+          "wind_speed": 3.51
+        },
+        {
+          "time": "2026-10-04T07:00:00",
+          "wave_height": 0.86,
+          "wind_speed": 2.92
+        },
+        {
+          "time": "2026-10-04T08:00:00",
+          "wave_height": 0.9,
+          "wind_speed": 3.77
+        },
+        {
+          "time": "2026-10-04T09:00:00",
+          "wave_height": 0.92,
+          "wind_speed": 3.4
+        },
+        {
+          "time": "2026-10-04T10:00:00",
+          "wave_height": 0.88,
+          "wind_speed": 2.75
+        },
+        {
+          "time": "2026-10-04T11:00:00",
+          "wave_height": 0.86,
+          "wind_speed": 3.14
+        },
+        {
+          "time": "2026-10-04T12:00:00",
+          "wave_height": 0.82,
+          "wind_speed": 3.52
+        },
+        {
+          "time": "2026-10-04T13:00:00",
+          "wave_height": 0.76,
+          "wind_speed": 4.0
+        },
+        {
+          "time": "2026-10-04T14:00:00",
+          "wave_height": 0.72,
+          "wind_speed": 4.2
+        },
+        {
+          "time": "2026-10-04T15:00:00",
+          "wave_height": 0.66,
+          "wind_speed": 3.9
+        },
+        {
+          "time": "2026-10-04T16:00:00",
+          "wave_height": 0.64,
+          "wind_speed": 3.6
+        },
+        {
+          "time": "2026-10-04T17:00:00",
+          "wave_height": 0.6,
+          "wind_speed": 3.32
+        },
+        {
+          "time": "2026-10-04T18:00:00",
+          "wave_height": 0.58,
+          "wind_speed": 2.73
+        },
+        {
+          "time": "2026-10-04T19:00:00",
+          "wave_height": 0.56,
+          "wind_speed": 2.33
+        },
+        {
+          "time": "2026-10-04T20:00:00",
+          "wave_height": 0.56,
+          "wind_speed": 1.96
+        },
+        {
+          "time": "2026-10-04T21:00:00",
+          "wave_height": 0.54,
+          "wind_speed": 1.66
+        },
+        {
+          "time": "2026-10-04T22:00:00",
+          "wave_height": 0.52,
+          "wind_speed": 1.46
+        },
+        {
+          "time": "2026-10-04T23:00:00",
+          "wave_height": 0.5,
+          "wind_speed": 1.51
+        },
+        {
+          "time": "2026-10-05T00:00:00",
+          "wave_height": 0.48,
+          "wind_speed": 1.61
+        },
+        {
+          "time": "2026-10-05T01:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 1.68
+        },
+        {
+          "time": "2026-10-05T02:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 1.71
+        },
+        {
+          "time": "2026-10-05T03:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 1.58
+        },
+        {
+          "time": "2026-10-05T04:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 1.06
+        },
+        {
+          "time": "2026-10-05T05:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 2.19
+        },
+        {
+          "time": "2026-10-05T06:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 2.78
+        },
+        {
+          "time": "2026-10-05T07:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 2.83
+        },
+        {
+          "time": "2026-10-05T08:00:00",
+          "wave_height": 0.38,
+          "wind_speed": 3.47
+        },
+        {
+          "time": "2026-10-05T09:00:00",
+          "wave_height": 0.38,
+          "wind_speed": 3.5
+        },
+        {
+          "time": "2026-10-05T10:00:00",
+          "wave_height": 0.38,
+          "wind_speed": 3.97
+        },
+        {
+          "time": "2026-10-05T11:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 4.44
+        },
+        {
+          "time": "2026-10-05T12:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 4.46
+        },
+        {
+          "time": "2026-10-05T13:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 4.85
+        },
+        {
+          "time": "2026-10-05T14:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 4.81
+        },
+        {
+          "time": "2026-10-05T15:00:00",
+          "wave_height": 0.48,
+          "wind_speed": 4.53
+        },
+        {
+          "time": "2026-10-05T16:00:00",
+          "wave_height": 0.5,
+          "wind_speed": 4.66
+        },
+        {
+          "time": "2026-10-05T17:00:00",
+          "wave_height": 0.54,
+          "wind_speed": 4.41
+        },
+        {
+          "time": "2026-10-05T18:00:00",
+          "wave_height": 0.56,
+          "wind_speed": 3.94
+        },
+        {
+          "time": "2026-10-05T19:00:00",
+          "wave_height": 0.56,
+          "wind_speed": 4.08
+        },
+        {
+          "time": "2026-10-05T20:00:00",
+          "wave_height": 0.58,
+          "wind_speed": 4.06
+        },
+        {
+          "time": "2026-10-05T21:00:00",
+          "wave_height": 0.58,
+          "wind_speed": 3.61
+        },
+        {
+          "time": "2026-10-05T22:00:00",
+          "wave_height": 0.56,
+          "wind_speed": 3.8
+        },
+        {
+          "time": "2026-10-05T23:00:00",
+          "wave_height": 0.54,
+          "wind_speed": 4.16
+        }
+      ],
+      "forecast_status": "available",
+      "forecast_missing_reason": null,
+      "forecast_collected_at": "2026-10-04T05:13:31.893122"
+    },
+    "dadaepo": {
+      "observations": [
+        {
+          "spot_id": "dadaepo",
+          "metric": "wave_height",
+          "value": 0.62,
+          "unit": "m",
+          "observed_at": "2026-10-04T14:00:00",
+          "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
+          "is_missing": false,
+          "is_stale": false,
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
+          "reference_station_name": null,
+          "reference_station_code": null,
+          "reference_distance_km": null
+        },
+        {
+          "spot_id": "dadaepo",
+          "metric": "wind_speed",
+          "value": 6.0,
+          "unit": "m/s",
+          "observed_at": "2026-10-04T14:00:00",
+          "source": "Open-Meteo 기상모델",
+          "is_missing": false,
+          "is_stale": false,
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
+          "reference_station_name": null,
+          "reference_station_code": null,
+          "reference_distance_km": null
+        },
+        {
+          "spot_id": "dadaepo",
+          "metric": "current_speed",
+          "value": 0.008,
+          "unit": "m/s",
+          "observed_at": "2026-10-03T15:00:00",
+          "source": "KHOA 바다누리(실측)",
+          "is_missing": false,
+          "is_stale": false,
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
+          "reference_station_name": null,
+          "reference_station_code": null,
+          "reference_distance_km": null
+        },
+        {
+          "spot_id": "dadaepo",
+          "metric": "tide_level",
+          "value": 103.0,
+          "unit": "cm",
+          "observed_at": "2026-10-03T15:00:00",
+          "source": "KHOA 조위관측소(실측)",
+          "is_missing": false,
+          "is_stale": false,
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
+          "reference_station_name": "부산 조위관측소",
+          "reference_station_code": "DT_0005",
+          "reference_distance_km": 8.2
+        },
+        {
+          "spot_id": "dadaepo",
+          "metric": "water_temp",
+          "value": 23.1,
+          "unit": "°C",
+          "observed_at": "2026-10-03T15:00:00",
+          "source": "KHOA 바다누리(실측)",
+          "is_missing": false,
+          "is_stale": false,
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
+          "reference_station_name": null,
+          "reference_station_code": null,
+          "reference_distance_km": null
+        }
+      ],
+      "advisory": {
+        "kind": "none",
+        "threshold_value": null,
+        "effective_at": null,
+        "source": "기상청 특보",
+        "is_missing": false,
+        "is_stale": false
+      },
+      "llm_prose": null,
+      "prose_status": "generation_unavailable",
+      "observation_fetch_duration_ms": 2087,
+      "forecast_fetch_duration_ms": 730,
+      "forecast": [
+        {
+          "time": "2026-10-04T00:00:00",
+          "wave_height": 0.88,
+          "wind_speed": 5.1
+        },
+        {
+          "time": "2026-10-04T01:00:00",
+          "wave_height": 0.84,
+          "wind_speed": 4.65
+        },
+        {
+          "time": "2026-10-04T02:00:00",
+          "wave_height": 0.82,
+          "wind_speed": 6.41
+        },
+        {
+          "time": "2026-10-04T03:00:00",
+          "wave_height": 0.78,
+          "wind_speed": 5.97
+        },
+        {
+          "time": "2026-10-04T04:00:00",
+          "wave_height": 0.76,
+          "wind_speed": 6.15
+        },
+        {
+          "time": "2026-10-04T05:00:00",
+          "wave_height": 0.72,
+          "wind_speed": 6.53
+        },
+        {
+          "time": "2026-10-04T06:00:00",
+          "wave_height": 0.7,
+          "wind_speed": 7.43
+        },
+        {
+          "time": "2026-10-04T07:00:00",
+          "wave_height": 0.72,
+          "wind_speed": 6.2
+        },
+        {
+          "time": "2026-10-04T08:00:00",
+          "wave_height": 0.74,
+          "wind_speed": 7.93
+        },
+        {
+          "time": "2026-10-04T09:00:00",
+          "wave_height": 0.76,
+          "wind_speed": 7.01
+        },
+        {
+          "time": "2026-10-04T10:00:00",
+          "wave_height": 0.74,
+          "wind_speed": 5.63
+        },
+        {
+          "time": "2026-10-04T11:00:00",
+          "wave_height": 0.72,
+          "wind_speed": 4.6
+        },
+        {
+          "time": "2026-10-04T12:00:00",
+          "wave_height": 0.7,
+          "wind_speed": 5.13
+        },
+        {
+          "time": "2026-10-04T13:00:00",
+          "wave_height": 0.66,
+          "wind_speed": 5.85
+        },
+        {
+          "time": "2026-10-04T14:00:00",
+          "wave_height": 0.62,
+          "wind_speed": 6.0
+        },
+        {
+          "time": "2026-10-04T15:00:00",
+          "wave_height": 0.58,
+          "wind_speed": 5.8
+        },
+        {
+          "time": "2026-10-04T16:00:00",
+          "wave_height": 0.54,
+          "wind_speed": 5.5
+        },
+        {
+          "time": "2026-10-04T17:00:00",
+          "wave_height": 0.52,
+          "wind_speed": 5.41
+        },
+        {
+          "time": "2026-10-04T18:00:00",
+          "wave_height": 0.48,
+          "wind_speed": 5.05
+        },
+        {
+          "time": "2026-10-04T19:00:00",
+          "wave_height": 0.48,
+          "wind_speed": 4.34
+        },
+        {
+          "time": "2026-10-04T20:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 3.65
+        },
+        {
+          "time": "2026-10-04T21:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 2.73
+        },
+        {
+          "time": "2026-10-04T22:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 2.24
+        },
+        {
+          "time": "2026-10-04T23:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 2.52
+        },
+        {
+          "time": "2026-10-05T00:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 2.83
+        },
+        {
+          "time": "2026-10-05T01:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 2.73
+        },
+        {
+          "time": "2026-10-05T02:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 2.42
+        },
+        {
+          "time": "2026-10-05T03:00:00",
+          "wave_height": 0.38,
+          "wind_speed": 1.73
+        },
+        {
+          "time": "2026-10-05T04:00:00",
+          "wave_height": 0.36,
+          "wind_speed": 1.04
+        },
+        {
+          "time": "2026-10-05T05:00:00",
+          "wave_height": 0.36,
+          "wind_speed": 3.18
+        },
+        {
+          "time": "2026-10-05T06:00:00",
+          "wave_height": 0.34,
+          "wind_speed": 4.3
+        },
+        {
+          "time": "2026-10-05T07:00:00",
+          "wave_height": 0.34,
+          "wind_speed": 4.52
+        },
+        {
+          "time": "2026-10-05T08:00:00",
+          "wave_height": 0.32,
+          "wind_speed": 4.98
+        },
+        {
+          "time": "2026-10-05T09:00:00",
+          "wave_height": 0.32,
+          "wind_speed": 5.06
+        },
+        {
+          "time": "2026-10-05T10:00:00",
+          "wave_height": 0.34,
+          "wind_speed": 5.74
+        },
+        {
+          "time": "2026-10-05T11:00:00",
+          "wave_height": 0.34,
+          "wind_speed": 6.2
+        },
+        {
+          "time": "2026-10-05T12:00:00",
+          "wave_height": 0.36,
+          "wind_speed": 6.36
+        },
+        {
+          "time": "2026-10-05T13:00:00",
+          "wave_height": 0.38,
+          "wind_speed": 7.32
+        },
+        {
+          "time": "2026-10-05T14:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 7.01
+        },
+        {
+          "time": "2026-10-05T15:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 6.91
+        },
+        {
+          "time": "2026-10-05T16:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 7.7
+        },
+        {
+          "time": "2026-10-05T17:00:00",
+          "wave_height": 0.5,
+          "wind_speed": 7.68
+        },
+        {
+          "time": "2026-10-05T18:00:00",
+          "wave_height": 0.52,
+          "wind_speed": 7.08
+        },
+        {
+          "time": "2026-10-05T19:00:00",
+          "wave_height": 0.52,
+          "wind_speed": 7.3
+        },
+        {
+          "time": "2026-10-05T20:00:00",
+          "wave_height": 0.54,
+          "wind_speed": 7.48
+        },
+        {
+          "time": "2026-10-05T21:00:00",
+          "wave_height": 0.54,
+          "wind_speed": 6.75
+        },
+        {
+          "time": "2026-10-05T22:00:00",
+          "wave_height": 0.52,
+          "wind_speed": 6.55
+        },
+        {
+          "time": "2026-10-05T23:00:00",
+          "wave_height": 0.5,
+          "wind_speed": 7.21
+        }
+      ],
+      "forecast_status": "available",
+      "forecast_missing_reason": null,
+      "forecast_collected_at": "2026-10-04T05:13:31.893122"
+    },
+    "ilgwang": {
+      "observations": [
+        {
+          "spot_id": "ilgwang",
+          "metric": "wave_height",
+          "value": 1.1,
+          "unit": "m",
+          "observed_at": "2026-10-03T15:00:00",
+          "source": "KHOA 바다누리(실측)",
+          "is_missing": false,
+          "is_stale": false,
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
+          "reference_station_name": null,
+          "reference_station_code": null,
+          "reference_distance_km": null
+        },
+        {
+          "spot_id": "ilgwang",
+          "metric": "wind_speed",
+          "value": 6.6,
+          "unit": "m/s",
+          "observed_at": "2026-10-03T15:00:00",
+          "source": "KHOA 해양관측부이(실측)",
+          "is_missing": false,
+          "is_stale": false,
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
+          "reference_station_name": null,
+          "reference_station_code": null,
+          "reference_distance_km": null
+        },
+        {
+          "spot_id": "ilgwang",
+          "metric": "current_speed",
+          "value": 0.082,
+          "unit": "m/s",
+          "observed_at": "2026-10-03T15:00:00",
+          "source": "KHOA 바다누리(실측)",
+          "is_missing": false,
+          "is_stale": false,
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
+          "reference_station_name": null,
+          "reference_station_code": null,
+          "reference_distance_km": null
+        },
+        {
+          "spot_id": "ilgwang",
+          "metric": "tide_level",
+          "value": 103.0,
+          "unit": "cm",
+          "observed_at": "2026-10-03T15:00:00",
+          "source": "KHOA 조위관측소(실측)",
+          "is_missing": false,
+          "is_stale": false,
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
+          "reference_station_name": "부산 조위관측소",
+          "reference_station_code": "DT_0005",
+          "reference_distance_km": 25.9
+        },
+        {
+          "spot_id": "ilgwang",
+          "metric": "water_temp",
+          "value": 24.22,
+          "unit": "°C",
+          "observed_at": "2026-10-03T15:00:00",
+          "source": "KHOA 바다누리(실측)",
+          "is_missing": false,
+          "is_stale": false,
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
+          "reference_station_name": null,
+          "reference_station_code": null,
+          "reference_distance_km": null
+        }
+      ],
+      "advisory": {
+        "kind": "none",
+        "threshold_value": null,
+        "effective_at": null,
+        "source": "기상청 특보",
+        "is_missing": false,
+        "is_stale": false
+      },
+      "llm_prose": null,
+      "prose_status": "generation_unavailable",
+      "observation_fetch_duration_ms": 1793,
+      "forecast_fetch_duration_ms": 1028,
+      "forecast": [
+        {
+          "time": "2026-10-04T00:00:00",
+          "wave_height": 1.24,
+          "wind_speed": 7.74
+        },
+        {
+          "time": "2026-10-04T01:00:00",
+          "wave_height": 1.2,
+          "wind_speed": 6.84
+        },
+        {
+          "time": "2026-10-04T02:00:00",
+          "wave_height": 1.16,
+          "wind_speed": 5.56
+        },
+        {
+          "time": "2026-10-04T03:00:00",
+          "wave_height": 1.12,
+          "wind_speed": 6.2
+        },
+        {
+          "time": "2026-10-04T04:00:00",
+          "wave_height": 1.12,
+          "wind_speed": 5.55
+        },
+        {
+          "time": "2026-10-04T05:00:00",
+          "wave_height": 1.14,
+          "wind_speed": 4.96
+        },
+        {
+          "time": "2026-10-04T06:00:00",
+          "wave_height": 1.14,
+          "wind_speed": 4.43
+        },
+        {
+          "time": "2026-10-04T07:00:00",
+          "wave_height": 1.14,
+          "wind_speed": 4.27
+        },
+        {
+          "time": "2026-10-04T08:00:00",
+          "wave_height": 1.16,
+          "wind_speed": 4.56
+        },
+        {
+          "time": "2026-10-04T09:00:00",
+          "wave_height": 1.16,
+          "wind_speed": 4.63
+        },
+        {
+          "time": "2026-10-04T10:00:00",
+          "wave_height": 1.12,
+          "wind_speed": 4.25
+        },
+        {
+          "time": "2026-10-04T11:00:00",
+          "wave_height": 1.1,
+          "wind_speed": 6.08
+        },
+        {
+          "time": "2026-10-04T12:00:00",
+          "wave_height": 1.06,
+          "wind_speed": 5.8
+        },
+        {
+          "time": "2026-10-04T13:00:00",
+          "wave_height": 1.02,
+          "wind_speed": 5.71
+        },
+        {
+          "time": "2026-10-04T14:00:00",
+          "wave_height": 0.98,
+          "wind_speed": 4.36
+        },
+        {
+          "time": "2026-10-04T15:00:00",
+          "wave_height": 0.94,
+          "wind_speed": 3.62
+        },
+        {
+          "time": "2026-10-04T16:00:00",
+          "wave_height": 0.9,
+          "wind_speed": 3.55
+        },
+        {
+          "time": "2026-10-04T17:00:00",
+          "wave_height": 0.88,
+          "wind_speed": 3.54
+        },
+        {
+          "time": "2026-10-04T18:00:00",
+          "wave_height": 0.84,
+          "wind_speed": 4.11
+        },
+        {
+          "time": "2026-10-04T19:00:00",
+          "wave_height": 0.82,
+          "wind_speed": 4.22
+        },
+        {
+          "time": "2026-10-04T20:00:00",
+          "wave_height": 0.78,
+          "wind_speed": 3.21
+        },
+        {
+          "time": "2026-10-04T21:00:00",
+          "wave_height": 0.76,
+          "wind_speed": 2.4
+        },
+        {
+          "time": "2026-10-04T22:00:00",
+          "wave_height": 0.74,
+          "wind_speed": 1.46
+        },
+        {
+          "time": "2026-10-04T23:00:00",
+          "wave_height": 0.72,
+          "wind_speed": 0.94
+        },
+        {
+          "time": "2026-10-05T00:00:00",
+          "wave_height": 0.7,
+          "wind_speed": 1.88
+        },
+        {
+          "time": "2026-10-05T01:00:00",
+          "wave_height": 0.68,
+          "wind_speed": 2.31
+        },
+        {
+          "time": "2026-10-05T02:00:00",
+          "wave_height": 0.64,
+          "wind_speed": 2.33
+        },
+        {
+          "time": "2026-10-05T03:00:00",
+          "wave_height": 0.62,
+          "wind_speed": 2.61
+        },
+        {
+          "time": "2026-10-05T04:00:00",
+          "wave_height": 0.6,
+          "wind_speed": 2.72
+        },
+        {
+          "time": "2026-10-05T05:00:00",
+          "wave_height": 0.56,
+          "wind_speed": 3.21
+        },
+        {
+          "time": "2026-10-05T06:00:00",
+          "wave_height": 0.54,
+          "wind_speed": 4.24
+        },
+        {
+          "time": "2026-10-05T07:00:00",
+          "wave_height": 0.52,
+          "wind_speed": 3.98
+        },
+        {
+          "time": "2026-10-05T08:00:00",
+          "wave_height": 0.5,
+          "wind_speed": 4.79
+        },
+        {
+          "time": "2026-10-05T09:00:00",
+          "wave_height": 0.48,
+          "wind_speed": 4.12
+        },
+        {
+          "time": "2026-10-05T10:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 4.36
+        },
+        {
+          "time": "2026-10-05T11:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 4.79
+        },
+        {
+          "time": "2026-10-05T12:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 5.14
+        },
+        {
+          "time": "2026-10-05T13:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 5.64
+        },
+        {
+          "time": "2026-10-05T14:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 5.79
+        },
+        {
+          "time": "2026-10-05T15:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 5.51
+        },
+        {
+          "time": "2026-10-05T16:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 5.44
+        },
+        {
+          "time": "2026-10-05T17:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 4.9
+        },
+        {
+          "time": "2026-10-05T18:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 3.74
+        },
+        {
+          "time": "2026-10-05T19:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 3.77
+        },
+        {
+          "time": "2026-10-05T20:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 4.06
+        },
+        {
+          "time": "2026-10-05T21:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 4.46
+        },
+        {
+          "time": "2026-10-05T22:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 4.75
+        },
+        {
+          "time": "2026-10-05T23:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 5.09
+        }
+      ],
+      "forecast_status": "available",
+      "forecast_missing_reason": null,
+      "forecast_collected_at": "2026-10-04T05:13:31.893122"
+    },
+    "imnang": {
+      "observations": [
+        {
+          "spot_id": "imnang",
+          "metric": "wave_height",
+          "value": 1.1,
+          "unit": "m",
+          "observed_at": "2026-10-03T15:00:00",
+          "source": "KHOA 바다누리(실측)",
+          "is_missing": false,
+          "is_stale": false,
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
+          "reference_station_name": null,
+          "reference_station_code": null,
+          "reference_distance_km": null
+        },
+        {
+          "spot_id": "imnang",
+          "metric": "wind_speed",
+          "value": 6.6,
+          "unit": "m/s",
+          "observed_at": "2026-10-03T15:00:00",
+          "source": "KHOA 해양관측부이(실측)",
+          "is_missing": false,
+          "is_stale": false,
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
+          "reference_station_name": null,
+          "reference_station_code": null,
+          "reference_distance_km": null
+        },
+        {
+          "spot_id": "imnang",
+          "metric": "current_speed",
+          "value": 0.082,
+          "unit": "m/s",
+          "observed_at": "2026-10-03T15:00:00",
+          "source": "KHOA 바다누리(실측)",
+          "is_missing": false,
+          "is_stale": false,
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
+          "reference_station_name": null,
+          "reference_station_code": null,
+          "reference_distance_km": null
+        },
+        {
+          "spot_id": "imnang",
+          "metric": "tide_level",
+          "value": 57.0,
+          "unit": "cm",
+          "observed_at": "2026-10-03T15:00:00",
+          "source": "KHOA 조위관측소(실측)",
+          "is_missing": false,
+          "is_stale": false,
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
+          "reference_station_name": "울산 조위관측소",
+          "reference_station_code": "DT_0020",
+          "reference_distance_km": 22.9
+        },
+        {
+          "spot_id": "imnang",
+          "metric": "water_temp",
+          "value": 24.22,
+          "unit": "°C",
+          "observed_at": "2026-10-03T15:00:00",
+          "source": "KHOA 바다누리(실측)",
+          "is_missing": false,
+          "is_stale": false,
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
+          "reference_station_name": null,
+          "reference_station_code": null,
+          "reference_distance_km": null
+        }
+      ],
+      "advisory": {
+        "kind": "none",
+        "threshold_value": null,
+        "effective_at": null,
+        "source": "기상청 특보",
+        "is_missing": false,
+        "is_stale": false
+      },
+      "llm_prose": null,
+      "prose_status": "generation_unavailable",
+      "observation_fetch_duration_ms": 1792,
+      "forecast_fetch_duration_ms": 1023,
+      "forecast": [
+        {
+          "time": "2026-10-04T00:00:00",
+          "wave_height": 1.24,
+          "wind_speed": 5.66
+        },
+        {
+          "time": "2026-10-04T01:00:00",
+          "wave_height": 1.2,
+          "wind_speed": 4.72
+        },
+        {
+          "time": "2026-10-04T02:00:00",
+          "wave_height": 1.18,
+          "wind_speed": 3.7
+        },
+        {
+          "time": "2026-10-04T03:00:00",
+          "wave_height": 1.14,
+          "wind_speed": 4.53
+        },
+        {
+          "time": "2026-10-04T04:00:00",
+          "wave_height": 1.14,
+          "wind_speed": 4.4
+        },
+        {
+          "time": "2026-10-04T05:00:00",
+          "wave_height": 1.16,
+          "wind_speed": 4.1
+        },
+        {
+          "time": "2026-10-04T06:00:00",
+          "wave_height": 1.16,
+          "wind_speed": 3.6
+        },
+        {
+          "time": "2026-10-04T07:00:00",
+          "wave_height": 1.16,
+          "wind_speed": 3.5
+        },
+        {
+          "time": "2026-10-04T08:00:00",
+          "wave_height": 1.18,
+          "wind_speed": 3.7
+        },
+        {
+          "time": "2026-10-04T09:00:00",
+          "wave_height": 1.18,
+          "wind_speed": 3.91
+        },
+        {
+          "time": "2026-10-04T10:00:00",
+          "wave_height": 1.14,
+          "wind_speed": 3.49
+        },
+        {
+          "time": "2026-10-04T11:00:00",
+          "wave_height": 1.12,
+          "wind_speed": 5.3
+        },
+        {
+          "time": "2026-10-04T12:00:00",
+          "wave_height": 1.08,
+          "wind_speed": 5.42
+        },
+        {
+          "time": "2026-10-04T13:00:00",
+          "wave_height": 1.04,
+          "wind_speed": 5.31
+        },
+        {
+          "time": "2026-10-04T14:00:00",
+          "wave_height": 1.0,
+          "wind_speed": 4.24
+        },
+        {
+          "time": "2026-10-04T15:00:00",
+          "wave_height": 0.96,
+          "wind_speed": 3.61
+        },
+        {
+          "time": "2026-10-04T16:00:00",
+          "wave_height": 0.94,
+          "wind_speed": 3.55
+        },
+        {
+          "time": "2026-10-04T17:00:00",
+          "wave_height": 0.9,
+          "wind_speed": 3.45
+        },
+        {
+          "time": "2026-10-04T18:00:00",
+          "wave_height": 0.88,
+          "wind_speed": 3.49
+        },
+        {
+          "time": "2026-10-04T19:00:00",
+          "wave_height": 0.86,
+          "wind_speed": 3.13
+        },
+        {
+          "time": "2026-10-04T20:00:00",
+          "wave_height": 0.82,
+          "wind_speed": 2.25
+        },
+        {
+          "time": "2026-10-04T21:00:00",
+          "wave_height": 0.8,
+          "wind_speed": 1.2
+        },
+        {
+          "time": "2026-10-04T22:00:00",
+          "wave_height": 0.78,
+          "wind_speed": 1.32
+        },
+        {
+          "time": "2026-10-04T23:00:00",
+          "wave_height": 0.74,
+          "wind_speed": 1.91
+        },
+        {
+          "time": "2026-10-05T00:00:00",
+          "wave_height": 0.72,
+          "wind_speed": 2.19
+        },
+        {
+          "time": "2026-10-05T01:00:00",
+          "wave_height": 0.7,
+          "wind_speed": 2.38
+        },
+        {
+          "time": "2026-10-05T02:00:00",
+          "wave_height": 0.66,
+          "wind_speed": 2.43
+        },
+        {
+          "time": "2026-10-05T03:00:00",
+          "wave_height": 0.64,
+          "wind_speed": 2.5
+        },
+        {
+          "time": "2026-10-05T04:00:00",
+          "wave_height": 0.62,
+          "wind_speed": 2.51
+        },
+        {
+          "time": "2026-10-05T05:00:00",
+          "wave_height": 0.58,
+          "wind_speed": 2.9
+        },
+        {
+          "time": "2026-10-05T06:00:00",
+          "wave_height": 0.56,
+          "wind_speed": 3.71
+        },
+        {
+          "time": "2026-10-05T07:00:00",
+          "wave_height": 0.54,
+          "wind_speed": 3.59
+        },
+        {
+          "time": "2026-10-05T08:00:00",
+          "wave_height": 0.5,
+          "wind_speed": 4.03
+        },
+        {
+          "time": "2026-10-05T09:00:00",
+          "wave_height": 0.48,
+          "wind_speed": 3.42
+        },
+        {
+          "time": "2026-10-05T10:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 3.91
+        },
+        {
+          "time": "2026-10-05T11:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 4.49
+        },
+        {
+          "time": "2026-10-05T12:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 4.96
+        },
+        {
+          "time": "2026-10-05T13:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 5.31
+        },
+        {
+          "time": "2026-10-05T14:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 5.23
+        },
+        {
+          "time": "2026-10-05T15:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 4.9
+        },
+        {
+          "time": "2026-10-05T16:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 4.56
+        },
+        {
+          "time": "2026-10-05T17:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 3.93
+        },
+        {
+          "time": "2026-10-05T18:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 2.79
+        },
+        {
+          "time": "2026-10-05T19:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 2.78
+        },
+        {
+          "time": "2026-10-05T20:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 3.04
+        },
+        {
+          "time": "2026-10-05T21:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 3.4
+        },
+        {
+          "time": "2026-10-05T22:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 3.75
+        },
+        {
+          "time": "2026-10-05T23:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 4.11
+        }
+      ],
+      "forecast_status": "available",
+      "forecast_missing_reason": null,
+      "forecast_collected_at": "2026-10-04T05:13:31.893122"
     },
     "busanhang": {
       "observations": [
         {
           "spot_id": "busanhang",
           "metric": "wave_height",
-          "value": null,
+          "value": 0.62,
           "unit": "m",
-          "observed_at": null,
-          "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
+          "observed_at": "2026-10-04T14:00:00",
+          "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -929,14 +2375,14 @@
         {
           "spot_id": "busanhang",
           "metric": "wind_speed",
-          "value": null,
+          "value": 4.63,
           "unit": "m/s",
-          "observed_at": null,
-          "source": "KHOA 해양관측부이(실측)",
-          "is_missing": true,
+          "observed_at": "2026-10-04T14:00:00",
+          "source": "Open-Meteo 기상모델",
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -944,14 +2390,14 @@
         {
           "spot_id": "busanhang",
           "metric": "current_speed",
-          "value": null,
+          "value": 0.008,
           "unit": "m/s",
-          "observed_at": null,
+          "observed_at": "2026-10-03T15:00:00",
           "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -959,14 +2405,14 @@
         {
           "spot_id": "busanhang",
           "metric": "tide_level",
-          "value": null,
+          "value": 103.0,
           "unit": "cm",
-          "observed_at": null,
+          "observed_at": "2026-10-03T15:00:00",
           "source": "KHOA 조위관측소(실측)",
-          "is_missing": true,
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": "부산 조위관측소",
           "reference_station_code": "DT_0005",
           "reference_distance_km": 0.0
@@ -974,14 +2420,14 @@
         {
           "spot_id": "busanhang",
           "metric": "water_temp",
-          "value": null,
+          "value": 23.1,
           "unit": "°C",
-          "observed_at": null,
+          "observed_at": "2026-10-03T15:00:00",
           "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -991,32 +2437,273 @@
         "kind": "none",
         "threshold_value": null,
         "effective_at": null,
-        "source": "특보 소스 없음",
-        "is_missing": true,
+        "source": "기상청 특보",
+        "is_missing": false,
         "is_stale": false
       },
       "llm_prose": null,
       "prose_status": "generation_unavailable",
-      "observation_fetch_duration_ms": 10008,
-      "forecast_fetch_duration_ms": 10019,
-      "forecast": [],
-      "forecast_status": "source_timeout",
-      "forecast_missing_reason": "source_timeout",
-      "forecast_collected_at": "2026-10-03T20:50:19.622820"
+      "observation_fetch_duration_ms": 1793,
+      "forecast_fetch_duration_ms": 1030,
+      "forecast": [
+        {
+          "time": "2026-10-04T00:00:00",
+          "wave_height": 0.84,
+          "wind_speed": 5.42
+        },
+        {
+          "time": "2026-10-04T01:00:00",
+          "wave_height": 0.8,
+          "wind_speed": 4.47
+        },
+        {
+          "time": "2026-10-04T02:00:00",
+          "wave_height": 0.78,
+          "wind_speed": 3.79
+        },
+        {
+          "time": "2026-10-04T03:00:00",
+          "wave_height": 0.74,
+          "wind_speed": 4.24
+        },
+        {
+          "time": "2026-10-04T04:00:00",
+          "wave_height": 0.72,
+          "wind_speed": 4.2
+        },
+        {
+          "time": "2026-10-04T05:00:00",
+          "wave_height": 0.72,
+          "wind_speed": 4.21
+        },
+        {
+          "time": "2026-10-04T06:00:00",
+          "wave_height": 0.7,
+          "wind_speed": 4.2
+        },
+        {
+          "time": "2026-10-04T07:00:00",
+          "wave_height": 0.7,
+          "wind_speed": 3.21
+        },
+        {
+          "time": "2026-10-04T08:00:00",
+          "wave_height": 0.72,
+          "wind_speed": 4.21
+        },
+        {
+          "time": "2026-10-04T09:00:00",
+          "wave_height": 0.72,
+          "wind_speed": 4.12
+        },
+        {
+          "time": "2026-10-04T10:00:00",
+          "wave_height": 0.72,
+          "wind_speed": 3.67
+        },
+        {
+          "time": "2026-10-04T11:00:00",
+          "wave_height": 0.7,
+          "wind_speed": 3.91
+        },
+        {
+          "time": "2026-10-04T12:00:00",
+          "wave_height": 0.7,
+          "wind_speed": 4.59
+        },
+        {
+          "time": "2026-10-04T13:00:00",
+          "wave_height": 0.66,
+          "wind_speed": 4.82
+        },
+        {
+          "time": "2026-10-04T14:00:00",
+          "wave_height": 0.62,
+          "wind_speed": 4.63
+        },
+        {
+          "time": "2026-10-04T15:00:00",
+          "wave_height": 0.58,
+          "wind_speed": 4.23
+        },
+        {
+          "time": "2026-10-04T16:00:00",
+          "wave_height": 0.56,
+          "wind_speed": 4.03
+        },
+        {
+          "time": "2026-10-04T17:00:00",
+          "wave_height": 0.54,
+          "wind_speed": 3.98
+        },
+        {
+          "time": "2026-10-04T18:00:00",
+          "wave_height": 0.52,
+          "wind_speed": 3.35
+        },
+        {
+          "time": "2026-10-04T19:00:00",
+          "wave_height": 0.5,
+          "wind_speed": 3.13
+        },
+        {
+          "time": "2026-10-04T20:00:00",
+          "wave_height": 0.48,
+          "wind_speed": 2.83
+        },
+        {
+          "time": "2026-10-04T21:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 2.28
+        },
+        {
+          "time": "2026-10-04T22:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 1.64
+        },
+        {
+          "time": "2026-10-04T23:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 1.36
+        },
+        {
+          "time": "2026-10-05T00:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 1.65
+        },
+        {
+          "time": "2026-10-05T01:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 1.88
+        },
+        {
+          "time": "2026-10-05T02:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 1.92
+        },
+        {
+          "time": "2026-10-05T03:00:00",
+          "wave_height": 0.38,
+          "wind_speed": 1.84
+        },
+        {
+          "time": "2026-10-05T04:00:00",
+          "wave_height": 0.36,
+          "wind_speed": 1.58
+        },
+        {
+          "time": "2026-10-05T05:00:00",
+          "wave_height": 0.36,
+          "wind_speed": 2.6
+        },
+        {
+          "time": "2026-10-05T06:00:00",
+          "wave_height": 0.34,
+          "wind_speed": 3.61
+        },
+        {
+          "time": "2026-10-05T07:00:00",
+          "wave_height": 0.32,
+          "wind_speed": 3.47
+        },
+        {
+          "time": "2026-10-05T08:00:00",
+          "wave_height": 0.32,
+          "wind_speed": 4.4
+        },
+        {
+          "time": "2026-10-05T09:00:00",
+          "wave_height": 0.3,
+          "wind_speed": 4.04
+        },
+        {
+          "time": "2026-10-05T10:00:00",
+          "wave_height": 0.3,
+          "wind_speed": 4.46
+        },
+        {
+          "time": "2026-10-05T11:00:00",
+          "wave_height": 0.28,
+          "wind_speed": 4.91
+        },
+        {
+          "time": "2026-10-05T12:00:00",
+          "wave_height": 0.28,
+          "wind_speed": 5.0
+        },
+        {
+          "time": "2026-10-05T13:00:00",
+          "wave_height": 0.32,
+          "wind_speed": 5.15
+        },
+        {
+          "time": "2026-10-05T14:00:00",
+          "wave_height": 0.34,
+          "wind_speed": 5.3
+        },
+        {
+          "time": "2026-10-05T15:00:00",
+          "wave_height": 0.38,
+          "wind_speed": 5.03
+        },
+        {
+          "time": "2026-10-05T16:00:00",
+          "wave_height": 0.38,
+          "wind_speed": 5.11
+        },
+        {
+          "time": "2026-10-05T17:00:00",
+          "wave_height": 0.36,
+          "wind_speed": 4.99
+        },
+        {
+          "time": "2026-10-05T18:00:00",
+          "wave_height": 0.36,
+          "wind_speed": 4.48
+        },
+        {
+          "time": "2026-10-05T19:00:00",
+          "wave_height": 0.36,
+          "wind_speed": 4.75
+        },
+        {
+          "time": "2026-10-05T20:00:00",
+          "wave_height": 0.34,
+          "wind_speed": 4.64
+        },
+        {
+          "time": "2026-10-05T21:00:00",
+          "wave_height": 0.34,
+          "wind_speed": 4.24
+        },
+        {
+          "time": "2026-10-05T22:00:00",
+          "wave_height": 0.34,
+          "wind_speed": 4.58
+        },
+        {
+          "time": "2026-10-05T23:00:00",
+          "wave_height": 0.32,
+          "wind_speed": 4.94
+        }
+      ],
+      "forecast_status": "available",
+      "forecast_missing_reason": null,
+      "forecast_collected_at": "2026-10-04T05:13:31.893122"
     },
     "gamcheon": {
       "observations": [
         {
           "spot_id": "gamcheon",
           "metric": "wave_height",
-          "value": null,
+          "value": 0.72,
           "unit": "m",
-          "observed_at": null,
-          "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
+          "observed_at": "2026-10-04T14:00:00",
+          "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1024,14 +2711,14 @@
         {
           "spot_id": "gamcheon",
           "metric": "wind_speed",
-          "value": null,
+          "value": 4.2,
           "unit": "m/s",
-          "observed_at": null,
-          "source": "KHOA 해양관측부이(실측)",
-          "is_missing": true,
+          "observed_at": "2026-10-04T14:00:00",
+          "source": "Open-Meteo 기상모델",
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1039,14 +2726,14 @@
         {
           "spot_id": "gamcheon",
           "metric": "current_speed",
-          "value": null,
+          "value": 0.008,
           "unit": "m/s",
-          "observed_at": null,
+          "observed_at": "2026-10-03T15:00:00",
           "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1054,14 +2741,14 @@
         {
           "spot_id": "gamcheon",
           "metric": "tide_level",
-          "value": null,
+          "value": 103.0,
           "unit": "cm",
-          "observed_at": null,
+          "observed_at": "2026-10-03T15:00:00",
           "source": "KHOA 조위관측소(실측)",
-          "is_missing": true,
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": "부산 조위관측소",
           "reference_station_code": "DT_0005",
           "reference_distance_km": 2.9
@@ -1069,14 +2756,14 @@
         {
           "spot_id": "gamcheon",
           "metric": "water_temp",
-          "value": null,
+          "value": 23.1,
           "unit": "°C",
-          "observed_at": null,
+          "observed_at": "2026-10-03T15:00:00",
           "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1086,32 +2773,273 @@
         "kind": "none",
         "threshold_value": null,
         "effective_at": null,
-        "source": "특보 소스 없음",
-        "is_missing": true,
+        "source": "기상청 특보",
+        "is_missing": false,
         "is_stale": false
       },
       "llm_prose": null,
       "prose_status": "generation_unavailable",
-      "observation_fetch_duration_ms": 10008,
-      "forecast_fetch_duration_ms": 10021,
-      "forecast": [],
-      "forecast_status": "source_timeout",
-      "forecast_missing_reason": "source_timeout",
-      "forecast_collected_at": "2026-10-03T20:50:19.622820"
+      "observation_fetch_duration_ms": 1793,
+      "forecast_fetch_duration_ms": 1010,
+      "forecast": [
+        {
+          "time": "2026-10-04T00:00:00",
+          "wave_height": 1.04,
+          "wind_speed": 3.26
+        },
+        {
+          "time": "2026-10-04T01:00:00",
+          "wave_height": 1.0,
+          "wind_speed": 2.51
+        },
+        {
+          "time": "2026-10-04T02:00:00",
+          "wave_height": 0.94,
+          "wind_speed": 3.21
+        },
+        {
+          "time": "2026-10-04T03:00:00",
+          "wave_height": 0.9,
+          "wind_speed": 3.2
+        },
+        {
+          "time": "2026-10-04T04:00:00",
+          "wave_height": 0.88,
+          "wind_speed": 3.26
+        },
+        {
+          "time": "2026-10-04T05:00:00",
+          "wave_height": 0.86,
+          "wind_speed": 3.4
+        },
+        {
+          "time": "2026-10-04T06:00:00",
+          "wave_height": 0.84,
+          "wind_speed": 3.51
+        },
+        {
+          "time": "2026-10-04T07:00:00",
+          "wave_height": 0.86,
+          "wind_speed": 2.92
+        },
+        {
+          "time": "2026-10-04T08:00:00",
+          "wave_height": 0.9,
+          "wind_speed": 3.77
+        },
+        {
+          "time": "2026-10-04T09:00:00",
+          "wave_height": 0.92,
+          "wind_speed": 3.4
+        },
+        {
+          "time": "2026-10-04T10:00:00",
+          "wave_height": 0.88,
+          "wind_speed": 2.75
+        },
+        {
+          "time": "2026-10-04T11:00:00",
+          "wave_height": 0.86,
+          "wind_speed": 3.14
+        },
+        {
+          "time": "2026-10-04T12:00:00",
+          "wave_height": 0.82,
+          "wind_speed": 3.52
+        },
+        {
+          "time": "2026-10-04T13:00:00",
+          "wave_height": 0.76,
+          "wind_speed": 4.0
+        },
+        {
+          "time": "2026-10-04T14:00:00",
+          "wave_height": 0.72,
+          "wind_speed": 4.2
+        },
+        {
+          "time": "2026-10-04T15:00:00",
+          "wave_height": 0.66,
+          "wind_speed": 3.9
+        },
+        {
+          "time": "2026-10-04T16:00:00",
+          "wave_height": 0.64,
+          "wind_speed": 3.6
+        },
+        {
+          "time": "2026-10-04T17:00:00",
+          "wave_height": 0.6,
+          "wind_speed": 3.32
+        },
+        {
+          "time": "2026-10-04T18:00:00",
+          "wave_height": 0.58,
+          "wind_speed": 2.73
+        },
+        {
+          "time": "2026-10-04T19:00:00",
+          "wave_height": 0.56,
+          "wind_speed": 2.33
+        },
+        {
+          "time": "2026-10-04T20:00:00",
+          "wave_height": 0.56,
+          "wind_speed": 1.96
+        },
+        {
+          "time": "2026-10-04T21:00:00",
+          "wave_height": 0.54,
+          "wind_speed": 1.66
+        },
+        {
+          "time": "2026-10-04T22:00:00",
+          "wave_height": 0.52,
+          "wind_speed": 1.46
+        },
+        {
+          "time": "2026-10-04T23:00:00",
+          "wave_height": 0.5,
+          "wind_speed": 1.51
+        },
+        {
+          "time": "2026-10-05T00:00:00",
+          "wave_height": 0.48,
+          "wind_speed": 1.61
+        },
+        {
+          "time": "2026-10-05T01:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 1.68
+        },
+        {
+          "time": "2026-10-05T02:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 1.71
+        },
+        {
+          "time": "2026-10-05T03:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 1.58
+        },
+        {
+          "time": "2026-10-05T04:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 1.06
+        },
+        {
+          "time": "2026-10-05T05:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 2.19
+        },
+        {
+          "time": "2026-10-05T06:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 2.78
+        },
+        {
+          "time": "2026-10-05T07:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 2.83
+        },
+        {
+          "time": "2026-10-05T08:00:00",
+          "wave_height": 0.38,
+          "wind_speed": 3.47
+        },
+        {
+          "time": "2026-10-05T09:00:00",
+          "wave_height": 0.38,
+          "wind_speed": 3.5
+        },
+        {
+          "time": "2026-10-05T10:00:00",
+          "wave_height": 0.38,
+          "wind_speed": 3.97
+        },
+        {
+          "time": "2026-10-05T11:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 4.44
+        },
+        {
+          "time": "2026-10-05T12:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 4.46
+        },
+        {
+          "time": "2026-10-05T13:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 4.85
+        },
+        {
+          "time": "2026-10-05T14:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 4.81
+        },
+        {
+          "time": "2026-10-05T15:00:00",
+          "wave_height": 0.48,
+          "wind_speed": 4.53
+        },
+        {
+          "time": "2026-10-05T16:00:00",
+          "wave_height": 0.5,
+          "wind_speed": 4.66
+        },
+        {
+          "time": "2026-10-05T17:00:00",
+          "wave_height": 0.54,
+          "wind_speed": 4.41
+        },
+        {
+          "time": "2026-10-05T18:00:00",
+          "wave_height": 0.56,
+          "wind_speed": 3.94
+        },
+        {
+          "time": "2026-10-05T19:00:00",
+          "wave_height": 0.56,
+          "wind_speed": 4.08
+        },
+        {
+          "time": "2026-10-05T20:00:00",
+          "wave_height": 0.58,
+          "wind_speed": 4.06
+        },
+        {
+          "time": "2026-10-05T21:00:00",
+          "wave_height": 0.58,
+          "wind_speed": 3.61
+        },
+        {
+          "time": "2026-10-05T22:00:00",
+          "wave_height": 0.56,
+          "wind_speed": 3.8
+        },
+        {
+          "time": "2026-10-05T23:00:00",
+          "wave_height": 0.54,
+          "wind_speed": 4.16
+        }
+      ],
+      "forecast_status": "available",
+      "forecast_missing_reason": null,
+      "forecast_collected_at": "2026-10-04T05:13:31.893122"
     },
     "daebyeon": {
       "observations": [
         {
           "spot_id": "daebyeon",
           "metric": "wave_height",
-          "value": null,
+          "value": 1.6,
           "unit": "m",
-          "observed_at": null,
+          "observed_at": "2026-10-03T15:00:00",
           "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1119,14 +3047,14 @@
         {
           "spot_id": "daebyeon",
           "metric": "wind_speed",
-          "value": null,
+          "value": 7.3,
           "unit": "m/s",
-          "observed_at": null,
+          "observed_at": "2026-10-03T15:00:00",
           "source": "KHOA 해양관측부이(실측)",
-          "is_missing": true,
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1134,14 +3062,14 @@
         {
           "spot_id": "daebyeon",
           "metric": "current_speed",
-          "value": null,
+          "value": 0.313,
           "unit": "m/s",
-          "observed_at": null,
+          "observed_at": "2026-10-03T15:00:00",
           "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1149,14 +3077,14 @@
         {
           "spot_id": "daebyeon",
           "metric": "tide_level",
-          "value": null,
+          "value": 103.0,
           "unit": "cm",
-          "observed_at": null,
+          "observed_at": "2026-10-03T15:00:00",
           "source": "KHOA 조위관측소(실측)",
-          "is_missing": true,
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": "부산 조위관측소",
           "reference_station_code": "DT_0005",
           "reference_distance_km": 23.8
@@ -1164,14 +3092,14 @@
         {
           "spot_id": "daebyeon",
           "metric": "water_temp",
-          "value": null,
+          "value": 24.1,
           "unit": "°C",
-          "observed_at": null,
-          "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
+          "observed_at": "2026-10-04T14:00:00",
+          "source": "Open-Meteo 해양모델",
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1181,32 +3109,273 @@
         "kind": "none",
         "threshold_value": null,
         "effective_at": null,
-        "source": "특보 소스 없음",
-        "is_missing": true,
+        "source": "기상청 특보",
+        "is_missing": false,
         "is_stale": false
       },
       "llm_prose": null,
       "prose_status": "generation_unavailable",
-      "observation_fetch_duration_ms": 10008,
-      "forecast_fetch_duration_ms": 10022,
-      "forecast": [],
-      "forecast_status": "source_timeout",
-      "forecast_missing_reason": "source_timeout",
-      "forecast_collected_at": "2026-10-03T20:50:19.622820"
+      "observation_fetch_duration_ms": 1750,
+      "forecast_fetch_duration_ms": 792,
+      "forecast": [
+        {
+          "time": "2026-10-04T00:00:00",
+          "wave_height": 1.24,
+          "wind_speed": 7.74
+        },
+        {
+          "time": "2026-10-04T01:00:00",
+          "wave_height": 1.2,
+          "wind_speed": 6.84
+        },
+        {
+          "time": "2026-10-04T02:00:00",
+          "wave_height": 1.16,
+          "wind_speed": 5.56
+        },
+        {
+          "time": "2026-10-04T03:00:00",
+          "wave_height": 1.12,
+          "wind_speed": 6.2
+        },
+        {
+          "time": "2026-10-04T04:00:00",
+          "wave_height": 1.12,
+          "wind_speed": 5.55
+        },
+        {
+          "time": "2026-10-04T05:00:00",
+          "wave_height": 1.14,
+          "wind_speed": 4.96
+        },
+        {
+          "time": "2026-10-04T06:00:00",
+          "wave_height": 1.14,
+          "wind_speed": 4.43
+        },
+        {
+          "time": "2026-10-04T07:00:00",
+          "wave_height": 1.14,
+          "wind_speed": 4.27
+        },
+        {
+          "time": "2026-10-04T08:00:00",
+          "wave_height": 1.16,
+          "wind_speed": 4.56
+        },
+        {
+          "time": "2026-10-04T09:00:00",
+          "wave_height": 1.16,
+          "wind_speed": 4.63
+        },
+        {
+          "time": "2026-10-04T10:00:00",
+          "wave_height": 1.12,
+          "wind_speed": 4.25
+        },
+        {
+          "time": "2026-10-04T11:00:00",
+          "wave_height": 1.1,
+          "wind_speed": 6.08
+        },
+        {
+          "time": "2026-10-04T12:00:00",
+          "wave_height": 1.06,
+          "wind_speed": 5.8
+        },
+        {
+          "time": "2026-10-04T13:00:00",
+          "wave_height": 1.02,
+          "wind_speed": 5.71
+        },
+        {
+          "time": "2026-10-04T14:00:00",
+          "wave_height": 0.98,
+          "wind_speed": 4.36
+        },
+        {
+          "time": "2026-10-04T15:00:00",
+          "wave_height": 0.94,
+          "wind_speed": 3.62
+        },
+        {
+          "time": "2026-10-04T16:00:00",
+          "wave_height": 0.9,
+          "wind_speed": 3.55
+        },
+        {
+          "time": "2026-10-04T17:00:00",
+          "wave_height": 0.88,
+          "wind_speed": 3.54
+        },
+        {
+          "time": "2026-10-04T18:00:00",
+          "wave_height": 0.84,
+          "wind_speed": 4.11
+        },
+        {
+          "time": "2026-10-04T19:00:00",
+          "wave_height": 0.82,
+          "wind_speed": 4.22
+        },
+        {
+          "time": "2026-10-04T20:00:00",
+          "wave_height": 0.78,
+          "wind_speed": 3.21
+        },
+        {
+          "time": "2026-10-04T21:00:00",
+          "wave_height": 0.76,
+          "wind_speed": 2.4
+        },
+        {
+          "time": "2026-10-04T22:00:00",
+          "wave_height": 0.74,
+          "wind_speed": 1.46
+        },
+        {
+          "time": "2026-10-04T23:00:00",
+          "wave_height": 0.72,
+          "wind_speed": 0.94
+        },
+        {
+          "time": "2026-10-05T00:00:00",
+          "wave_height": 0.7,
+          "wind_speed": 1.88
+        },
+        {
+          "time": "2026-10-05T01:00:00",
+          "wave_height": 0.68,
+          "wind_speed": 2.31
+        },
+        {
+          "time": "2026-10-05T02:00:00",
+          "wave_height": 0.64,
+          "wind_speed": 2.33
+        },
+        {
+          "time": "2026-10-05T03:00:00",
+          "wave_height": 0.62,
+          "wind_speed": 2.61
+        },
+        {
+          "time": "2026-10-05T04:00:00",
+          "wave_height": 0.6,
+          "wind_speed": 2.72
+        },
+        {
+          "time": "2026-10-05T05:00:00",
+          "wave_height": 0.56,
+          "wind_speed": 3.21
+        },
+        {
+          "time": "2026-10-05T06:00:00",
+          "wave_height": 0.54,
+          "wind_speed": 4.24
+        },
+        {
+          "time": "2026-10-05T07:00:00",
+          "wave_height": 0.52,
+          "wind_speed": 3.98
+        },
+        {
+          "time": "2026-10-05T08:00:00",
+          "wave_height": 0.5,
+          "wind_speed": 4.79
+        },
+        {
+          "time": "2026-10-05T09:00:00",
+          "wave_height": 0.48,
+          "wind_speed": 4.12
+        },
+        {
+          "time": "2026-10-05T10:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 4.36
+        },
+        {
+          "time": "2026-10-05T11:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 4.79
+        },
+        {
+          "time": "2026-10-05T12:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 5.14
+        },
+        {
+          "time": "2026-10-05T13:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 5.64
+        },
+        {
+          "time": "2026-10-05T14:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 5.79
+        },
+        {
+          "time": "2026-10-05T15:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 5.51
+        },
+        {
+          "time": "2026-10-05T16:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 5.44
+        },
+        {
+          "time": "2026-10-05T17:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 4.9
+        },
+        {
+          "time": "2026-10-05T18:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 3.74
+        },
+        {
+          "time": "2026-10-05T19:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 3.77
+        },
+        {
+          "time": "2026-10-05T20:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 4.06
+        },
+        {
+          "time": "2026-10-05T21:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 4.46
+        },
+        {
+          "time": "2026-10-05T22:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 4.75
+        },
+        {
+          "time": "2026-10-05T23:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 5.09
+        }
+      ],
+      "forecast_status": "available",
+      "forecast_missing_reason": null,
+      "forecast_collected_at": "2026-10-04T05:13:31.893122"
     },
     "dadaepohang": {
       "observations": [
         {
           "spot_id": "dadaepohang",
           "metric": "wave_height",
-          "value": null,
+          "value": 0.62,
           "unit": "m",
-          "observed_at": null,
-          "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
+          "observed_at": "2026-10-04T14:00:00",
+          "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1214,14 +3383,14 @@
         {
           "spot_id": "dadaepohang",
           "metric": "wind_speed",
-          "value": null,
+          "value": 5.74,
           "unit": "m/s",
-          "observed_at": null,
-          "source": "KHOA 해양관측부이(실측)",
-          "is_missing": true,
+          "observed_at": "2026-10-04T14:00:00",
+          "source": "Open-Meteo 기상모델",
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1229,14 +3398,14 @@
         {
           "spot_id": "dadaepohang",
           "metric": "current_speed",
-          "value": null,
+          "value": 0.008,
           "unit": "m/s",
-          "observed_at": null,
+          "observed_at": "2026-10-03T15:00:00",
           "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1244,14 +3413,14 @@
         {
           "spot_id": "dadaepohang",
           "metric": "tide_level",
-          "value": null,
+          "value": 103.0,
           "unit": "cm",
-          "observed_at": null,
+          "observed_at": "2026-10-03T15:00:00",
           "source": "KHOA 조위관측소(실측)",
-          "is_missing": true,
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": "부산 조위관측소",
           "reference_station_code": "DT_0005",
           "reference_distance_km": 8.1
@@ -1259,14 +3428,14 @@
         {
           "spot_id": "dadaepohang",
           "metric": "water_temp",
-          "value": null,
+          "value": 23.1,
           "unit": "°C",
-          "observed_at": null,
+          "observed_at": "2026-10-03T15:00:00",
           "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1276,32 +3445,273 @@
         "kind": "none",
         "threshold_value": null,
         "effective_at": null,
-        "source": "특보 소스 없음",
-        "is_missing": true,
+        "source": "기상청 특보",
+        "is_missing": false,
         "is_stale": false
       },
       "llm_prose": null,
       "prose_status": "generation_unavailable",
-      "observation_fetch_duration_ms": 10008,
-      "forecast_fetch_duration_ms": 10024,
-      "forecast": [],
-      "forecast_status": "source_timeout",
-      "forecast_missing_reason": "source_timeout",
-      "forecast_collected_at": "2026-10-03T20:50:19.622820"
+      "observation_fetch_duration_ms": 1793,
+      "forecast_fetch_duration_ms": 1029,
+      "forecast": [
+        {
+          "time": "2026-10-04T00:00:00",
+          "wave_height": 0.88,
+          "wind_speed": 6.71
+        },
+        {
+          "time": "2026-10-04T01:00:00",
+          "wave_height": 0.84,
+          "wind_speed": 5.1
+        },
+        {
+          "time": "2026-10-04T02:00:00",
+          "wave_height": 0.82,
+          "wind_speed": 4.62
+        },
+        {
+          "time": "2026-10-04T03:00:00",
+          "wave_height": 0.78,
+          "wind_speed": 5.07
+        },
+        {
+          "time": "2026-10-04T04:00:00",
+          "wave_height": 0.76,
+          "wind_speed": 5.14
+        },
+        {
+          "time": "2026-10-04T05:00:00",
+          "wave_height": 0.72,
+          "wind_speed": 5.0
+        },
+        {
+          "time": "2026-10-04T06:00:00",
+          "wave_height": 0.7,
+          "wind_speed": 5.41
+        },
+        {
+          "time": "2026-10-04T07:00:00",
+          "wave_height": 0.72,
+          "wind_speed": 4.2
+        },
+        {
+          "time": "2026-10-04T08:00:00",
+          "wave_height": 0.74,
+          "wind_speed": 5.76
+        },
+        {
+          "time": "2026-10-04T09:00:00",
+          "wave_height": 0.76,
+          "wind_speed": 5.4
+        },
+        {
+          "time": "2026-10-04T10:00:00",
+          "wave_height": 0.74,
+          "wind_speed": 4.4
+        },
+        {
+          "time": "2026-10-04T11:00:00",
+          "wave_height": 0.72,
+          "wind_speed": 4.84
+        },
+        {
+          "time": "2026-10-04T12:00:00",
+          "wave_height": 0.7,
+          "wind_speed": 5.54
+        },
+        {
+          "time": "2026-10-04T13:00:00",
+          "wave_height": 0.66,
+          "wind_speed": 5.89
+        },
+        {
+          "time": "2026-10-04T14:00:00",
+          "wave_height": 0.62,
+          "wind_speed": 5.74
+        },
+        {
+          "time": "2026-10-04T15:00:00",
+          "wave_height": 0.58,
+          "wind_speed": 5.36
+        },
+        {
+          "time": "2026-10-04T16:00:00",
+          "wave_height": 0.54,
+          "wind_speed": 5.06
+        },
+        {
+          "time": "2026-10-04T17:00:00",
+          "wave_height": 0.52,
+          "wind_speed": 5.06
+        },
+        {
+          "time": "2026-10-04T18:00:00",
+          "wave_height": 0.48,
+          "wind_speed": 4.57
+        },
+        {
+          "time": "2026-10-04T19:00:00",
+          "wave_height": 0.48,
+          "wind_speed": 4.24
+        },
+        {
+          "time": "2026-10-04T20:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 3.65
+        },
+        {
+          "time": "2026-10-04T21:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 2.94
+        },
+        {
+          "time": "2026-10-04T22:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 2.02
+        },
+        {
+          "time": "2026-10-04T23:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 1.43
+        },
+        {
+          "time": "2026-10-05T00:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 1.82
+        },
+        {
+          "time": "2026-10-05T01:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 2.25
+        },
+        {
+          "time": "2026-10-05T02:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 2.1
+        },
+        {
+          "time": "2026-10-05T03:00:00",
+          "wave_height": 0.38,
+          "wind_speed": 1.66
+        },
+        {
+          "time": "2026-10-05T04:00:00",
+          "wave_height": 0.36,
+          "wind_speed": 1.24
+        },
+        {
+          "time": "2026-10-05T05:00:00",
+          "wave_height": 0.36,
+          "wind_speed": 2.79
+        },
+        {
+          "time": "2026-10-05T06:00:00",
+          "wave_height": 0.34,
+          "wind_speed": 4.19
+        },
+        {
+          "time": "2026-10-05T07:00:00",
+          "wave_height": 0.34,
+          "wind_speed": 4.12
+        },
+        {
+          "time": "2026-10-05T08:00:00",
+          "wave_height": 0.32,
+          "wind_speed": 5.1
+        },
+        {
+          "time": "2026-10-05T09:00:00",
+          "wave_height": 0.32,
+          "wind_speed": 4.84
+        },
+        {
+          "time": "2026-10-05T10:00:00",
+          "wave_height": 0.34,
+          "wind_speed": 5.32
+        },
+        {
+          "time": "2026-10-05T11:00:00",
+          "wave_height": 0.34,
+          "wind_speed": 5.78
+        },
+        {
+          "time": "2026-10-05T12:00:00",
+          "wave_height": 0.36,
+          "wind_speed": 6.07
+        },
+        {
+          "time": "2026-10-05T13:00:00",
+          "wave_height": 0.38,
+          "wind_speed": 6.95
+        },
+        {
+          "time": "2026-10-05T14:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 6.82
+        },
+        {
+          "time": "2026-10-05T15:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 6.36
+        },
+        {
+          "time": "2026-10-05T16:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 6.8
+        },
+        {
+          "time": "2026-10-05T17:00:00",
+          "wave_height": 0.5,
+          "wind_speed": 6.82
+        },
+        {
+          "time": "2026-10-05T18:00:00",
+          "wave_height": 0.52,
+          "wind_speed": 6.38
+        },
+        {
+          "time": "2026-10-05T19:00:00",
+          "wave_height": 0.52,
+          "wind_speed": 6.6
+        },
+        {
+          "time": "2026-10-05T20:00:00",
+          "wave_height": 0.54,
+          "wind_speed": 6.68
+        },
+        {
+          "time": "2026-10-05T21:00:00",
+          "wave_height": 0.54,
+          "wind_speed": 5.97
+        },
+        {
+          "time": "2026-10-05T22:00:00",
+          "wave_height": 0.52,
+          "wind_speed": 5.99
+        },
+        {
+          "time": "2026-10-05T23:00:00",
+          "wave_height": 0.5,
+          "wind_speed": 6.47
+        }
+      ],
+      "forecast_status": "available",
+      "forecast_missing_reason": null,
+      "forecast_collected_at": "2026-10-04T05:13:31.893122"
     },
     "taejongdae": {
       "observations": [
         {
           "spot_id": "taejongdae",
           "metric": "wave_height",
-          "value": null,
+          "value": 0.86,
           "unit": "m",
-          "observed_at": null,
-          "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
+          "observed_at": "2026-10-04T14:00:00",
+          "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1309,14 +3719,14 @@
         {
           "spot_id": "taejongdae",
           "metric": "wind_speed",
-          "value": null,
+          "value": 5.71,
           "unit": "m/s",
-          "observed_at": null,
-          "source": "KHOA 해양관측부이(실측)",
-          "is_missing": true,
+          "observed_at": "2026-10-04T14:00:00",
+          "source": "Open-Meteo 기상모델",
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1324,14 +3734,14 @@
         {
           "spot_id": "taejongdae",
           "metric": "current_speed",
-          "value": null,
+          "value": 0.008,
           "unit": "m/s",
-          "observed_at": null,
+          "observed_at": "2026-10-03T15:00:00",
           "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1339,14 +3749,14 @@
         {
           "spot_id": "taejongdae",
           "metric": "tide_level",
-          "value": null,
+          "value": 103.0,
           "unit": "cm",
-          "observed_at": null,
+          "observed_at": "2026-10-03T15:00:00",
           "source": "KHOA 조위관측소(실측)",
-          "is_missing": true,
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": "부산 조위관측소",
           "reference_station_code": "DT_0005",
           "reference_distance_km": 6.8
@@ -1354,14 +3764,14 @@
         {
           "spot_id": "taejongdae",
           "metric": "water_temp",
-          "value": null,
+          "value": 23.1,
           "unit": "°C",
-          "observed_at": null,
+          "observed_at": "2026-10-03T15:00:00",
           "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1371,32 +3781,273 @@
         "kind": "none",
         "threshold_value": null,
         "effective_at": null,
-        "source": "특보 소스 없음",
-        "is_missing": true,
+        "source": "기상청 특보",
+        "is_missing": false,
         "is_stale": false
       },
       "llm_prose": null,
       "prose_status": "generation_unavailable",
-      "observation_fetch_duration_ms": 10008,
-      "forecast_fetch_duration_ms": 10025,
-      "forecast": [],
-      "forecast_status": "source_timeout",
-      "forecast_missing_reason": "source_timeout",
-      "forecast_collected_at": "2026-10-03T20:50:19.622820"
+      "observation_fetch_duration_ms": 2087,
+      "forecast_fetch_duration_ms": 731,
+      "forecast": [
+        {
+          "time": "2026-10-04T00:00:00",
+          "wave_height": 1.22,
+          "wind_speed": 8.51
+        },
+        {
+          "time": "2026-10-04T01:00:00",
+          "wave_height": 1.16,
+          "wind_speed": 7.58
+        },
+        {
+          "time": "2026-10-04T02:00:00",
+          "wave_height": 1.1,
+          "wind_speed": 5.5
+        },
+        {
+          "time": "2026-10-04T03:00:00",
+          "wave_height": 1.04,
+          "wind_speed": 6.08
+        },
+        {
+          "time": "2026-10-04T04:00:00",
+          "wave_height": 1.02,
+          "wind_speed": 5.87
+        },
+        {
+          "time": "2026-10-04T05:00:00",
+          "wave_height": 1.02,
+          "wind_speed": 5.51
+        },
+        {
+          "time": "2026-10-04T06:00:00",
+          "wave_height": 1.0,
+          "wind_speed": 5.72
+        },
+        {
+          "time": "2026-10-04T07:00:00",
+          "wave_height": 1.04,
+          "wind_speed": 4.65
+        },
+        {
+          "time": "2026-10-04T08:00:00",
+          "wave_height": 1.06,
+          "wind_speed": 5.61
+        },
+        {
+          "time": "2026-10-04T09:00:00",
+          "wave_height": 1.1,
+          "wind_speed": 5.87
+        },
+        {
+          "time": "2026-10-04T10:00:00",
+          "wave_height": 1.06,
+          "wind_speed": 5.44
+        },
+        {
+          "time": "2026-10-04T11:00:00",
+          "wave_height": 1.0,
+          "wind_speed": 5.72
+        },
+        {
+          "time": "2026-10-04T12:00:00",
+          "wave_height": 0.96,
+          "wind_speed": 6.21
+        },
+        {
+          "time": "2026-10-04T13:00:00",
+          "wave_height": 0.9,
+          "wind_speed": 6.02
+        },
+        {
+          "time": "2026-10-04T14:00:00",
+          "wave_height": 0.86,
+          "wind_speed": 5.71
+        },
+        {
+          "time": "2026-10-04T15:00:00",
+          "wave_height": 0.8,
+          "wind_speed": 5.24
+        },
+        {
+          "time": "2026-10-04T16:00:00",
+          "wave_height": 0.78,
+          "wind_speed": 4.85
+        },
+        {
+          "time": "2026-10-04T17:00:00",
+          "wave_height": 0.74,
+          "wind_speed": 5.02
+        },
+        {
+          "time": "2026-10-04T18:00:00",
+          "wave_height": 0.72,
+          "wind_speed": 4.67
+        },
+        {
+          "time": "2026-10-04T19:00:00",
+          "wave_height": 0.7,
+          "wind_speed": 4.42
+        },
+        {
+          "time": "2026-10-04T20:00:00",
+          "wave_height": 0.68,
+          "wind_speed": 4.03
+        },
+        {
+          "time": "2026-10-04T21:00:00",
+          "wave_height": 0.66,
+          "wind_speed": 3.23
+        },
+        {
+          "time": "2026-10-04T22:00:00",
+          "wave_height": 0.64,
+          "wind_speed": 2.75
+        },
+        {
+          "time": "2026-10-04T23:00:00",
+          "wave_height": 0.6,
+          "wind_speed": 1.57
+        },
+        {
+          "time": "2026-10-05T00:00:00",
+          "wave_height": 0.58,
+          "wind_speed": 1.0
+        },
+        {
+          "time": "2026-10-05T01:00:00",
+          "wave_height": 0.56,
+          "wind_speed": 1.79
+        },
+        {
+          "time": "2026-10-05T02:00:00",
+          "wave_height": 0.54,
+          "wind_speed": 2.0
+        },
+        {
+          "time": "2026-10-05T03:00:00",
+          "wave_height": 0.52,
+          "wind_speed": 1.84
+        },
+        {
+          "time": "2026-10-05T04:00:00",
+          "wave_height": 0.5,
+          "wind_speed": 1.8
+        },
+        {
+          "time": "2026-10-05T05:00:00",
+          "wave_height": 0.5,
+          "wind_speed": 3.3
+        },
+        {
+          "time": "2026-10-05T06:00:00",
+          "wave_height": 0.48,
+          "wind_speed": 4.6
+        },
+        {
+          "time": "2026-10-05T07:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 4.39
+        },
+        {
+          "time": "2026-10-05T08:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 5.66
+        },
+        {
+          "time": "2026-10-05T09:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 5.02
+        },
+        {
+          "time": "2026-10-05T10:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 5.3
+        },
+        {
+          "time": "2026-10-05T11:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 5.96
+        },
+        {
+          "time": "2026-10-05T12:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 6.07
+        },
+        {
+          "time": "2026-10-05T13:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 6.82
+        },
+        {
+          "time": "2026-10-05T14:00:00",
+          "wave_height": 0.48,
+          "wind_speed": 7.07
+        },
+        {
+          "time": "2026-10-05T15:00:00",
+          "wave_height": 0.5,
+          "wind_speed": 6.39
+        },
+        {
+          "time": "2026-10-05T16:00:00",
+          "wave_height": 0.52,
+          "wind_speed": 6.66
+        },
+        {
+          "time": "2026-10-05T17:00:00",
+          "wave_height": 0.56,
+          "wind_speed": 6.85
+        },
+        {
+          "time": "2026-10-05T18:00:00",
+          "wave_height": 0.58,
+          "wind_speed": 6.41
+        },
+        {
+          "time": "2026-10-05T19:00:00",
+          "wave_height": 0.6,
+          "wind_speed": 6.77
+        },
+        {
+          "time": "2026-10-05T20:00:00",
+          "wave_height": 0.62,
+          "wind_speed": 6.9
+        },
+        {
+          "time": "2026-10-05T21:00:00",
+          "wave_height": 0.64,
+          "wind_speed": 6.17
+        },
+        {
+          "time": "2026-10-05T22:00:00",
+          "wave_height": 0.62,
+          "wind_speed": 6.35
+        },
+        {
+          "time": "2026-10-05T23:00:00",
+          "wave_height": 0.6,
+          "wind_speed": 6.74
+        }
+      ],
+      "forecast_status": "available",
+      "forecast_missing_reason": null,
+      "forecast_collected_at": "2026-10-04T05:13:31.893122"
     },
     "oryukdo": {
       "observations": [
         {
           "spot_id": "oryukdo",
           "metric": "wave_height",
-          "value": null,
+          "value": 0.76,
           "unit": "m",
-          "observed_at": null,
-          "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
+          "observed_at": "2026-10-04T14:00:00",
+          "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1404,14 +4055,14 @@
         {
           "spot_id": "oryukdo",
           "metric": "wind_speed",
-          "value": null,
+          "value": 5.49,
           "unit": "m/s",
-          "observed_at": null,
-          "source": "KHOA 해양관측부이(실측)",
-          "is_missing": true,
+          "observed_at": "2026-10-04T14:00:00",
+          "source": "Open-Meteo 기상모델",
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1419,14 +4070,14 @@
         {
           "spot_id": "oryukdo",
           "metric": "current_speed",
-          "value": null,
+          "value": 0.008,
           "unit": "m/s",
-          "observed_at": null,
+          "observed_at": "2026-10-03T15:00:00",
           "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1434,14 +4085,14 @@
         {
           "spot_id": "oryukdo",
           "metric": "tide_level",
-          "value": null,
+          "value": 103.0,
           "unit": "cm",
-          "observed_at": null,
+          "observed_at": "2026-10-03T15:00:00",
           "source": "KHOA 조위관측소(실측)",
-          "is_missing": true,
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": "부산 조위관측소",
           "reference_station_code": "DT_0005",
           "reference_distance_km": 8.0
@@ -1449,14 +4100,14 @@
         {
           "spot_id": "oryukdo",
           "metric": "water_temp",
-          "value": null,
+          "value": 23.1,
           "unit": "°C",
-          "observed_at": null,
+          "observed_at": "2026-10-03T15:00:00",
           "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1466,32 +4117,273 @@
         "kind": "none",
         "threshold_value": null,
         "effective_at": null,
-        "source": "특보 소스 없음",
-        "is_missing": true,
+        "source": "기상청 특보",
+        "is_missing": false,
         "is_stale": false
       },
       "llm_prose": null,
       "prose_status": "generation_unavailable",
-      "observation_fetch_duration_ms": 10008,
-      "forecast_fetch_duration_ms": 10027,
-      "forecast": [],
-      "forecast_status": "source_timeout",
-      "forecast_missing_reason": "source_timeout",
-      "forecast_collected_at": "2026-10-03T20:50:19.622820"
+      "observation_fetch_duration_ms": 1793,
+      "forecast_fetch_duration_ms": 1005,
+      "forecast": [
+        {
+          "time": "2026-10-04T00:00:00",
+          "wave_height": 1.04,
+          "wind_speed": 8.1
+        },
+        {
+          "time": "2026-10-04T01:00:00",
+          "wave_height": 1.0,
+          "wind_speed": 7.21
+        },
+        {
+          "time": "2026-10-04T02:00:00",
+          "wave_height": 0.96,
+          "wind_speed": 5.47
+        },
+        {
+          "time": "2026-10-04T03:00:00",
+          "wave_height": 0.92,
+          "wind_speed": 6.14
+        },
+        {
+          "time": "2026-10-04T04:00:00",
+          "wave_height": 0.9,
+          "wind_speed": 5.55
+        },
+        {
+          "time": "2026-10-04T05:00:00",
+          "wave_height": 0.9,
+          "wind_speed": 5.0
+        },
+        {
+          "time": "2026-10-04T06:00:00",
+          "wave_height": 0.88,
+          "wind_speed": 4.9
+        },
+        {
+          "time": "2026-10-04T07:00:00",
+          "wave_height": 0.9,
+          "wind_speed": 4.14
+        },
+        {
+          "time": "2026-10-04T08:00:00",
+          "wave_height": 0.92,
+          "wind_speed": 4.81
+        },
+        {
+          "time": "2026-10-04T09:00:00",
+          "wave_height": 0.94,
+          "wind_speed": 5.22
+        },
+        {
+          "time": "2026-10-04T10:00:00",
+          "wave_height": 0.92,
+          "wind_speed": 4.72
+        },
+        {
+          "time": "2026-10-04T11:00:00",
+          "wave_height": 0.88,
+          "wind_speed": 5.48
+        },
+        {
+          "time": "2026-10-04T12:00:00",
+          "wave_height": 0.86,
+          "wind_speed": 6.0
+        },
+        {
+          "time": "2026-10-04T13:00:00",
+          "wave_height": 0.82,
+          "wind_speed": 5.97
+        },
+        {
+          "time": "2026-10-04T14:00:00",
+          "wave_height": 0.76,
+          "wind_speed": 5.49
+        },
+        {
+          "time": "2026-10-04T15:00:00",
+          "wave_height": 0.72,
+          "wind_speed": 4.71
+        },
+        {
+          "time": "2026-10-04T16:00:00",
+          "wave_height": 0.7,
+          "wind_speed": 4.34
+        },
+        {
+          "time": "2026-10-04T17:00:00",
+          "wave_height": 0.68,
+          "wind_speed": 4.54
+        },
+        {
+          "time": "2026-10-04T18:00:00",
+          "wave_height": 0.66,
+          "wind_speed": 4.13
+        },
+        {
+          "time": "2026-10-04T19:00:00",
+          "wave_height": 0.64,
+          "wind_speed": 4.1
+        },
+        {
+          "time": "2026-10-04T20:00:00",
+          "wave_height": 0.6,
+          "wind_speed": 3.71
+        },
+        {
+          "time": "2026-10-04T21:00:00",
+          "wave_height": 0.58,
+          "wind_speed": 3.04
+        },
+        {
+          "time": "2026-10-04T22:00:00",
+          "wave_height": 0.56,
+          "wind_speed": 2.55
+        },
+        {
+          "time": "2026-10-04T23:00:00",
+          "wave_height": 0.56,
+          "wind_speed": 1.34
+        },
+        {
+          "time": "2026-10-05T00:00:00",
+          "wave_height": 0.54,
+          "wind_speed": 1.12
+        },
+        {
+          "time": "2026-10-05T01:00:00",
+          "wave_height": 0.52,
+          "wind_speed": 1.79
+        },
+        {
+          "time": "2026-10-05T02:00:00",
+          "wave_height": 0.5,
+          "wind_speed": 1.98
+        },
+        {
+          "time": "2026-10-05T03:00:00",
+          "wave_height": 0.48,
+          "wind_speed": 2.08
+        },
+        {
+          "time": "2026-10-05T04:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 1.75
+        },
+        {
+          "time": "2026-10-05T05:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 3.01
+        },
+        {
+          "time": "2026-10-05T06:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 4.39
+        },
+        {
+          "time": "2026-10-05T07:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 4.25
+        },
+        {
+          "time": "2026-10-05T08:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 5.3
+        },
+        {
+          "time": "2026-10-05T09:00:00",
+          "wave_height": 0.38,
+          "wind_speed": 4.53
+        },
+        {
+          "time": "2026-10-05T10:00:00",
+          "wave_height": 0.38,
+          "wind_speed": 4.76
+        },
+        {
+          "time": "2026-10-05T11:00:00",
+          "wave_height": 0.36,
+          "wind_speed": 5.64
+        },
+        {
+          "time": "2026-10-05T12:00:00",
+          "wave_height": 0.36,
+          "wind_speed": 5.69
+        },
+        {
+          "time": "2026-10-05T13:00:00",
+          "wave_height": 0.38,
+          "wind_speed": 5.82
+        },
+        {
+          "time": "2026-10-05T14:00:00",
+          "wave_height": 0.38,
+          "wind_speed": 6.26
+        },
+        {
+          "time": "2026-10-05T15:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 5.91
+        },
+        {
+          "time": "2026-10-05T16:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 6.22
+        },
+        {
+          "time": "2026-10-05T17:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 6.28
+        },
+        {
+          "time": "2026-10-05T18:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 5.55
+        },
+        {
+          "time": "2026-10-05T19:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 5.82
+        },
+        {
+          "time": "2026-10-05T20:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 5.8
+        },
+        {
+          "time": "2026-10-05T21:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 5.23
+        },
+        {
+          "time": "2026-10-05T22:00:00",
+          "wave_height": 0.38,
+          "wind_speed": 5.66
+        },
+        {
+          "time": "2026-10-05T23:00:00",
+          "wave_height": 0.38,
+          "wind_speed": 5.94
+        }
+      ],
+      "forecast_status": "available",
+      "forecast_missing_reason": null,
+      "forecast_collected_at": "2026-10-04T05:13:31.893122"
     },
     "cheongsapo": {
       "observations": [
         {
           "spot_id": "cheongsapo",
           "metric": "wave_height",
-          "value": null,
+          "value": 1.1,
           "unit": "m",
-          "observed_at": null,
+          "observed_at": "2026-10-03T15:00:00",
           "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1499,14 +4391,14 @@
         {
           "spot_id": "cheongsapo",
           "metric": "wind_speed",
-          "value": null,
+          "value": 4.3,
           "unit": "m/s",
-          "observed_at": null,
+          "observed_at": "2026-10-03T15:00:00",
           "source": "KHOA 해양관측부이(실측)",
-          "is_missing": true,
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1514,14 +4406,14 @@
         {
           "spot_id": "cheongsapo",
           "metric": "current_speed",
-          "value": null,
+          "value": 0.13,
           "unit": "m/s",
-          "observed_at": null,
+          "observed_at": "2026-10-03T15:00:00",
           "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1529,14 +4421,14 @@
         {
           "spot_id": "cheongsapo",
           "metric": "tide_level",
-          "value": null,
+          "value": 103.0,
           "unit": "cm",
-          "observed_at": null,
+          "observed_at": "2026-10-03T15:00:00",
           "source": "KHOA 조위관측소(실측)",
-          "is_missing": true,
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": "부산 조위관측소",
           "reference_station_code": "DT_0005",
           "reference_distance_km": 15.8
@@ -1544,14 +4436,14 @@
         {
           "spot_id": "cheongsapo",
           "metric": "water_temp",
-          "value": null,
+          "value": 23.85,
           "unit": "°C",
-          "observed_at": null,
+          "observed_at": "2026-10-03T15:00:00",
           "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1561,32 +4453,273 @@
         "kind": "none",
         "threshold_value": null,
         "effective_at": null,
-        "source": "특보 소스 없음",
-        "is_missing": true,
+        "source": "기상청 특보",
+        "is_missing": false,
         "is_stale": false
       },
       "llm_prose": null,
       "prose_status": "generation_unavailable",
-      "observation_fetch_duration_ms": 10008,
-      "forecast_fetch_duration_ms": 10027,
-      "forecast": [],
-      "forecast_status": "source_timeout",
-      "forecast_missing_reason": "source_timeout",
-      "forecast_collected_at": "2026-10-03T20:50:19.622820"
+      "observation_fetch_duration_ms": 2087,
+      "forecast_fetch_duration_ms": 735,
+      "forecast": [
+        {
+          "time": "2026-10-04T00:00:00",
+          "wave_height": 1.2,
+          "wind_speed": 7.92
+        },
+        {
+          "time": "2026-10-04T01:00:00",
+          "wave_height": 1.16,
+          "wind_speed": 6.94
+        },
+        {
+          "time": "2026-10-04T02:00:00",
+          "wave_height": 1.1,
+          "wind_speed": 5.45
+        },
+        {
+          "time": "2026-10-04T03:00:00",
+          "wave_height": 1.06,
+          "wind_speed": 6.3
+        },
+        {
+          "time": "2026-10-04T04:00:00",
+          "wave_height": 1.06,
+          "wind_speed": 5.88
+        },
+        {
+          "time": "2026-10-04T05:00:00",
+          "wave_height": 1.04,
+          "wind_speed": 4.77
+        },
+        {
+          "time": "2026-10-04T06:00:00",
+          "wave_height": 1.04,
+          "wind_speed": 4.8
+        },
+        {
+          "time": "2026-10-04T07:00:00",
+          "wave_height": 1.06,
+          "wind_speed": 4.24
+        },
+        {
+          "time": "2026-10-04T08:00:00",
+          "wave_height": 1.08,
+          "wind_speed": 4.8
+        },
+        {
+          "time": "2026-10-04T09:00:00",
+          "wave_height": 1.1,
+          "wind_speed": 4.88
+        },
+        {
+          "time": "2026-10-04T10:00:00",
+          "wave_height": 1.06,
+          "wind_speed": 4.34
+        },
+        {
+          "time": "2026-10-04T11:00:00",
+          "wave_height": 1.02,
+          "wind_speed": 5.73
+        },
+        {
+          "time": "2026-10-04T12:00:00",
+          "wave_height": 0.98,
+          "wind_speed": 5.79
+        },
+        {
+          "time": "2026-10-04T13:00:00",
+          "wave_height": 0.94,
+          "wind_speed": 5.84
+        },
+        {
+          "time": "2026-10-04T14:00:00",
+          "wave_height": 0.9,
+          "wind_speed": 5.0
+        },
+        {
+          "time": "2026-10-04T15:00:00",
+          "wave_height": 0.86,
+          "wind_speed": 4.32
+        },
+        {
+          "time": "2026-10-04T16:00:00",
+          "wave_height": 0.82,
+          "wind_speed": 3.71
+        },
+        {
+          "time": "2026-10-04T17:00:00",
+          "wave_height": 0.8,
+          "wind_speed": 3.67
+        },
+        {
+          "time": "2026-10-04T18:00:00",
+          "wave_height": 0.76,
+          "wind_speed": 3.91
+        },
+        {
+          "time": "2026-10-04T19:00:00",
+          "wave_height": 0.74,
+          "wind_speed": 4.0
+        },
+        {
+          "time": "2026-10-04T20:00:00",
+          "wave_height": 0.72,
+          "wind_speed": 3.41
+        },
+        {
+          "time": "2026-10-04T21:00:00",
+          "wave_height": 0.7,
+          "wind_speed": 2.72
+        },
+        {
+          "time": "2026-10-04T22:00:00",
+          "wave_height": 0.68,
+          "wind_speed": 2.43
+        },
+        {
+          "time": "2026-10-04T23:00:00",
+          "wave_height": 0.66,
+          "wind_speed": 1.08
+        },
+        {
+          "time": "2026-10-05T00:00:00",
+          "wave_height": 0.64,
+          "wind_speed": 1.12
+        },
+        {
+          "time": "2026-10-05T01:00:00",
+          "wave_height": 0.62,
+          "wind_speed": 1.78
+        },
+        {
+          "time": "2026-10-05T02:00:00",
+          "wave_height": 0.58,
+          "wind_speed": 2.05
+        },
+        {
+          "time": "2026-10-05T03:00:00",
+          "wave_height": 0.56,
+          "wind_speed": 2.28
+        },
+        {
+          "time": "2026-10-05T04:00:00",
+          "wave_height": 0.54,
+          "wind_speed": 2.18
+        },
+        {
+          "time": "2026-10-05T05:00:00",
+          "wave_height": 0.5,
+          "wind_speed": 2.92
+        },
+        {
+          "time": "2026-10-05T06:00:00",
+          "wave_height": 0.48,
+          "wind_speed": 4.24
+        },
+        {
+          "time": "2026-10-05T07:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 4.02
+        },
+        {
+          "time": "2026-10-05T08:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 5.02
+        },
+        {
+          "time": "2026-10-05T09:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 4.25
+        },
+        {
+          "time": "2026-10-05T10:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 4.28
+        },
+        {
+          "time": "2026-10-05T11:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 5.06
+        },
+        {
+          "time": "2026-10-05T12:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 5.48
+        },
+        {
+          "time": "2026-10-05T13:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 5.63
+        },
+        {
+          "time": "2026-10-05T14:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 5.9
+        },
+        {
+          "time": "2026-10-05T15:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 5.73
+        },
+        {
+          "time": "2026-10-05T16:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 5.96
+        },
+        {
+          "time": "2026-10-05T17:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 5.77
+        },
+        {
+          "time": "2026-10-05T18:00:00",
+          "wave_height": 0.48,
+          "wind_speed": 4.83
+        },
+        {
+          "time": "2026-10-05T19:00:00",
+          "wave_height": 0.48,
+          "wind_speed": 5.01
+        },
+        {
+          "time": "2026-10-05T20:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 4.78
+        },
+        {
+          "time": "2026-10-05T21:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 4.68
+        },
+        {
+          "time": "2026-10-05T22:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 5.1
+        },
+        {
+          "time": "2026-10-05T23:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 5.28
+        }
+      ],
+      "forecast_status": "available",
+      "forecast_missing_reason": null,
+      "forecast_collected_at": "2026-10-04T05:13:31.893122"
     },
     "igidae": {
       "observations": [
         {
           "spot_id": "igidae",
           "metric": "wave_height",
-          "value": null,
+          "value": 0.76,
           "unit": "m",
-          "observed_at": null,
-          "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
+          "observed_at": "2026-10-04T14:00:00",
+          "source": "Open-Meteo 해양모델(MFWAM/ECMWF)",
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1594,14 +4727,14 @@
         {
           "spot_id": "igidae",
           "metric": "wind_speed",
-          "value": null,
+          "value": 5.49,
           "unit": "m/s",
-          "observed_at": null,
-          "source": "KHOA 해양관측부이(실측)",
-          "is_missing": true,
+          "observed_at": "2026-10-04T14:00:00",
+          "source": "Open-Meteo 기상모델",
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1609,14 +4742,14 @@
         {
           "spot_id": "igidae",
           "metric": "current_speed",
-          "value": null,
+          "value": 0.008,
           "unit": "m/s",
-          "observed_at": null,
+          "observed_at": "2026-10-03T15:00:00",
           "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1624,14 +4757,14 @@
         {
           "spot_id": "igidae",
           "metric": "tide_level",
-          "value": null,
+          "value": 103.0,
           "unit": "cm",
-          "observed_at": null,
+          "observed_at": "2026-10-03T15:00:00",
           "source": "KHOA 조위관측소(실측)",
-          "is_missing": true,
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": "부산 조위관측소",
           "reference_station_code": "DT_0005",
           "reference_distance_km": 8.4
@@ -1639,14 +4772,14 @@
         {
           "spot_id": "igidae",
           "metric": "water_temp",
-          "value": null,
+          "value": 23.1,
           "unit": "°C",
-          "observed_at": null,
+          "observed_at": "2026-10-03T15:00:00",
           "source": "KHOA 바다누리(실측)",
-          "is_missing": true,
+          "is_missing": false,
           "is_stale": false,
-          "missing_reason": "source_timeout",
-          "fetched_at": "2026-10-03T20:50:19.622820",
+          "missing_reason": null,
+          "fetched_at": "2026-10-04T05:13:31.893122",
           "reference_station_name": null,
           "reference_station_code": null,
           "reference_distance_km": null
@@ -1656,18 +4789,259 @@
         "kind": "none",
         "threshold_value": null,
         "effective_at": null,
-        "source": "특보 소스 없음",
-        "is_missing": true,
+        "source": "기상청 특보",
+        "is_missing": false,
         "is_stale": false
       },
       "llm_prose": null,
       "prose_status": "generation_unavailable",
-      "observation_fetch_duration_ms": 10008,
-      "forecast_fetch_duration_ms": 10028,
-      "forecast": [],
-      "forecast_status": "source_timeout",
-      "forecast_missing_reason": "source_timeout",
-      "forecast_collected_at": "2026-10-03T20:50:19.622820"
+      "observation_fetch_duration_ms": 2087,
+      "forecast_fetch_duration_ms": 731,
+      "forecast": [
+        {
+          "time": "2026-10-04T00:00:00",
+          "wave_height": 1.04,
+          "wind_speed": 8.1
+        },
+        {
+          "time": "2026-10-04T01:00:00",
+          "wave_height": 1.0,
+          "wind_speed": 7.21
+        },
+        {
+          "time": "2026-10-04T02:00:00",
+          "wave_height": 0.96,
+          "wind_speed": 5.47
+        },
+        {
+          "time": "2026-10-04T03:00:00",
+          "wave_height": 0.92,
+          "wind_speed": 6.14
+        },
+        {
+          "time": "2026-10-04T04:00:00",
+          "wave_height": 0.9,
+          "wind_speed": 5.55
+        },
+        {
+          "time": "2026-10-04T05:00:00",
+          "wave_height": 0.9,
+          "wind_speed": 5.0
+        },
+        {
+          "time": "2026-10-04T06:00:00",
+          "wave_height": 0.88,
+          "wind_speed": 4.9
+        },
+        {
+          "time": "2026-10-04T07:00:00",
+          "wave_height": 0.9,
+          "wind_speed": 4.14
+        },
+        {
+          "time": "2026-10-04T08:00:00",
+          "wave_height": 0.92,
+          "wind_speed": 4.81
+        },
+        {
+          "time": "2026-10-04T09:00:00",
+          "wave_height": 0.94,
+          "wind_speed": 5.22
+        },
+        {
+          "time": "2026-10-04T10:00:00",
+          "wave_height": 0.92,
+          "wind_speed": 4.72
+        },
+        {
+          "time": "2026-10-04T11:00:00",
+          "wave_height": 0.88,
+          "wind_speed": 5.48
+        },
+        {
+          "time": "2026-10-04T12:00:00",
+          "wave_height": 0.86,
+          "wind_speed": 6.0
+        },
+        {
+          "time": "2026-10-04T13:00:00",
+          "wave_height": 0.82,
+          "wind_speed": 5.97
+        },
+        {
+          "time": "2026-10-04T14:00:00",
+          "wave_height": 0.76,
+          "wind_speed": 5.49
+        },
+        {
+          "time": "2026-10-04T15:00:00",
+          "wave_height": 0.72,
+          "wind_speed": 4.71
+        },
+        {
+          "time": "2026-10-04T16:00:00",
+          "wave_height": 0.7,
+          "wind_speed": 4.34
+        },
+        {
+          "time": "2026-10-04T17:00:00",
+          "wave_height": 0.68,
+          "wind_speed": 4.54
+        },
+        {
+          "time": "2026-10-04T18:00:00",
+          "wave_height": 0.66,
+          "wind_speed": 4.13
+        },
+        {
+          "time": "2026-10-04T19:00:00",
+          "wave_height": 0.64,
+          "wind_speed": 4.1
+        },
+        {
+          "time": "2026-10-04T20:00:00",
+          "wave_height": 0.6,
+          "wind_speed": 3.71
+        },
+        {
+          "time": "2026-10-04T21:00:00",
+          "wave_height": 0.58,
+          "wind_speed": 3.04
+        },
+        {
+          "time": "2026-10-04T22:00:00",
+          "wave_height": 0.56,
+          "wind_speed": 2.55
+        },
+        {
+          "time": "2026-10-04T23:00:00",
+          "wave_height": 0.56,
+          "wind_speed": 1.34
+        },
+        {
+          "time": "2026-10-05T00:00:00",
+          "wave_height": 0.54,
+          "wind_speed": 1.12
+        },
+        {
+          "time": "2026-10-05T01:00:00",
+          "wave_height": 0.52,
+          "wind_speed": 1.79
+        },
+        {
+          "time": "2026-10-05T02:00:00",
+          "wave_height": 0.5,
+          "wind_speed": 1.98
+        },
+        {
+          "time": "2026-10-05T03:00:00",
+          "wave_height": 0.48,
+          "wind_speed": 2.08
+        },
+        {
+          "time": "2026-10-05T04:00:00",
+          "wave_height": 0.46,
+          "wind_speed": 1.75
+        },
+        {
+          "time": "2026-10-05T05:00:00",
+          "wave_height": 0.44,
+          "wind_speed": 3.01
+        },
+        {
+          "time": "2026-10-05T06:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 4.39
+        },
+        {
+          "time": "2026-10-05T07:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 4.25
+        },
+        {
+          "time": "2026-10-05T08:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 5.3
+        },
+        {
+          "time": "2026-10-05T09:00:00",
+          "wave_height": 0.38,
+          "wind_speed": 4.53
+        },
+        {
+          "time": "2026-10-05T10:00:00",
+          "wave_height": 0.38,
+          "wind_speed": 4.76
+        },
+        {
+          "time": "2026-10-05T11:00:00",
+          "wave_height": 0.36,
+          "wind_speed": 5.64
+        },
+        {
+          "time": "2026-10-05T12:00:00",
+          "wave_height": 0.36,
+          "wind_speed": 5.69
+        },
+        {
+          "time": "2026-10-05T13:00:00",
+          "wave_height": 0.38,
+          "wind_speed": 5.82
+        },
+        {
+          "time": "2026-10-05T14:00:00",
+          "wave_height": 0.38,
+          "wind_speed": 6.26
+        },
+        {
+          "time": "2026-10-05T15:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 5.91
+        },
+        {
+          "time": "2026-10-05T16:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 6.22
+        },
+        {
+          "time": "2026-10-05T17:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 6.28
+        },
+        {
+          "time": "2026-10-05T18:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 5.55
+        },
+        {
+          "time": "2026-10-05T19:00:00",
+          "wave_height": 0.42,
+          "wind_speed": 5.82
+        },
+        {
+          "time": "2026-10-05T20:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 5.8
+        },
+        {
+          "time": "2026-10-05T21:00:00",
+          "wave_height": 0.4,
+          "wind_speed": 5.23
+        },
+        {
+          "time": "2026-10-05T22:00:00",
+          "wave_height": 0.38,
+          "wind_speed": 5.66
+        },
+        {
+          "time": "2026-10-05T23:00:00",
+          "wave_height": 0.38,
+          "wind_speed": 5.94
+        }
+      ],
+      "forecast_status": "available",
+      "forecast_missing_reason": null,
+      "forecast_collected_at": "2026-10-04T05:13:31.893122"
     }
   }
 }
